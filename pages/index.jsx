@@ -4,6 +4,9 @@ import React from 'react';
 // Components import
 import Head from 'next/head';
 
+// Icons import
+import HelpIcon from '../public/assets/svgs/help.svg';
+
 // Styles import
 import styles from './index.module.scss';
 
@@ -16,6 +19,7 @@ function Index() {
       </Head>
 
       <span>Welcome</span>
+      <HelpIcon />
     </div>
   );
 }
