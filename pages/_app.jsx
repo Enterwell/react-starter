@@ -1,6 +1,7 @@
 // General imports
 import React from 'react';
 import { create } from 'jss';
+import 'mobx-react-lite/batchingForReactDom';
 
 // Components import
 import App from 'next/app';

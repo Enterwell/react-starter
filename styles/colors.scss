@@ -2,10 +2,3 @@ $color-primary: #2aa876;
 $color-primary-text: #ffffff;
 $color-secondary: #ffd265;
 $color-secondary-text: #7e621d;
-
-:export {
-  primary: $color-primary;
-  primaryText: $color-primary-text;
-  secondary: $color-secondary;
-  secondaryText: $color-secondary-text;
-}

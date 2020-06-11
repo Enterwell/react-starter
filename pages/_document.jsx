@@ -6,8 +6,8 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core';
 
 /**
- * Custom document component. It is used to augment application's 
- * html any body tags. More about custom document can be found on the 
+ * Custom document component. It is used to augment application's
+ * html any body tags. More about custom document can be found on the
  * following link https://nextjs.org/docs/advanced-features/custom-document.
  *
  * @class CustomDocument

@@ -20,7 +20,7 @@
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
     "mobx": "^5.15.4",
-    "mobx-react": "^6.2.2",
+    "mobx-react-lite": "^2.0.7",
     "next": "9.4.4",
     "noty": "^3.2.0-beta",
     "react": "16.13.1",
