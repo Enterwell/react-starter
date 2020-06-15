@@ -10,23 +10,25 @@ import LoadingContainer from '../../components/LoadingContainer/LoadingContainer
 // View models import
 import PokemonDetailsViewModel from '../../view-models/PokemonDetailsViewModel';
 
+// Helpers import
+import { withViewModel } from '../../helpers/ComponentsHelpers';
+
 // Styles import
 import styles from './PokemonDetailsView.module.scss';
-
-// View model
-const pokemonDetailsViewModel = PokemonDetailsViewModel.get();
 
 /**
  * Function represents the view corresponding to the Pokemon details page.
  *
+ * @param {Object} props Various component's props
  * @returns view's elements
  */
-function PokemonDetailsView() {
+function PokemonDetailsView(props) {
+  const { viewModel } = props;
   const {
     isLoading,
     pokemon,
     loadPokemon
-  } = pokemonDetailsViewModel;
+  } = viewModel;
 
   const router = useRouter();
 
@@ -83,4 +85,4 @@ function PokemonDetailsView() {
   );
 }
 
-export default observer(PokemonDetailsView);
+export default withViewModel(observer(PokemonDetailsView), PokemonDetailsViewModel);

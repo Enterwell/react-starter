@@ -1,57 +1,59 @@
 // General imports
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRouter } from 'next/router';
+
+// Components import
+import Link from 'next/link';
 
 // View models import
 import PokemonsViewModel from '../../view-models/PokemonsViewModel';
 
+// Helpers import
+import { withViewModel } from '../../helpers/ComponentsHelpers';
+
 // Styles import
 import styles from './PokemonsView.module.scss';
-
-// View model
-const pokemonsViewModel = PokemonsViewModel//.get();
 
 /**
  * Function represents the view corresponding to the Pokemons page.
  *
+ * @param {Object} props Various component's props
  * @returns view's elements
  */
-function PokemonsView() {
+function PokemonsView(props) {
+  const { viewModel } = props;
   const {
     pokemons,
     loadPokemons,
     pageNumber
-  } = pokemonsViewModel;
+  } = viewModel;
 
   useEffect(() => {
-    console.log(pokemonsViewModel);
-
     if (pageNumber === 0) {
       loadPokemons();
     }
   }, []);
 
-  const router = useRouter();
-
   return (
     <div className={styles.container}>
       <div className={styles.list}>
         {pokemons.map((p) => (
-          <div
+          <Link
             key={p.id}
-            className={styles.item}
-            onClick={() => router.push(`/pokemons/${p.id}`)}
+            href="/pokemons/[id]"
+            as={`/pokemons/${p.id}`}
           >
-            <img
-              className={styles.image}
-              src={p.image}
-              alt={p.name}
-            />
-            <span className={styles.name}>
-              {p.name}
-            </span>
-          </div>
+            <div className={styles.item}>
+              <img
+                className={styles.image}
+                src={p.image}
+                alt={p.name}
+              />
+              <span className={styles.name}>
+                {p.name}
+              </span>
+            </div>
+          </Link>
         ))}
       </div>
       <div className={styles.pagination}>
@@ -73,4 +75,4 @@ function PokemonsView() {
   );
 }
 
-export default observer(PokemonsView);
+export default withViewModel(observer(PokemonsView), PokemonsViewModel);

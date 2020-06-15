@@ -4,6 +4,9 @@ import { observable, action } from 'mobx';
 // Repositories import
 import PokemonsRepository from '../repositories/PokemonsRepository';
 
+// Services import
+import NotificationsService from '../services/NotificationsService';
+
 /**
  * Class represents the view model of the PokemonDetailsView.
  *
@@ -60,7 +63,7 @@ class PokemonDetailsViewModel {
     try {
       this.pokemon = await PokemonsRepository.getPokemon(id);
     } catch (e) {
-      console.log(e);
+      NotificationsService.showDefaultErrorNotification();
     }
 
     this.isLoading = false;

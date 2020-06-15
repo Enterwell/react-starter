@@ -4,6 +4,9 @@ import { observable, action } from 'mobx';
 // Repositories import
 import PokemonsRepository from '../repositories/PokemonsRepository';
 
+// Services import
+import NotificationsService from '../services/NotificationsService';
+
 /**
  * Class represents the view model of the PokemonsView.
  *
@@ -26,8 +29,6 @@ class PokemonsViewModel {
    * @memberof PokemonsViewModel
    */
   static get() {
-    console.log(PokemonsViewModel._viewModel);
-
     // Creates instance if it isn't set yet
     if (PokemonsViewModel._viewModel === null) {
       PokemonsViewModel._viewModel = new PokemonsViewModel();
@@ -82,8 +83,6 @@ class PokemonsViewModel {
    * @memberof PokemonsViewModel
    */
   constructor() {
-    console.log('a');
-    
     this.isLoading = false;
     this.pokemons = [];
     this.pageNumber = 0;
@@ -120,12 +119,11 @@ class PokemonsViewModel {
       this.pageNumber = page;
       this.totalPokemons = count;
     } catch (e) {
-      console.log(e);
+      NotificationsService.showDefaultErrorNotification();
     }
 
     this.isLoading = false;
   }
 }
 
-const inst = new PokemonsViewModel();
-export default inst; // new PokemonsViewModel();
+export default PokemonsViewModel;
