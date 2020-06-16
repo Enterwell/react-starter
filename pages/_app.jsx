@@ -1,5 +1,4 @@
 // General imports
-import React from 'react';
 import 'mobx-react-lite/batchingForReactDom';
 
 // Components import

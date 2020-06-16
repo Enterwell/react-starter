@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Components import
 import { CircularProgress } from '@material-ui/core';
 

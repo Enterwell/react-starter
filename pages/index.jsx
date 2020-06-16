@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Views import
 import IndexView from '../views/IndexView/IndexView';
 

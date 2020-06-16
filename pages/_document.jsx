@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Components import
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core';
