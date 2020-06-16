@@ -1,5 +1,5 @@
 // General imports
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/router';
 
@@ -40,47 +40,49 @@ function PokemonDetailsView(props) {
 
   return (
     <LoadingContainer isLoading={isLoading}>
-      <div className={styles.container}>
-        <img
-          className={styles.image}
-          src={pokemon.image}
-          alt={pokemon.name}
-        />
-        <span className={styles.name}>
-          {pokemon.name}
-        </span>
-        <div className={styles.data}>
-          <div>
-            <span className={styles.label}>
-              Weight:
-            </span>
-            <span>
-              {pokemon.weight}
-            </span>
+      {pokemon && (
+        <div className={styles.container}>
+          <img
+            className={styles.image}
+            src={pokemon.image}
+            alt={pokemon.name}
+          />
+          <span className={styles.name}>
+            {pokemon.name}
+          </span>
+          <div className={styles.data}>
+            <div>
+              <span className={styles.label}>
+                Weight:
+              </span>
+              <span>
+                {pokemon.weight}
+              </span>
+            </div>
+            <div>
+              <span className={styles.label}>
+                Height:
+              </span>
+              <span>
+                {pokemon.height}
+              </span>
+            </div>
+            <div>
+              <span className={styles.label}>
+                Base experience:
+              </span>
+              <span>
+                {pokemon.baseExperience}
+              </span>
+            </div>
           </div>
-          <div>
-            <span className={styles.label}>
-              Height:
-            </span>
-            <span>
-              {pokemon.height}
-            </span>
-          </div>
-          <div>
-            <span className={styles.label}>
-              Base experience:
-            </span>
-            <span>
-              {pokemon.baseExperience}
-            </span>
-          </div>
+          <Link href="/pokemons">
+            <a className={styles.link}>
+              Go back
+            </a>
+          </Link>
         </div>
-        <Link href="/pokemons">
-          <a className={styles.link}>
-            Go back
-          </a>
-        </Link>
-      </div>
+      )}
     </LoadingContainer>
   );
 }

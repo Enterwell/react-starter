@@ -46,8 +46,8 @@ class PokemonDetailsViewModel {
    * @memberof PokemonDetailsViewModel
    */
   constructor() {
-    this.isLoading = false;
-    this.pokemon = { };
+    this.isLoading = true;
+    this.pokemon = null;
   }
 
   /**

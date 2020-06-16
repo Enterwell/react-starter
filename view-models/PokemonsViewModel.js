@@ -38,6 +38,14 @@ class PokemonsViewModel {
   }
 
   /**
+   * Is first loading flag.
+   *
+   * @type {boolean}
+   * @memberof PokemonsViewModel
+   */
+  @observable isFirstLoad;
+
+  /**
    * Is loading flag.
    *
    * @type {boolean}
@@ -83,7 +91,8 @@ class PokemonsViewModel {
    * @memberof PokemonsViewModel
    */
   constructor() {
-    this.isLoading = false;
+    this.isFirstLoad = true;
+    this.isLoading = true;
     this.pokemons = [];
     this.pageNumber = 0;
     this.pageSize = 10;
@@ -98,6 +107,10 @@ class PokemonsViewModel {
    */
   @action.bound
   async loadPokemons(page = this.pageNumber) {
+    if (!this.isFirstLoad && this.isLoading) {
+      return;
+    }
+
     if (page < 0) {
       return;
     }

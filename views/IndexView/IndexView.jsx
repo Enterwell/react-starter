@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Components import
 import Link from 'next/link';
 
@@ -18,7 +15,7 @@ function IndexView() {
       <span>
         Not much to see here. If you are intereseted in Pokemons, visit
       </span>
-      <Link href="/pokemons">
+      <Link href="/pokemons" as="/pokemons">
         <a className={styles.link}>
           Pokemons page
         </a>
