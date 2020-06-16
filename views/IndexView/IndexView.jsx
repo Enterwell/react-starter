@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Components import
 import Link from 'next/link';
 

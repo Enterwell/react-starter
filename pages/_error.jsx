@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Views import
 import ErrorView from '../views/ErrorView/ErrorView';
 

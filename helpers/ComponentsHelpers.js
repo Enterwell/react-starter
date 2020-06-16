@@ -1,5 +1,5 @@
 // General imports
-import React from 'react';
+import { createElement } from 'react';
 
 /**
  * Wrapper around components that use view model.
@@ -9,7 +9,7 @@ import React from 'react';
  * @param {function} ViewModelProvider View model provider
  * @returns component with view model injected
  */
-export const withViewModel = (Component, ViewModelProvider) => (props) => React.createElement(Component, {
+export const withViewModel = (Component, ViewModelProvider) => (props) => createElement(Component, {
   ...props,
   displayName: Component.displayName,
   viewModel: ViewModelProvider.get()

@@ -1,6 +1,3 @@
-// General imports
-import React from 'react';
-
 // Styles import
 import styles from './ErrorView.module.scss';
 
