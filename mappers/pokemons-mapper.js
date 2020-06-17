@@ -1,3 +1,6 @@
+// Models import
+import Pokemon from '../models/pokemon';
+
 /**
  * Class represents the Pokemons mapper. It provides functions for mapping DTOs
  * to Pokemon data.
@@ -16,13 +19,13 @@ class PokemonsMapper {
   static mapDtosToPokemons(dtos) {
     return dtos.map((dto) => {
       const parts = dto.url.split('/');
-      const id = parts[parts.length - 2];
+      const pokemon = new Pokemon();
 
-      return {
-        id,
-        name: dto.name,
-        image: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
-      };
+      pokemon.id = parts[parts.length - 2];
+      pokemon.name = dto.name;
+      pokemon.image = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+
+      return pokemon;
     });
   }
 
@@ -35,15 +38,17 @@ class PokemonsMapper {
    * @memberof PokemonsMapper
    */
   static mapDtoToPokemon(dto) {
-    return {
-      id: dto.id,
-      name: dto.name,
-      height: dto.height,
-      weight: dto.weight,
-      abilities: dto.abilities.map((a) => a.name),
-      baseExperience: dto.base_experience,
-      image: `https://pokeres.bastionbot.org/images/pokemon/${dto.id}.png`
-    };
+    const pokemon = new Pokemon();
+
+    pokemon.id = dto.id;
+    pokemon.name = dto.name;
+    pokemon.height = dto.height;
+    pokemon.weight = dto.weight;
+    pokemon.abilities = dto.abilities.map((a) => a.ability.name);
+    pokemon.baseExperience = dto.base_experience;
+    pokemon.image = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+
+    return pokemon;
   }
 }
 
