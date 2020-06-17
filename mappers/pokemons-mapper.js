@@ -1,5 +1,6 @@
 // Models import
-import Pokemon from '../models/pokemon';
+import PokemonDetails from '../models/pokemon-details';
+import PokemonSimplified from '../models/pokemon-simplified';
 
 /**
  * Class represents the Pokemons mapper. It provides functions for mapping DTOs
@@ -19,7 +20,7 @@ class PokemonsMapper {
   static mapDtosToPokemons(dtos) {
     return dtos.map((dto) => {
       const parts = dto.url.split('/');
-      const pokemon = new Pokemon();
+      const pokemon = new PokemonSimplified();
 
       pokemon.id = parts[parts.length - 2];
       pokemon.name = dto.name;
@@ -38,7 +39,7 @@ class PokemonsMapper {
    * @memberof PokemonsMapper
    */
   static mapDtoToPokemon(dto) {
-    const pokemon = new Pokemon();
+    const pokemon = new PokemonDetails();
 
     pokemon.id = dto.id;
     pokemon.name = dto.name;
