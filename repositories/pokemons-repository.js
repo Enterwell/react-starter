@@ -1,8 +1,8 @@
 // Services import
-import HttpService from '../services/HttpService';
+import HttpService from '../services/http-service';
 
 // Mappers import
-import PokemonsMapper from '../mappers/PokemonsMapper';
+import PokemonsMapper from '../mappers/pokemons-mapper';
 
 /**
  * Class represents the Pokemons repository used for accessing Pokemons' data.
