@@ -1,14 +1,14 @@
 /**
- * Class represents the Pokemon model.
+ * Class represents the Pokemon details model.
  *
- * @class Pokemon
+ * @class PokemonDetails
  */
-class Pokemon {
+class PokemonDetails {
   /**
    * Identifier.
    *
    * @type {numer}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   id;
 
@@ -16,7 +16,7 @@ class Pokemon {
    * Name.
    *
    * @type {string}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   name;
 
@@ -24,7 +24,7 @@ class Pokemon {
    * Height.
    *
    * @type {number}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   height;
 
@@ -32,7 +32,7 @@ class Pokemon {
    * Weight.
    *
    * @type {number}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   weight;
 
@@ -40,7 +40,7 @@ class Pokemon {
    * Abilities.
    *
    * @type {string[]}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   abilities;
 
@@ -48,7 +48,7 @@ class Pokemon {
    * Base experience.
    *
    * @type {number}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   baseExperience;
 
@@ -56,18 +56,18 @@ class Pokemon {
    * Image.
    *
    * @type {number}
-   * @memberof Pokemon
+   * @memberof PokemonDetails
    */
   image;
 
   /**
    * Clones the object.
    *
-   * @returns Pokemon object with same values as current one
-   * @memberof Pokemon
+   * @returns PokemonDetails object with same values as current one
+   * @memberof PokemonDetails
    */
   clone() {
-    const copy = new Pokemon();
+    const copy = new PokemonDetails();
 
     copy.id = this.id;
     copy.name = this.name;
@@ -81,4 +81,4 @@ class Pokemon {
   }
 }
 
-export default Pokemon;
+export default PokemonDetails;
