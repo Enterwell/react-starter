@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 // Styles import
-import styles from './IndexView.module.scss';
+import styles from './index-view.module.scss';
 
 /**
  * Function represents the view corresponding to the index page.
