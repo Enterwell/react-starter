@@ -15,6 +15,28 @@ export const withViewModel = (Component, ViewModelProvider) => (props) => create
   viewModel: ViewModelProvider.get()
 }, null);
 
+/**
+ * Wrapper around components that use app models.
+ *
+ * @export
+ * @param {React.Component} Component Component that should be wrapped
+ * @param {function|Object.<string, function>} AppModelProviders App model providers
+ * @returns component with app models injected
+ */
+export const withAppModels = (Component, AppModelProviders) => (props) => createElement(Component, {
+  ...props,
+  displayName: Component.displayName,
+  ...typeof AppModelProviders === 'function' ? {
+    appModel: AppModelProviders.get()
+  } : {
+    appModels: Object.entries(AppModelProviders).reduce((a, [k, v]) => ({
+      ...a,
+      [k]: v.get()
+    }), {})
+  }
+}, null);
+
 export default {
-  withViewModel
+  withViewModel,
+  withAppModels
 };

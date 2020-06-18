@@ -5,11 +5,12 @@ import 'mobx-react-lite/batchingForReactDom';
 import App from 'next/app';
 import Head from 'next/head';
 import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
+import UserInformations from '../components/user-informations/user-informations';
 
 // Configs import
 import theme from '../config/theme';
 
-// Global styles and colors import
+// Global styles import
 import '../styles/global.scss';
 
 // Checks whether app is in production or development mode
@@ -46,6 +47,7 @@ class CustomApp extends App {
         <StylesProvider injectFirst>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <UserInformations />
             <Component {...pageProps} />
           </ThemeProvider>
         </StylesProvider>
