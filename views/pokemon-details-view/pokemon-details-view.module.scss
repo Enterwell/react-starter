@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@
   .name {
     font-size: 36px;
     font-weight: bold;
+    color: $color-primary;
   }
 
   .data {
@@ -27,6 +30,15 @@
     .label {
       margin-right: 6px;
       font-weight: bold;
+    }
+  }
+
+  .feedback {
+    margin-top: 16px;
+    font-size: 18px;
+    
+    .user {
+      color: $color-primary;
     }
   }
 

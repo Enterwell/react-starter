@@ -14,7 +14,7 @@ import NotificationsService from '../services/notifications-service';
  */
 class PokemonsViewModel {
   /**
-   * Instances of the view model.
+   * Instance of the view model.
    *
    * @static
    * @memberof PokemonsViewModel
