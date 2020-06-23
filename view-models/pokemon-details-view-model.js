@@ -1,6 +1,9 @@
 // General imports
 import { observable, action } from 'mobx';
 
+// App models import
+import UserAppModel from '../app-models/user-app-model';
+
 // Repositories import
 import PokemonsRepository from '../repositories/pokemons-repository';
 
@@ -25,6 +28,14 @@ class PokemonDetailsViewModel {
   }
 
   /**
+   * User app model.
+   *
+   * @type {UserAppModel}
+   * @memberof PokemonDetailsViewModel
+   */
+  userAppModel;
+
+  /**
    * Is loading flag.
    *
    * @type {boolean}
@@ -46,6 +57,7 @@ class PokemonDetailsViewModel {
    * @memberof PokemonDetailsViewModel
    */
   constructor() {
+    this.userAppModel = UserAppModel.get();
     this.isLoading = true;
     this.pokemon = null;
   }

@@ -25,10 +25,14 @@ import styles from './pokemon-details-view.module.scss';
 function PokemonDetailsView(props) {
   const { viewModel } = props;
   const {
+    userAppModel,
     isLoading,
     pokemon,
     loadPokemon
   } = viewModel;
+  const {
+    user
+  } = userAppModel;
 
   const router = useRouter();
 
@@ -75,6 +79,13 @@ function PokemonDetailsView(props) {
                 {pokemon.baseExperience}
               </span>
             </div>
+          </div>
+          <div className={styles.feedback}>
+            {`What do you think about ${pokemon.name} `}
+            <span className={styles.user}>
+              {`${user ? user.name : 'John Doe'}`}
+            </span>
+            ?
           </div>
           <Link href="/pokemons">
             <a className={styles.link}>

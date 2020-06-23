@@ -10,11 +10,11 @@ import PokemonSimplified from '../models/pokemon-simplified';
  */
 class PokemonsMapper {
   /**
-   * Maps the array of DTOs to Pokemons data.
+   * Maps the array of DTOs to PokemonSimplified model.
    *
    * @static
    * @param {Object[]} dtos DTOs array
-   * @returns Pokemons data
+   * @returns PokemonSimplified model
    * @memberof PokemonsMapper
    */
   static mapDtosToPokemons(dtos) {
@@ -31,11 +31,11 @@ class PokemonsMapper {
   }
 
   /**
-   * Maps the DTO to Pokemon details data.
+   * Maps the DTO to PokemonDetails model.
    *
    * @static
    * @param {Object} dto DTO
-   * @returns Pokemon details data
+   * @returns PokemoDetails model
    * @memberof PokemonsMapper
    */
   static mapDtoToPokemon(dto) {
