@@ -39,7 +39,7 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 * `models` - mjesto gdje se čuvaju svi modeli koji postoje unutar aplikacije
 * `pages` - mjesto čije podmape i datoteke tvore hijerarhiju dostupnim ruta aplikacije
 * `public` - mjesto gdje se čuvaju svi statički resursi aplikacije (npr. slike, svg-ovi i datoteke koje se mogu preuzeti kroz aplikaciju)
-* `repositories` - mjesto gdje se čuvaju svi repozitoriji` koji postoje unutar aplikacije
+* `repositories` - mjesto gdje se čuvaju svi repozitoriji koji postoje unutar aplikacije
 * `services` - mjesto gdje se čuvaju svi servisi koji postoje unutar aplikacije
 * `styles` - mjesto gdje se čuvaju svi globalni stilovi koji postoje unutar aplikacije
 * `view-models` - mjesto gdje se čuvaju svi tzv. view-modeli koji postoje unutar aplikacije
@@ -48,6 +48,80 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 Detaljnije o tome što su pojedini od ovih entiteta može se pročitati u dijelu o arhitekturi React starter aplikacije.
 
 ## Arhitektura
+
+Krenimo odmah *in medias res* - slika neposredno ispod ovog teksta prikazuje arhitekturu Enterwell React aplikacija. Naravno da to nije jedina, a ponajmanje jedina ispravna arhitektura React aplikacija, već je riječ o arhitekturi oko koje su se starješine Enterwella gotovo pa jednoglasno usuglasile. U nastavku će biti objašnjeni različiti segmenti arhitekture.
+
+<div style="margin: 50px 0; text-align: center;">
+  <img src="./public/assets/images/architecture.png" alt="Arhitektura" >
+</div>
+
+### Komponente
+
+Srž svake React aplikacije su njene komponente. Komponente su građevni dijelovi aplikacije i njima se definira korisničko sučelje koje će, na kraju krajeva, korisnik vidjeti. U Enterwellovoj React arhitekturi, komponente mogu odgovarati jednoj od sljedeće 3 skupine: `pages`, `views` i `components`.
+
+#### Pages
+
+React aplikacije koje su u Enterwellu razvijane tokom prethodnih godina, za usmjeravanje (eng. *routing*) su koristile `react-router` i slične pakete. Prelaskom na Next.js nestala je potreba za korištenjem tih paketa, a rute (eng. *route*) aplikacije se definiraju hijerarhijom datoteka i mapa unutar [`pages`](https://nextjs.org/docs/basic-features/pages) mape (npr. `pages/index.jsx` datoteka odgovara ruti `/`, `pages/pokemons/index.jsx` datoteka odgovara ruti `/pokemons` itd.).
+
+Pošto je ovakav način usmjeravanja svojstven Next.jsu, te zbog želje da aplikacije budu malo manje spregnute s njim, `pages` komponente služe samo kao enkapsulacija oko `views` komponenti.
+
+Važno je napomenuti da unutar `pages` mape postoje i datoteke koje ne odgovaraju direktno rutama aplikacije. Tu se misli na [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) i [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) datoteke koje imaju posebnu ulogu definiranu Next.jsom. 
+
+#### Views
+
+`views` komponente predstavljaju sve ono što korisnik vidi na nekoj ruti aplikacije, a one onda mogu unutar sebe koristiti jednu ili više "običnih" komponenti. Ukoliko `view` komponenta postane previše složena, preporučeno je razložiti ju na više "običnih" komponenti. Ako sw tako dobivene "obične" komponente koriste u samo tom `viewu` i nigdje drugdje, potrebno ih je smjestiti u zasebnu mapu unutar mape tog `viewa`. Komponente koje se koriste na više mjesta u aplikaciji potrebno je smjestiti u zasebnu mapu unutar `components` mapu.
+
+#### Components
+
+`components` komponente predstavljaju sve one komponente koje se koriste na više mjesta u aplikaciji. Komponenta bi se trebala smjestiti u ovu mapu ako se koristi na barem dva mjesta u aplikaciji ili ako je dovoljno općenita da se može koristiti na više mjesta. Kad se tek krene s razvojem aplikacije, sve će komponente biti korištene na samo jednom mjestu, no za neke od njih se može unaprijed pretpostaviti da se mogu iskoristiti na više mjesta. Primjer takvih komponenti su razne `Input` komponente.
+
+### Podaci
+
+Svaka React komponenta ima potporu za perzistenciju podataka u vidu svog `statea`. Ukoliko aplikacija ima malo veće komponente s većom količinom podataka, `state` tih komponenata vrlo lako može postati nepregledan, a same komponente previše zagađene logikom aplikacije. Kako bi se doskočilo tom problemu, s vremenom su se pojavili libraryi koji simuliraju ponašanje `state` (u smislu da aktiviraju re-render komponente kada se promijene podaci o kojima ovisi), ali i omogućuju da se podaci o kojima komponenta ovisi čuvaju izvan nje same. Jedan od tih librarya je i [`mobx`](#defaultni-paketi) koji se koristi u Enterwellovim React aplikacijama.
+
+Općenito, unutar Enterwellovih React aplikacija se kombiniraju oba načina pohrane podataka. Kada su u pitanju forme ili neke komponente s malim brojem podataka koji trebaju čuvati, tada se za pohranu koristi `state`. Kada je riječ o većim komponenata sa složenijom logikom, tada se podaci i logika izdvajaju iz komponenata u zasebne cjeline. U nastavku je navedena hijerahija cjelina za perzistenciju podataka u aplikaciji.
+
+#### App-model
+
+U app-modelima se perzistiraju podaci koji su zajednički cijeloj aplikaciji i koji bi trebali biti očuvani tijekom cijelog vremena korištenja aplikacije, neovisno o ruti na kojoj je korisnik. 
+
+App-modelima komponente mogu pristupiti izravno ili kroz view-model koji treba unutar sebe čuvati referencu na njega. Gotovo uvijek bi trebalo koristiti drugi način pristupanja app-modelima. Prvi način bi se trebao koristiti samo kada su u pitanju neke vršne komponente koje ne pripadaju direktno nijednom `viewu` (npr. layout komponenta koja je jednaka za većinu `viewa` pa je definirana unutar zajedničke `_app.jsx` komponente koja nema svoj view-model).
+
+Osim podataka, app-modeli sadrže i logiku za njihovo dohvaćanje i mijenjanje.
+
+#### View-model
+
+U view-modelima se perzistiraju podaci koji su svojstveni za neki `view`. Ovisno o potrebama, view-modeli se mogu stvari i uništavati zajedno s `viewom` ili mogu postojati tokom cijelog vremena korištenja aplikacije. Kada u aplikaciji postoji `view` s listom nekih podataka (npr. lista svih Pokemona), tada je prikladno koristiti view-modele koji se stvori samo jednom i postoje koliko i aplikacija. Za `viewove` koji odgovaraju detaljima elemenata liste (npr. detalji nekog Pokemona), prikladno je koristiti view-modele koji traju koliko i `view` kojem pripadaju. U potonjem slučaju, kratkotrajni view-modeli su prikladni jer isti `view` služi za prikazivanje više različitih ruta (npr. `/pokemons/1`, `/pokemons/45` itd.) pa se time izbjegava slučaj pogrešnog prikaza podataka prilikom početnog rendera komponente.
+
+Gore navedeni slučajevi su samo primjer te životni vijek view-modela ovisi isključivo o potrebama neke aplikacije. Također, baš kao i app-modeli, view-modeli osim podataka sadrže i logiku za njihovo dohvaćanje i mijenjanje.
+
+#### Component-model
+
+U component-modelima perzistiraju podaci koju su svojstveni za neku `componentu`. Component-modeli se ne bi trebali praviti za sve komponente, već samo za one sa složenijom logikom (npr. kada se isti modal za stvaranje nečeg koristi na više `viewova` u aplikaciji, prikladnije je izdvojiti logiku u component-model, nego ju ponavljati u svakom view-modelu pa prosljeđivati komponenti).
+
+### Logika
+
+Ranije je već spomenuto da se dio logike aplikacije nalazi raspoređen u app-modelima, view-modelima i component-modelima. Logika raspoređena po tim cjelinama bi trebala biti usko vezana samo uz podatke koje oni sadrže. Gledajući prethodnu sliku, vidljivo je da postoji još jedan sloj logike o čijim će cjelinama biti riječ u ovom dijelu.
+
+#### Model
+
+Modeli su klase koji predstavljaju entitete koji se koriste u aplikaciji. Podaci koji se dohvate sa servera (ili iz drugog izvora podataka) trebaju se premapirati u odgovarajuće modele.
+
+#### Mapper
+
+Mapper 
+
+#### Repository
+
+#### Service
+
+#### Helper
+
+### Primjer arhitekture
+
+<div style="margin: 50px 0; text-align: center;">
+  <img src="./public/assets/images/architecture-pokemons.png" alt="Arhitektura React starter aplikacije" >
+</div>
 
 
 ## Imenovanje
@@ -86,7 +160,7 @@ U nastavku su navedeni paketi koji su po defaultu dodani u projekt te koji će s
 
 ### Dodatni paketi
 
-Pošto cilj ovog startera nije pretrpat ga sa svim mogućim paketima koji bi se mogli koristit, mnoge od njih će trebati dodatno dodati po potrebi. U nastavku je naveden popis paketa koje je preporučeno koristiti ukoliko se javi potreba za opisanom funkcionalnošću aplikacije koju taj paket pruža. 
+Pošto cilj ovog startera nije pretrpati ga sa svim mogućim paketima koji bi se mogli koristit, mnoge od njih će trebati dodatno dodati po potrebi. U nastavku je naveden popis paketa koje je preporučeno koristiti ukoliko se javi potreba za opisanom funkcionalnošću aplikacije koju taj paket pruža. 
 
 Ukoliko nijedan od navedenih paketa ne odgovara željama i potrebama, potrebno je dodati neki po vlastitom izboru. [npm](https://www.npmjs.com/) je mjesto gdje se može pronaći poneki paket za svakog.
 
@@ -97,3 +171,5 @@ Ukoliko nijedan od navedenih paketa ne odgovara željama i potrebama, potrebno j
 * [`sentry`](https://sentry.io/welcome/) - paket za praćenje pogrešaka aplikacije (tzv. _error monitoring_)
 * [`i18next`](https://www.i18next.com/) / [`react-i18next`](https://react.i18next.com/) - framework za internacionalizaciju aplikacije s minimalnim overheadom
 * [`moment`](https://momentjs.com/) - library koji olakšava rad datumima i vremenima
+
+## Pokretanje aplikacije
