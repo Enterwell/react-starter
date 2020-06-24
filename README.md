@@ -5,7 +5,8 @@ Ovaj dokument predstavlja službenu dokumentaciju React startera. React starter 
 * arhitektura aplikacije
 * organizacija projekta, odnosno njegovih mapa i datoteka
 * preporuka paketa koji su se pokazali korisnima u prošlosti
-* poneki _tips and tricks_ 
+
+Za bilo kakve nedoumice koje ostanu nakon čitanja ovog dokumenta, slobodno se obratite na e-mail **matej.radovic@enterwell.net**.
 
 ## Zašto React i zašto Next.js?
 
@@ -45,7 +46,7 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 * `view-models` - mjesto gdje se čuvaju svi tzv. view-modeli koji postoje unutar aplikacije
 * `views` - mjesto gdje se čuvaji svi tzv. viewovi i samo za njih vezane komponente
 
-Detaljnije o tome što su pojedini od ovih entiteta može se pročitati u dijelu o arhitekturi React starter aplikacije.
+Detaljnije o tome što su pojedini od ovih entiteta može se pročitati u dijelu o arhitekturi React starter aplikacije. Dodatna napomena: u nekim mapama je moguće pronaći datoteku imena `TODO_delete_this_later.txt` čija je jedina svrha učini mapu nepraznom kako bi ju Git zapamtio.
 
 ## Arhitektura
 
@@ -105,17 +106,25 @@ Ranije je već spomenuto da se dio logike aplikacije nalazi raspoređen u app-mo
 
 #### Model
 
-Modeli su klase koji predstavljaju entitete koji se koriste u aplikaciji. Podaci koji se dohvate sa servera (ili iz drugog izvora podataka) trebaju se premapirati u odgovarajuće modele.
+Modeli su razredi koji predstavljaju entitete koji se koriste u aplikaciji. Podaci koji se dohvate sa servera (ili iz drugog izvora podataka) trebaju se premapirati u odgovarajuće modele.
 
 #### Mapper
 
-Mapper 
+Maperi su razredi koje pružaju uslugu mapiranja podataka. Najčešći slučaj kad se koriste je prilikom mapiranja podataka sa servera u modele koji se koriste u aplikaciji. Prilikom mapiranja, nad pojedinim podacima je moguće napraviti prikladne transformacije (npr. formatiranje datuma, lokaliziranja podataka itd.).
 
 #### Repository
 
+Repozitoriji su razredi koji služena kao svojevrsna granica aplikacije i preko kojih aplikacija dohvaća podatke. Kako će se podaci dohvaćati, to ovisi isključivo o repozitoriju odnosno samoj aplikaciji. Najčešći način dohvaća podatak jest s API-ja, no podaci se npr. mogu dohvaćati i iz `local storagea`.
+
+Metode repozitorija unutar se pozivaju logiku za mapiranje podataka koje dohvate.
+
 #### Service
 
+Servisi su razredi koju pružaju u aplikaciji pružaju neku specifičnu ulogu, npr. prikazivanje notifikacija, komunikaciju s `local storageom`, komunikaciju s API-ijem ili nešto drugo.
+
 #### Helper
+
+Helperi (u nedostatku prikladne hrvatske riječi, mogli bismo ih nazvati i korisne funkcije?) su razredi svrhom vrlo slični servisima, no ipak malo manje specifični te najčešće pružaju neku "glupu" uslugu koja se ponavlja na više mjesta u aplikaciji.
 
 ### Primjer arhitekture
 
@@ -123,6 +132,19 @@ Mapper
   <img src="./public/assets/images/architecture-pokemons.png" alt="Arhitektura React starter aplikacije" >
 </div>
 
+Da sve ovo ne bi bilo samo mrtvo slovo na ekranu, u sklopu React startera je napravljena i jedna manja aplikacija koja implementira prethodno opisanu arhitekturu. Aplikacija u svom radu koristi PokéAPI te, kao što se već da naslutiti, služi za pregledavanje Pokemona.
+
+Aplikaciju čine 3 "pametne" i 2 "glupe" stranice. Glupi stranice su one na koje korisnik inače neće svojevoljno doći gledati sadržaj, već će tamo bit preusmjeren u određenim situacijama. Te dvije "glupe" stranice su `_error.jsx` i `404.jsx`. `_error.jsx` se korisniku prikaže kada dođe do pogreške u aplikaciji, a `404.jsx` kada korisnik upiše rutu koja nije definirana. "Pametne" stranice su `index.jsx` (koji odgovara ruti `/`), `pokemons/index.jsx` (koji odgovara ruti `/pokemons`) i `pokemons/[id].jsx` (koji odgovara ruti `/pokemons/{pokemon-id}`). `index.jsx` stranica u ovoj aplikaciji prikazuje samo poruku da se tu ne može ništa vidjeti te usmjerava korisnika na stranicu s Pokemonima. `pokemons/index.jsx` prikazuje listu Pokemona s paginacijom. Klikom na pojedinog Pokemona s liste, otvara se `pokemons/[id].jsx` stranica koji prikazuje njegove detalje. Na svim od navedenih stranica u desnom gornjem kutu se prikazuje komponenta u koju korisnik može unijeti svoje ime.
+
+Pošto `index.jsx` stranica ne čuva nikakve podatke, za nju ni nije vezana nikakva logika pa u nastavku neće više biti spominjana.
+
+Stranica `pokemons/index.jsx` prikazuje listu Pokemona koji se dohvaćaju s PokéAPI-ja. Komponenta koja odgovara toj stranici unutar sebe čuva primjerak `PokemonsViewModela`. Iako se taj view-model dohvaća svaki put kada korisnik dođe na tu rutu, za vrijeme korištenja aplikacije postoji samo jedna instanca tog view-modela (ako se baš ne napravi osvježavanje stranice ili ju se zatvori i opet otvori). Koristeći metode `PokemonsViewModela`, komponenta poziva dohvaćanje podataka te ih nakon toga prikazuje. `PokemonsViewModel` unutar sebe za dohvaćanje Pokemona koristi `PokemonsRepository` koji komunicira s API-jem. Nakon što se podaci dohvate s API-ja, `PokemonsRepository` ih proslijedi `PokemonsMapperu` koju ih premapira u `PokemonSimplified` modele i vrati natrag repozitoriju, a on zatim view-modelu. 
+
+Stranica `pokemons/[id].jsx` prikazuje detalje Pokemona koji se dohvaćaju s PokéAPI-ja. Komponenta koja odgovara toj stranici unutar sebe čuva primjerak `PokemonDetailsViewModela`. Za razliku od `PokemonsViewModela`, ne postoji samo jedna instanca `PokemonDetailsViewModela`, već se svaki put stvori nova (svaki put kad korisnik dođe na tu stranicu). Dohvaćanje detalja Pokemona funkcionira jednako kao i dohvaćanje liste njih - koriste se isti repozitorij i maper, a jedino se podaci mapiraju u drugi model. Još jedna razlika ove stranice u odnosu na `pokemons/index.jsx` je što je ovo stranici potreban podatak o nazivu trenutnog korisnika koji se čuva na razini aplikaciju u `UserAppModelu`. Instanca `UserAppModela` je stoga stranici dostupna kroz njen view-model. `UserAppModel` podatke o korisniku dohvaća korištenjem `UserAppRepository` koji komunicira s `local storageom`.
+
+## Stilovi
+
+Svaka komponenta (bilo da je riječ o `component` ili `view`) treba imati vlastite stilove. Stilovi se smještaju u istu mapu gdje je i datoteka komponente, a datoteka stilova se može prepoznati po nastavku `.module.scss`. Iznimka su globalni stilovi koji se odnose na cijelu aplikaciju i koji su smješteni u `styles` mapi. Kao globalni stilovi se definiraju i boje koje se koriste na više mjesta u aplikaciji te koje se na taj način mogu koristiti bez potrebe da ih se uvijek iznova piše (ovo je posebno prigodno kod glavnih boja teme koja se provlači kroz cijelu aplikaciju). Važno je napomenuti i da ne treba apsolutno sve boje izvlačiti u globalne stilove, pogotovo ako će se one koristiti samo na jednom mjestu.
 
 ## Imenovanje
 
@@ -139,17 +161,19 @@ Imenovanje je nešto što uvijek izazive prijepore jer većina nas ima neki svoj
 * Konfiguracijske datoteke root mape ne podliježu nikakvim pravilima već se pišu u obliku koji je zahtjevan od strane alata koji ih koriste
 * Sve datoteke u `pages` i `styles` mapama pišu se `kebab-caseom`
 * Sve datoteke koje predstavljaju React komponente te datoteke iz koji se `exporta` neka klasa ili više funkcija pišu se `PascalCaseom`
-* Datoteke iz koji se `exporta` instanca neke klase ili objekt pišu se `camelCaseom` (prva riječ se piše malim početnim slovom, a preostale velikim te međusobno nisu odvojene)
+* Datoteke iz koji se `exporta` instanca nekog razreda (eng. *class*) ili objekt pišu se `camelCaseom` (prva riječ se piše malim početnim slovom, a preostale velikim te međusobno nisu odvojene)
 * Datoteke "lokalnih" stilova pišu se `PascalCaseom` uz ekstenziju `.module.scss` 
 * Datoteke iz `public` mape ne podliježu nikakvim pravilima
 
 ## Paketi
 
-Pogledom na `package.json` može se okvirno dobiti dojam o nekim paketima koji se koriste. U React starter su uključeni samo osnovni paketi za koje smatramo da će uvijek biti korišteni u aplikaciji, no tu je još i cijeli set drugih paketa koji se koriste po potrebi.
+Pogledom na `package.json` može se okvirno dobiti dojam o nekim paketima koji se koriste. U React starter su uključeni samo osnovni paketi za koje smatramo da će uvijek biti korišteni u aplikaciji, no tu je još i cijeli set drugih paketa koji se koriste po potrebi. 
+
+Jedno od pitanja koje se postavlja tijekom dodavanja paketa jest treba li ih dodati kao `dependencies` ili kao `devDependencies`. Granica je mutna, ali recimo da bi se u `dependencies` trebalo dodati sve ono bez čega aplikacija ne može raditi na produkciji, dok `devDependencies` obuhvaćaju pakete koji se koriste tijekom razvoja. Ne treba doduše toliko razbijati glavu oko toga jer će aplikacije koje mi razvijamo raditi ispravno neovisno o tome.
 
 ### Defaultni paketi 
 
-U nastavku su navedeni paketi koji su po defaultu dodani u projekt te koji će se vrlo vjerojatno koristiti u aplikaciji. Ukoliko se ispostavi da za nekim od njih nema potrebe, slobodno ih se može izbaciti. Napomena: nisu opisani paketi koji predstavljaju alate za pomoć developmenta i builda aplikacije.
+U nastavku su navedeni paketi koji su po defaultu dodani u projekt te koji će se vrlo vjerojatno koristiti u aplikaciji. Ukoliko se ispostavi da za nekim od njih nema potrebe, slobodno ih se može izbaciti. Napomena: nisu opisani paketi koji predstavljaju alate za pomoć developmenta i builda aplikacije (`babel`, `eslint`, `next`...).
 
 * [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library čija je uloga već ranije opisana,a koji stoji i u samom nazivu startera što implicira da ga je nemoguće ne koristiti 
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library koji omogućava odvajanje aplikacijske logike od iscrtavanja komponenti (omogućava da promjene podataka izazovu ponovno renderiranje komponenata - ima sličan učinak kao i state komponente samo nije nužno vezan za nju)
@@ -173,3 +197,50 @@ Ukoliko nijedan od navedenih paketa ne odgovara željama i potrebama, potrebno j
 * [`moment`](https://momentjs.com/) - library koji olakšava rad datumima i vremenima
 
 ## Pokretanje aplikacije
+
+Prije nego se započne s razvijanjem aplikacije, potrebno je instalirati sve pakete koje ona koristi. Preporučeni način za to napraviti je korištenjem Yarna i naredbe
+
+```
+yarn install
+```
+
+Jednom kad su svi paketi instalirani, moguće je pokrenutni samu aplikaciju. Više je naredbi kojima se to može napraviti, a sve ovisi o tome želi li se aplikacija pokrenut u `development` ili `production` modeu i želi li se koristiti lokalni API ili ne.
+
+Pokretanje aplikacije u `development` modeu uz korištenje remote API-ja vrši se naredbom
+
+```
+yarn dev
+```
+
+</br>
+
+Pokretanje aplikacije u `development` modeu uz korištenje lokalnog API-ja vrši se naredbom
+
+```
+yarn dev-local
+```
+
+Pokretanje aplikacije u `production` modeu uz korištenje remote API-ja vrši se naredbom
+
+```
+yarn dev-prod
+```
+
+Pokretanje aplikacije u `production` modeu uz korištenje lokalnog API-ja vrši se naredbom
+
+```
+yarn dev-prod-local
+```
+
+</br>
+
+Kad je razvoj aplikacije gotov, aplikaciju je potrebno `buildati`. `build` aplikacije vrši se naredbama
+
+```
+yarn build
+```
+```
+yarn build-local
+```
+
+ovisno o tome hoće li aplikacija koristiti lokalni ili remote API.
