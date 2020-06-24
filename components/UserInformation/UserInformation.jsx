@@ -12,15 +12,15 @@ import UserAppModel from '../../app-models/UserAppModel';
 import { withAppModels } from '../../helpers/ComponentsHelper';
 
 // Styles import
-import styles from './UserInformations.module.scss';
+import styles from './UserInformation.module.scss';
 
 /**
- * Function represents the user informations component.
+ * Function represents the user information component.
  *
  * @param {Object} props Various component's props
  * @returns component's elements
  */
-function UserInformations(props) {
+function UserInformation(props) {
   const {
     appModel
   } = props;
@@ -65,4 +65,4 @@ function UserInformations(props) {
   );
 }
 
-export default withAppModels(observer(UserInformations), UserAppModel);
+export default withAppModels(observer(UserInformation), UserAppModel);
