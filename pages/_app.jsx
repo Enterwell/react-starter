@@ -5,7 +5,7 @@ import 'mobx-react-lite/batchingForReactDom';
 import App from 'next/app';
 import Head from 'next/head';
 import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
-import UserInformations from '../components/user-informations/user-informations';
+import UserInformations from '../components/UserInformations/UserInformations';
 
 // Configs import
 import theme from '../config/theme';
@@ -47,7 +47,9 @@ class CustomApp extends App {
         <StylesProvider injectFirst>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <UserInformations />
+            {Component.showUser && (
+              <UserInformations />
+            )}
             <Component {...pageProps} />
           </ThemeProvider>
         </StylesProvider>

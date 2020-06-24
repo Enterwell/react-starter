@@ -1,5 +1,5 @@
 // Views import
-import NotFoundView from '../views/not-found-view/not-found-view';
+import NotFoundView from '../views/NotFoundView/NotFoundView';
 
 /**
  * Function represents the 404 page.

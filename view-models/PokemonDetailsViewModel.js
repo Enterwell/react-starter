@@ -2,13 +2,13 @@
 import { observable, action } from 'mobx';
 
 // App models import
-import UserAppModel from '../app-models/user-app-model';
+import UserAppModel from '../app-models/UserAppModel';
 
 // Repositories import
-import PokemonsRepository from '../repositories/pokemons-repository';
+import PokemonsRepository from '../repositories/PokemonsRepository';
 
 // Services import
-import NotificationsService from '../services/notifications-service';
+import NotificationsService from '../services/NotificationsService';
 
 /**
  * Class represents the view model of the PokemonDetailsView.

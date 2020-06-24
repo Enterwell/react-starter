@@ -6,13 +6,13 @@ import { observer } from 'mobx-react-lite';
 import Link from 'next/link';
 
 // View models import
-import PokemonsViewModel from '../../view-models/pokemons-view-model';
+import PokemonsViewModel from '../../view-models/PokemonsViewModel';
 
 // Helpers import
-import { withViewModel } from '../../helpers/components-helpers';
+import { withViewModel } from '../../helpers/ComponentsHelper';
 
 // Styles import
-import styles from './pokemons-view.module.scss';
+import styles from './PokemonsView.module.scss';
 
 /**
  * Function represents the view corresponding to the Pokemons page.

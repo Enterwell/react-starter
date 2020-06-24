@@ -2,7 +2,7 @@
 import { CircularProgress } from '@material-ui/core';
 
 // Styles import
-import styles from './loading-container.module.scss';
+import styles from './LoadingContainer.module.scss';
 
 /**
  * Function represents the loading container component.

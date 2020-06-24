@@ -2,10 +2,10 @@
 import { observable, action } from 'mobx';
 
 // Repositories import
-import PokemonsRepository from '../repositories/pokemons-repository';
+import PokemonsRepository from '../repositories/PokemonsRepository';
 
 // Services import
-import NotificationsService from '../services/notifications-service';
+import NotificationsService from '../services/NotificationsService';
 
 /**
  * Class represents the view model of the PokemonsView.

@@ -1,6 +1,6 @@
 // Models import
-import PokemonDetails from '../models/pokemon-details';
-import PokemonSimplified from '../models/pokemon-simplified';
+import PokemonDetails from '../models/PokemonDetails';
+import PokemonSimplified from '../models/PokemonSimplified';
 
 /**
  * Class represents the Pokemons mapper. It provides functions for mapping DTOs

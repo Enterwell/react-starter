@@ -1,5 +1,5 @@
 // Styles import
-import styles from './not-found-view.module.scss';
+import styles from './NotFoundView.module.scss';
 
 /**
  * Function represents the view corresponding to the 404 page.

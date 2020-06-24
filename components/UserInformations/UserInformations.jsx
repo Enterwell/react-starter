@@ -6,13 +6,13 @@ import { observer } from 'mobx-react-lite';
 import { TextField } from '@material-ui/core';
 
 // App models import
-import UserAppModel from '../../app-models/user-app-model';
+import UserAppModel from '../../app-models/UserAppModel';
 
 // Helpers import
-import { withAppModels } from '../../helpers/components-helpers';
+import { withAppModels } from '../../helpers/ComponentsHelper';
 
 // Styles import
-import styles from './user-informations.module.scss';
+import styles from './UserInformations.module.scss';
 
 /**
  * Function represents the user informations component.

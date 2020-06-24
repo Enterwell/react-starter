@@ -1,8 +1,8 @@
 // Services import
-import LocalStorageService from '../services/local-storage-service';
+import LocalStorageService from '../services/LocalStorageService';
 
 // Mappers import
-import UsersMapper from '../mappers/users-mapper';
+import UsersMapper from '../mappers/UsersMapper';
 
 /**
  * Class represents the user repository used for accessing and modifying user data.

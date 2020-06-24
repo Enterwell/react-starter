@@ -2,13 +2,13 @@
 import { observable, action } from 'mobx';
 
 // Repositories import
-import UsersRepository from '../repositories/users-repository';
+import UsersRepository from '../repositories/UsersRepository';
 
 // Services import
-import NotificationsService from '../services/notifications-service';
+import NotificationsService from '../services/NotificationsService';
 
 // Models import
-import User from '../models/user';
+import User from '../models/User';
 
 /**
  * Class represents the app model for the user data.
