@@ -28,7 +28,7 @@ class PokemonsViewModel {
    * @returns view model's instance
    * @memberof PokemonsViewModel
    */
-  static get() {
+  static get instance() {
     // Creates instance if it isn't set yet
     if (PokemonsViewModel._viewModel === null) {
       PokemonsViewModel._viewModel = new PokemonsViewModel();

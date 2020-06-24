@@ -1,5 +1,6 @@
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/metroui.scss";
+@import "./colors";
 
 .noty_bar {
 	position: relative;
@@ -25,37 +26,37 @@
 
 	&.noty_type__error {
 		background-color: white !important;
-		color: #CE352C !important;
+		color: $color-error-notification !important;
 
 		&::before {
-			background-color: #CE352C;
+			background-color: $color-error-notification;
 		}
 	}
 
 	&.noty_type__success {
 		background-color: white !important;
-		color: #60A917 !important;
+		color: $color-success-notification !important;
 
 		&::before {
-			background-color: #60A917;
+			background-color: $color-success-notification;
 		}
 	}
 
 	&.noty_type__warning {
 		background-color: white !important;
-		color: #FF984E !important;
+		color: $color-warning-notification !important;
 
 		&::before {
-			background-color: #FF984E;
+			background-color: $color-warning-notification;
 		}
 	}
 
 	&.noty_type__info {
 		background-color: white !important;
-		color: #1BA1E2 !important;
+		color: $color-information-notification !important;
 
 		&::before {
-			background-color: #1BA1E2;
+			background-color: $color-information-notification;
 		}
 	}
 }

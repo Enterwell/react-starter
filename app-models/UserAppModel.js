@@ -31,7 +31,7 @@ class UserAppModel {
    * @returns app model's instance
    * @memberof UserAppModel
    */
-  static get() {
+  static get instance() {
     // Creates instance if it isn't set yet
     if (UserAppModel._appModel === null) {
       UserAppModel._appModel = new UserAppModel();
