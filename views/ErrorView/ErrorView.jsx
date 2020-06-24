@@ -1,5 +1,5 @@
 // Styles import
-import styles from './error-view.module.scss';
+import styles from './ErrorView.module.scss';
 
 /**
  * Function represents the view corresponding to the error page.

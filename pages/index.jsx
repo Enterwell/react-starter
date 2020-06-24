@@ -1,5 +1,5 @@
 // Views import
-import IndexView from '../views/index-view/index-view';
+import IndexView from '../views/IndexView/IndexView';
 
 /**
  * Function represents the page corresponding to the '/' route.

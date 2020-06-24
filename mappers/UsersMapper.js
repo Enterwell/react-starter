@@ -1,5 +1,5 @@
 // Models import
-import User from '../models/user';
+import User from '../models/User';
 
 /**
  * Class represents the users mapper. It provides functions for mapping DTOs

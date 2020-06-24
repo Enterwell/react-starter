@@ -5,16 +5,16 @@ import { useRouter } from 'next/router';
 
 // Components import
 import Link from 'next/link';
-import LoadingContainer from '../../components/loading-container/loading-container';
+import LoadingContainer from '../../components/LoadingContainer/LoadingContainer';
 
 // View models import
-import PokemonDetailsViewModel from '../../view-models/pokemon-details-view-model';
+import PokemonDetailsViewModel from '../../view-models/PokemonDetailsViewModel';
 
 // Helpers import
-import { withViewModel } from '../../helpers/components-helpers';
+import { withViewModel } from '../../helpers/ComponentsHelper';
 
 // Styles import
-import styles from './pokemon-details-view.module.scss';
+import styles from './PokemonDetailsView.module.scss';
 
 /**
  * Function represents the view corresponding to the Pokemon details page.

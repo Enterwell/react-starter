@@ -1,5 +1,5 @@
 // Views import
-import ErrorView from '../views/error-view/error-view';
+import ErrorView from '../views/ErrorView/ErrorView';
 
 /**
  * Function represents the error page.
