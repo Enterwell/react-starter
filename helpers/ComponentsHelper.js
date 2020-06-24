@@ -12,7 +12,7 @@ import { createElement } from 'react';
 export const withViewModel = (Component, ViewModelProvider) => (props) => createElement(Component, {
   ...props,
   displayName: Component.displayName,
-  viewModel: ViewModelProvider.get()
+  viewModel: ViewModelProvider.instance
 }, null);
 
 /**
@@ -27,11 +27,11 @@ export const withAppModels = (Component, AppModelProviders) => (props) => create
   ...props,
   displayName: Component.displayName,
   ...typeof AppModelProviders === 'function' ? {
-    appModel: AppModelProviders.get()
+    appModel: AppModelProviders.instance
   } : {
     appModels: Object.entries(AppModelProviders).reduce((a, [k, v]) => ({
       ...a,
-      [k]: v.get()
+      [k]: v.instance
     }), {})
   }
 }, null);

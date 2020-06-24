@@ -23,7 +23,7 @@ class PokemonDetailsViewModel {
    * @returns view model's instance
    * @memberof PokemonDetailsViewModel
    */
-  static get() {
+  static get instance() {
     return new PokemonDetailsViewModel();
   }
 
@@ -57,7 +57,7 @@ class PokemonDetailsViewModel {
    * @memberof PokemonDetailsViewModel
    */
   constructor() {
-    this.userAppModel = UserAppModel.get();
+    this.userAppModel = UserAppModel.instance;
     this.isLoading = true;
     this.pokemon = null;
   }
