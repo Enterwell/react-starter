@@ -28,6 +28,7 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 * `yarn.lock` - služi [Yarnu](https://classic.yarnpkg.com/en/) da zna koje točno verzije paketa je potrebno instalirati
 * `next.config.js` - služi za navođenje ne-defaultnih konfiguracija Next.jsa
 * `README.md` - služi za opis projekta - kako ga pokrenuti, neke osnovne stvari o paketima koji se koriste ili neki drugi savjeti osobama koje će u budućnosti raditi na projektu
+* `CHANGELOG.md` - služi za vođenje [evidencije promjena aplikacije](https://keepachangelog.com/en/1.0.0/) (dodavanje novih značajki, popravljanje pogrešaka itd.) 
 
 ### Mape u rootu projekta
 
