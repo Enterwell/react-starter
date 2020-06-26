@@ -17,30 +17,6 @@ import User from '../models/User';
  */
 class UserAppModel {
   /**
-   * Instance of the app model.
-   *
-   * @static
-   * @memberof UserAppModel
-   */
-  static _appModel = null;
-
-  /**
-   * Returns the app model's instance.
-   *
-   * @static
-   * @returns app model's instance
-   * @memberof UserAppModel
-   */
-  static get instance() {
-    // Creates instance if it isn't set yet
-    if (UserAppModel._appModel === null) {
-      UserAppModel._appModel = new UserAppModel();
-    }
-
-    return UserAppModel._appModel;
-  }
-
-  /**
    * User.
    *
    * @type {User}
