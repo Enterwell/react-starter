@@ -1,15 +1,9 @@
 // General imports
 import { useEffect, useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 
 // Components import
 import { TextField } from '@material-ui/core';
-
-// App models import
-import UserAppModel from '../../app-models/UserAppModel';
-
-// Helpers import
-import { withAppModels } from '../../helpers/ComponentsHelper';
 
 // Styles import
 import styles from './UserInformation.module.scss';
@@ -22,13 +16,13 @@ import styles from './UserInformation.module.scss';
  */
 function UserInformation(props) {
   const {
-    appModel
+    userAppModel
   } = props;
   const {
     user,
     loadUser,
     editUser
-  } = appModel;
+  } = userAppModel;
 
   const [name, setName] = useState('');
 
@@ -65,4 +59,4 @@ function UserInformation(props) {
   );
 }
 
-export default withAppModels(observer(UserInformation), UserAppModel);
+export default observer(UserInformation);

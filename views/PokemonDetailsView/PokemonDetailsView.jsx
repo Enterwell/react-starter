@@ -1,17 +1,11 @@
 // General imports
 import { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 import { useRouter } from 'next/router';
 
 // Components import
 import Link from 'next/link';
 import LoadingContainer from '../../components/LoadingContainer/LoadingContainer';
-
-// View models import
-import PokemonDetailsViewModel from '../../view-models/PokemonDetailsViewModel';
-
-// Helpers import
-import { withViewModel } from '../../helpers/ComponentsHelper';
 
 // Styles import
 import styles from './PokemonDetailsView.module.scss';
@@ -98,4 +92,4 @@ function PokemonDetailsView(props) {
   );
 }
 
-export default withViewModel(observer(PokemonDetailsView), PokemonDetailsViewModel);
+export default observer(PokemonDetailsView);

@@ -1,15 +1,9 @@
 // General imports
 import { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 
 // Components import
 import Link from 'next/link';
-
-// View models import
-import PokemonsViewModel from '../../view-models/PokemonsViewModel';
-
-// Helpers import
-import { withViewModel } from '../../helpers/ComponentsHelper';
 
 // Styles import
 import styles from './PokemonsView.module.scss';
@@ -75,4 +69,4 @@ function PokemonsView(props) {
   );
 }
 
-export default withViewModel(observer(PokemonsView), PokemonsViewModel);
+export default observer(PokemonsView);

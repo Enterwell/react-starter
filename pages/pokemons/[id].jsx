@@ -1,3 +1,6 @@
+// General imports
+import { inject } from 'mobx-react';
+
 // Views import
 import PokemonDetailsView from '../../views/PokemonDetailsView/PokemonDetailsView';
 
@@ -6,9 +9,9 @@ import PokemonDetailsView from '../../views/PokemonDetailsView/PokemonDetailsVie
  *
  * @returns page's elements
  */
-const PokemonDetails = () => <PokemonDetailsView />;
+const PokemonDetails = (props) => <PokemonDetailsView viewModel={props.viewModels.pokemonDetailsViewModel} />;
 
 PokemonDetails.title = 'Pokemon details';
 PokemonDetails.showUser = true;
 
-export default PokemonDetails;
+export default inject('viewModels')(PokemonDetails);

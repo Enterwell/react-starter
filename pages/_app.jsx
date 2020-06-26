@@ -5,7 +5,12 @@ import 'mobx-react-lite/batchingForReactDom';
 import App from 'next/app';
 import Head from 'next/head';
 import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
+import { Provider } from 'mobx-react';
 import UserInformation from '../components/UserInformation/UserInformation';
+
+// Factories import
+import appModelsFactory from '../factories/appModelsFactory';
+import viewModelsFactory from '../factories/viewModelsFactory';
 
 // Configs import
 import theme from '../config/theme';
@@ -44,15 +49,20 @@ class CustomApp extends App {
             {`${Component.title || 'React starter'} ${!isProduction ? ' - development' : ''}`}
           </title>
         </Head>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {Component.showUser && (
-              <UserInformation />
-            )}
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StylesProvider>
+        <Provider
+          appModels={appModelsFactory}
+          viewModels={viewModelsFactory}
+        >
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {Component.showUser && (
+                <UserInformation userAppModel={appModelsFactory.userAppModel} />
+              )}
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </StylesProvider>
+        </Provider>
       </>
     );
   }

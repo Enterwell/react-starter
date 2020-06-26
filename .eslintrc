@@ -36,6 +36,7 @@
 		"import/no-extraneous-dependencies": 0,
 		"react/react-in-jsx-scope": 0,
 		"react/jsx-curly-spacing": [2, { "when": "never", "children": true }],
+		"react/jsx-filename-extension": [1, { "extensions": [".test.js", ".jsx"] }],
 		"react/destructuring-assignment": 0,
 		"react/jsx-props-no-spreading": 0,
 		"react/jsx-tag-spacing": 0,

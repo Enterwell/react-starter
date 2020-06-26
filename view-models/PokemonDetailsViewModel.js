@@ -56,8 +56,8 @@ class PokemonDetailsViewModel {
    *
    * @memberof PokemonDetailsViewModel
    */
-  constructor() {
-    this.userAppModel = UserAppModel.instance;
+  constructor(userAppModel) {
+    this.userAppModel = userAppModel;
     this.isLoading = true;
     this.pokemon = null;
   }

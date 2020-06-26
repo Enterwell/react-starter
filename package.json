@@ -11,8 +11,17 @@
     "build-local": "cross-env NEXT_BUILD_LOCAL_SERVER=true next build",
     "build-analyze": "cross-env ANALYZE=true yarn build",
     "start": "next start",
+    "test": "jest",
     "lint": "eslint --ext .jsx,.js .",
     "lint-fix": "eslint --ext .jsx,.js --fix ."
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
   },
   "dependencies": {
     "@material-ui/core": "^4.10.1",
@@ -20,7 +29,7 @@
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
     "mobx": "^5.15.4",
-    "mobx-react-lite": "^2.0.7",
+    "mobx-react": "^6.2.2",
     "next": "9.4.4",
     "next-react-svg": "^1.1.1",
     "noty": "^3.2.0-beta",
@@ -33,6 +42,8 @@
     "@babel/plugin-proposal-decorators": "^7.10.1",
     "@moxy/next-env": "^2.0.1",
     "@next/bundle-analyzer": "^9.4.4",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.4.3",
     "@zeit/next-source-maps": "^0.0.3",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
@@ -42,6 +53,8 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
     "next-compose-plugins": "^2.2.0"
   }
 }
