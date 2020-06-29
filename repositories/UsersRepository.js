@@ -36,6 +36,16 @@ class UsersRepository {
 
     return payload;
   }
+
+  /**
+   * Removes the user.
+   *
+   * @static
+   * @memberof UsersRepository
+   */
+  static removeUser() {
+    LocalStorageService.remove('user');
+  }
 }
 
 export default UsersRepository;

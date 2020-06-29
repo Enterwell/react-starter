@@ -141,7 +141,7 @@ class NotificationService {
    * @memberof NotificationService
    */
   static showDefaultErrorNotification() {
-    return NotificationService.showErrorNotification('Trenutno nije moguće dohvatiti podatke. Osvježite stranicu da biste pokušali ponovno.');
+    return NotificationService.showErrorNotification('Nešto je pošlo po zlu. Osvježite stranicu i pokušajte ponovno.');
   }
 }
 

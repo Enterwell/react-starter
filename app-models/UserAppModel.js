@@ -64,6 +64,21 @@ class UserAppModel {
       NotificationsService.showDefaultErrorNotification();
     }
   }
+
+  /**
+   * Removes the user.
+   *
+   * @memberof UserAppModel
+   */
+  @action.bound
+  removeUser() {
+    try {
+      UsersRepository.removeUser();
+      this.user = null;
+    } catch (e) {
+      NotificationsService.showDefaultErrorNotification();
+    }
+  }
 }
 
 export default UserAppModel;
