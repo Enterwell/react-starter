@@ -40,8 +40,7 @@ describe('UserInformation', () => {
   test('changes name of user correctly', async () => {
     const {
       getByRole,
-      getByText,
-      findByText
+      getByText
     } = setup();
 
     const name = 'Matej';
