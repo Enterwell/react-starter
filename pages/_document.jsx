@@ -2,6 +2,14 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core';
 
+// Test imports
+import worker from '../mocks/browser';
+
+// Start the mocking conditionally.
+//if (process.env.NODE_ENV === 'development') {
+  worker.start();
+//}
+
 /**
  * Custom document component. It is used to augment application's
  * html any body tags. More about custom document can be found on the
