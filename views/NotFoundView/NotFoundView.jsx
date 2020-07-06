@@ -9,12 +9,12 @@ import styles from './NotFoundView.module.scss';
 function NotFoundView() {
   return (
     <div className={styles.container}>
-      <span className={styles.title}>
+      <h1 className={styles.title}>
         404
-      </span>
-      <span className={styles.subtitle}>
+      </h1>
+      <h2 className={styles.subtitle}>
         Just like Pokemons, this page doesn't exist
-      </span>
+      </h2>
     </div>
   );
 }
