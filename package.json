@@ -12,7 +12,11 @@
     "build-analyze": "cross-env ANALYZE=true yarn build",
     "start": "next start",
     "lint": "eslint --ext .jsx,.js .",
-    "lint-fix": "eslint --ext .jsx,.js --fix ."
+    "lint-fix": "eslint --ext .jsx,.js --fix .",
+    "cypress-run": "cypress run --headed",
+    "cypress-open": "cypress open --browser chrome",
+    "test": "start-server-and-test dev 3000 cypress-run",
+    "test-open": "start-server-and-test dev 3000 cypress-open"
   },
   "dependencies": {
     "@material-ui/core": "^4.10.1",
@@ -36,12 +40,14 @@
     "@zeit/next-source-maps": "^0.0.3",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
+    "cypress": "^4.9.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.0",
-    "next-compose-plugins": "^2.2.0"
+    "next-compose-plugins": "^2.2.0",
+    "start-server-and-test": "^1.11.0"
   }
 }

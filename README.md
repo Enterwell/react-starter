@@ -25,6 +25,7 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 * `.eslintignore` - služi za definiranje datoteka koje neće biti zahvaćene ESLintom
 * `.gitignore` - služi za definiranje datoteka čije promjene [Git](https://git-scm.com/) neće pratiti
 * `package.json` - služi da definiranje paketa koji se u aplikaciji koriste (tzv. `dependencies` i `devDependencies`)
+* `cypress.json` - služi da konfiguriranje [Cypressa](https://www.cypress.io/)
 * `yarn.lock` - služi [Yarnu](https://classic.yarnpkg.com/en/) da zna koje točno verzije paketa je potrebno instalirati
 * `next.config.js` - služi za navođenje ne-defaultnih konfiguracija Next.jsa
 * `README.md` - služi za opis projekta - kako ga pokrenuti, neke osnovne stvari o paketima koji se koriste ili neki drugi savjeti osobama koje će u budućnosti raditi na projektu
@@ -35,7 +36,8 @@ U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se kori
 * `app-models` - mjesto gdje se čuvaju svi tzv. app-modeli koji postoje unutar aplikacije 
 * `component-models` - mjesto gdje se čuvaju svi tzv. component-modeli koji postoje unutar aplikacije
 * `components` - mjesto gdje se čuvaju sve komponente koje nisu vezane uz samo jedan `view` (tzv. *shared components*)
-* `config` - gdje se čuvaju različite konfiguracijske datoteke koje koristi sama aplikacija (npr. kofiguracija internacionalizacije, Material-UI teme ili nešto drugo)
+* `config` - mjesto gdje se čuvaju različite konfiguracijske datoteke koje koristi sama aplikacija (npr. kofiguracija internacionalizacije, Material-UI teme ili nešto drugo)
+* `cypress` - mjesto gdje se čuvaju datoteke vezane za Cypress
 * `helpers` - mjesto gdje se čuvaju svi tzv. helperi koji postoje unutar aplikacije
 * `mappers` - mjesto gdje se čuvaju svi tzv. maperi koji postoje unutar aplikacije
 * `models` - mjesto gdje se čuvaju svi modeli koji postoje unutar aplikacije
@@ -144,6 +146,7 @@ Stranica `pokemons/index.jsx` prikazuje listu Pokemona koji se dohvaćaju s Pok�
 Stranica `pokemons/[id].jsx` prikazuje detalje Pokemona koji se dohvaćaju s PokéAPI-ja. Komponenta koja odgovara toj stranici unutar sebe čuva primjerak `PokemonDetailsViewModela`. Za razliku od `PokemonsViewModela`, ne postoji samo jedna instanca `PokemonDetailsViewModela`, već se svaki put stvori nova (svaki put kad korisnik dođe na tu stranicu). Dohvaćanje detalja Pokemona funkcionira jednako kao i dohvaćanje liste njih - koriste se isti repozitorij i maper, a jedino se podaci mapiraju u drugi model. Još jedna razlika ove stranice u odnosu na `pokemons/index.jsx` je što je ovo stranici potreban podatak o nazivu trenutnog korisnika koji se čuva na razini aplikaciju u `UserAppModelu`. Instanca `UserAppModela` je stoga stranici dostupna kroz njen view-model. `UserAppModel` podatke o korisniku dohvaća korištenjem `UserAppRepository` koji komunicira s `local storageom`.
 
 Komponente korištene unutar ove pokazne aplikacije nisu nužno usklađene s komponenatam kakve bi trebalo na "pravim" aplikacijama koristit. Ovo se prije sve odnosi na `LoadingContainer` komponentu oko koje se lome koplja i koja bi se po nekima trebala drugačije ponašati.
+
 ## Stilovi
 
 Svaka komponenta (bilo da je riječ o `component` ili `view`) treba imati vlastite stilove. Stilovi se smještaju u istu mapu gdje je i datoteka komponente, a datoteka stilova se može prepoznati po nastavku `.module.scss`. Iznimka su globalni stilovi koji se odnose na cijelu aplikaciju i koji su smješteni u `styles` mapi. Kao globalni stilovi se definiraju i boje koje se koriste na više mjesta u aplikaciji te koje se na taj način mogu koristiti bez potrebe da ih se uvijek iznova piše (ovo je posebno prigodno kod glavnih boja teme koja se provlači kroz cijelu aplikaciju). Važno je napomenuti i da ne treba apsolutno sve boje izvlačiti u globalne stilove, pogotovo ako će se one koristiti samo na jednom mjestu.
@@ -167,6 +170,26 @@ Imenovanje je nešto što uvijek izazive prijepore jer većina nas ima neki svoj
 * Datoteke "lokalnih" stilova pišu se `PascalCaseom` uz ekstenziju `.module.scss` 
 * Datoteke iz `public` mape ne podliježu nikakvim pravilima
 
+## Testiranje
+
+Pisanjem testova, automatizira se provjera radi li sve u aplikaciji kako treba. Automatizirani testovi su korisni jer se ne moraju ručno testirat sve funkcionalnosti svaki put kada se promjeni nešto u aplikaciji.
+
+Cypress je odabran kao najprikladniji library za testiranje rada aplikacije. U sklopu ovog React startera, napisani su samo integracijski testovi za svaki od `viewova`, no nekad će biti prikladno pisati i unit testove za pojedine komponente. Integracijski testovi `viewova` bi trebali neki minimum toga što bi u aplikaciji trebalo testirati.
+
+Testovi se mogu pokrenuti direktno iz komandne linije korištenjem naredbe
+
+```
+yarn test
+```
+
+ili se može otvoriti UI preko kojeg se mogu ručno pokretati. UI se otvara naredbom
+
+```
+yarn test-open
+```
+
+Ponekad neki testovi ne prolaze kada se pokrenu preko komandne linije pa je preporuka uvijek ih pokretati korištenjem UI-a.
+
 ## Paketi
 
 Pogledom na `package.json` može se okvirno dobiti dojam o nekim paketima koji se koriste. U React starter su uključeni samo osnovni paketi za koje smatramo da će uvijek biti korišteni u aplikaciji, no tu je još i cijeli set drugih paketa koji se koriste po potrebi. 
@@ -179,6 +202,7 @@ U nastavku su navedeni paketi koji su po defaultu dodani u projekt te koji će s
 
 * [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library čija je uloga već ranije opisana,a koji stoji i u samom nazivu startera što implicira da ga je nemoguće ne koristiti 
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library koji omogućava odvajanje aplikacijske logike od iscrtavanja komponenti (omogućava da promjene podataka izazovu ponovno renderiranje komponenata - ima sličan učinak kao i state komponente samo nije nužno vezan za nju)
+* [`cypress`](https://www.cypress.io/) - library koji omogućava pisanje testova za aplikaciju
 * [`@material-ui/core`](https://material-ui.com/) / [`@material-ui/icons`](https://material-ui.com/components/material-icons/) - kolekcija React komponenata i ikona koja omogućava da ne izmišljamo toplu vodu pisanjem vlastitih button, input i inih komponenti
 * [`axios`](https://github.com/axios/axios) - HTTP klijent koji omogućava jednostavnu komunikaciju aplikacije sa serverom odnosno API-jem
 * [`noty`](https://ned.im/noty/#/) - library korišten za prikazivanje notifikacija unutar aplikacije
