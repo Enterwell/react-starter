@@ -20,5 +20,5 @@ module.exports = withPlugins([
     LOCAL_SERVER: false,
     ENV: process.env.NODE_ENV
   },
-  include: path.resolve(__dirname, './public/assets/svgs')
+  include: path.resolve(__dirname, './public/assets')
 });

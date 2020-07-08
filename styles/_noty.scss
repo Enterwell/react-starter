@@ -25,38 +25,38 @@
 	}
 
 	&.noty_type__error {
-		background-color: white !important;
-		color: $color-error-notification !important;
+		background-color: $color-notification-background !important;
+		color: $color-notification-error !important;
 
 		&::before {
-			background-color: $color-error-notification;
+			background-color: $color-notification-error;
 		}
 	}
 
 	&.noty_type__success {
-		background-color: white !important;
-		color: $color-success-notification !important;
+		background-color: $color-notification-background !important;
+		color: $color-notification-success !important;
 
 		&::before {
-			background-color: $color-success-notification;
+			background-color: $color-notification-success;
 		}
 	}
 
 	&.noty_type__warning {
-		background-color: white !important;
-		color: $color-warning-notification !important;
+		background-color: $color-notification-background !important;
+		color: $color-notification-warning !important;
 
 		&::before {
-			background-color: $color-warning-notification;
+			background-color: $color-notification-warning;
 		}
 	}
 
 	&.noty_type__info {
-		background-color: white !important;
-		color: $color-information-notification !important;
+		background-color: $color-notification-background !important;
+		color: $color-notification-information !important;
 
 		&::before {
-			background-color: $color-information-notification;
+			background-color: $color-notification-information;
 		}
 	}
 }

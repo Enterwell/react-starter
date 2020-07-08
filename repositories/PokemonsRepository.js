@@ -35,10 +35,10 @@ class PokemonsRepository {
    * @returns Pokemon data
    * @memberof PokemonsRepository
    */
-  static async getPokemon(payload) {
+  static async getSinglePokemon(payload) {
     const { data } = await HttpService.get(`pokemon/${payload}`);
 
-    return PokemonsMapper.mapDtoToPokemon(data);
+    return PokemonsMapper.mapDtoToSinglePokemon(data);
   }
 }
 
