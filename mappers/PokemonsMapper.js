@@ -38,7 +38,7 @@ class PokemonsMapper {
    * @returns PokemoDetails model
    * @memberof PokemonsMapper
    */
-  static mapDtoToPokemon(dto) {
+  static mapDtoToSinglePokemon(dto) {
     const pokemon = new PokemonDetails();
 
     pokemon.id = dto.id;

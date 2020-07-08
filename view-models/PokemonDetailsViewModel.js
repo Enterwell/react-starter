@@ -73,7 +73,7 @@ class PokemonDetailsViewModel {
     this.isLoading = true;
 
     try {
-      this.pokemon = await PokemonsRepository.getPokemon(id);
+      this.pokemon = await PokemonsRepository.getSinglePokemon(id);
     } catch (e) {
       NotificationsService.showDefaultErrorNotification();
     }
