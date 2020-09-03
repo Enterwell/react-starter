@@ -1,0 +1,62 @@
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/metroui.scss";
+@import "./colors";
+
+.noty_bar {
+	position: relative;
+	display: flex;
+  align-items: center;
+	min-height: 70px;
+	padding: 5px 10px;
+	border-radius: 7px;
+
+	&::before {
+		position: absolute;
+		width: 7px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		content: '';
+	}
+
+	.noty_body {
+		padding: 5px 10px !important;
+		font-weight: bold;
+	}
+
+	&.noty_type__error {
+		background-color: $color-notification-background !important;
+		color: $color-notification-error !important;
+
+		&::before {
+			background-color: $color-notification-error;
+		}
+	}
+
+	&.noty_type__success {
+		background-color: $color-notification-background !important;
+		color: $color-notification-success !important;
+
+		&::before {
+			background-color: $color-notification-success;
+		}
+	}
+
+	&.noty_type__warning {
+		background-color: $color-notification-background !important;
+		color: $color-notification-warning !important;
+
+		&::before {
+			background-color: $color-notification-warning;
+		}
+	}
+
+	&.noty_type__info {
+		background-color: $color-notification-background !important;
+		color: $color-notification-information !important;
+
+		&::before {
+			background-color: $color-notification-information;
+		}
+	}
+}

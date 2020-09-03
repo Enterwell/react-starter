@@ -1,0 +1,53 @@
+{
+  "name": "react-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev-local": "cross-env NEXT_BUILD_LOCAL_SERVER=true next dev",
+    "dev-prod": "cross-env NODE_ENV=production next dev",
+    "dev-local-prod": "cross-env NODE_ENV=production NEXT_BUILD_LOCAL_SERVER=true next dev",
+    "build": "next build",
+    "build-local": "cross-env NEXT_BUILD_LOCAL_SERVER=true next build",
+    "build-analyze": "cross-env ANALYZE=true yarn build",
+    "start": "next start",
+    "lint": "eslint --ext .jsx,.js .",
+    "lint-fix": "eslint --ext .jsx,.js --fix .",
+    "cypress-run": "cypress run --headed",
+    "cypress-open": "cypress open --browser chrome",
+    "test": "start-server-and-test dev 3000 cypress-run",
+    "test-open": "start-server-and-test dev 3000 cypress-open"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.10.1",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "clsx": "^1.1.1",
+    "mobx": "^5.15.4",
+    "mobx-react-lite": "^2.0.7",
+    "next": "9.4.4",
+    "next-react-svg": "^1.1.1",
+    "noty": "^3.2.0-beta",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "sass": "^1.26.8"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.1",
+    "@moxy/next-env": "^2.0.1",
+    "@next/bundle-analyzer": "^9.4.4",
+    "@zeit/next-source-maps": "^0.0.3",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "cypress": "^4.9.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "2.5.0",
+    "next-compose-plugins": "^2.2.0",
+    "start-server-and-test": "^1.11.0"
+  }
+}
