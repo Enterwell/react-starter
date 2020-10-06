@@ -10,15 +10,23 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
 
+const withProdOnlyPlugin = (plugin) => (process.env.NODE_ENV === 'production'
+  ? (w) => w
+  : plugin);
+
 module.exports = withPlugins([
   withEnv,
-  withSourceMaps,
-  withBundleAnalyzer,
+  withProdOnlyPlugin(withSourceMaps),
+  withProdOnlyPlugin(withBundleAnalyzer),
   withReactSvg
 ], {
   env: {
     LOCAL_SERVER: false,
     ENV: process.env.NODE_ENV
   },
-  include: path.resolve(__dirname, './public/assets')
+  include: path.resolve(__dirname, './public/assets'),
+  assetPrefix: process.env.ASSETS_PREFIX ? `/${process.env.ASSETS_PREFIX}` : '',
+  publicRuntimeConfig: {
+    basePath: process.env.ASSETS_PREFIX ? `/${process.env.ASSETS_PREFIX}` : ''
+  }
 });
