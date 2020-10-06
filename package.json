@@ -10,6 +10,7 @@
     "build": "next build",
     "build-local": "cross-env NEXT_BUILD_LOCAL_SERVER=true next build",
     "build-analyze": "cross-env ANALYZE=true yarn build",
+    "export": "rimraf ./out && rimraf ./.next && cross-env NODE_ENV=production next build && next export",
     "start": "next start",
     "lint": "eslint --ext .jsx,.js .",
     "lint-fix": "eslint --ext .jsx,.js --fix .",
@@ -48,6 +49,7 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.0",
     "next-compose-plugins": "^2.2.0",
+    "rimraf": "^3.0.2",
     "start-server-and-test": "^1.11.0"
   }
 }
