@@ -2,7 +2,6 @@
 import 'mobx-react-lite/batchingForReactDom';
 
 // Components import
-import App from 'next/app';
 import Head from 'next/head';
 import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
 import UserInformation from '../components/UserInformation/UserInformation';
@@ -21,41 +20,33 @@ const isProduction = process.env.NODE_ENV === 'production';
  * all pages should be placed here. More about custom app can be found on the following link
  * https://nextjs.org/docs/advanced-features/custom-app.
  *
- * @class CustomApp
- * @extends {App}
+ * @param {Object} props Various component's props
+ * @returns component's elements
  */
-class CustomApp extends App {
-  /**
-   * Renders the component.
-   *
-   * @returns component's elements
-   * @memberof CustomApp
-   */
-  render() {
-    const {
-      Component,
-      pageProps
-    } = this.props;
+function App(props) {
+  const {
+    Component,
+    pageProps
+  } = props;
 
-    return (
-      <>
-        <Head>
-          <title>
-            {`${Component.title || 'React starter'} ${!isProduction ? ' - development' : ''}`}
-          </title>
-        </Head>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {Component.showUser && (
-              <UserInformation />
-            )}
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StylesProvider>
-      </>
-    );
-  }
+  return (
+    <>
+      <Head>
+        <title>
+          {`${Component.title || 'React starter'} ${!isProduction ? ' - development' : ''}`}
+        </title>
+      </Head>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {Component.showUser && (
+            <UserInformation />
+          )}
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StylesProvider>
+    </>
+  );
 }
 
-export default CustomApp;
+export default App;

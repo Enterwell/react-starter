@@ -8,7 +8,7 @@ import PokemonsView from '../../views/PokemonsView/PokemonsView';
  */
 const Pokemons = () => <PokemonsView />;
 
-Pokemons.title = 'Pokemon details';
+Pokemons.title = 'Pokemons';
 Pokemons.showUser = true;
 
 export default Pokemons;
