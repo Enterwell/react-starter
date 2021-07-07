@@ -1,6 +1,3 @@
-// General imports
-import 'mobx-react-lite/batchingForReactDom';
-
 // Components import
 import Head from 'next/head';
 import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
