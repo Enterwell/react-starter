@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components import
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core';
+import { ServerStyleSheets } from '@mui/styles';
 
 /**
  * Custom document component. It is used to augment application's

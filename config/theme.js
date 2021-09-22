@@ -1,14 +1,14 @@
 // General imports
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material/styles';
 
 /**
  * Material-UI theme.
  *
  * @type {Object}
  */
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
       main: '#2aa876',
       contrastText: '#ffffff'

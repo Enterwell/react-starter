@@ -1,6 +1,8 @@
 // Components import
 import Head from 'next/head';
-import { StylesProvider, ThemeProvider, CssBaseline } from '@material-ui/core';
+import { StylesProvider } from '@mui/styles';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import UserInformation from '../components/UserInformation/UserInformation';
 
 // Configs import
@@ -37,7 +39,7 @@ function App(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {Component.showUser && (
-            <UserInformation />
+          <UserInformation />
           )}
           <Component {...pageProps} />
         </ThemeProvider>
