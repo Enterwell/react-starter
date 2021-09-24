@@ -1,5 +1,5 @@
 // General imports
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 
 // Repositories import
 import UsersRepository from '../repositories/UsersRepository';
@@ -46,7 +46,7 @@ class UserAppModel {
    * @type {User}
    * @memberof UserAppModel
    */
-  @observable user;
+  user;
 
   /**
    * Creates an instance of UserAppModel.
@@ -55,6 +55,12 @@ class UserAppModel {
    */
   constructor() {
     this.user = null;
+
+    makeObservable(this, {
+      user: observable,
+      loadUser: action.bound,
+      editUser: action.bound
+    });
   }
 
   /**
@@ -62,7 +68,6 @@ class UserAppModel {
    *
    * @memberof UserAppModel
    */
-  @action.bound
   loadUser() {
     try {
       this.user = UsersRepository.getUser();
@@ -77,7 +82,6 @@ class UserAppModel {
    * @param {string} name Name
    * @memberof UserAppModel
    */
-  @action.bound
   editUser(name) {
     try {
       const payload = this.user ? this.user.clone() : new User();

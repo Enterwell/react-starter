@@ -1,5 +1,5 @@
 // General imports
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action, runInAction } from 'mobx';
 
 // App models import
 import UserAppModel from '../app-models/UserAppModel';
@@ -41,7 +41,7 @@ class PokemonDetailsViewModel {
    * @type {boolean}
    * @memberof PokemonDetailsViewModel
    */
-  @observable isLoading;
+  isLoading;
 
   /**
    * Pokemon details data.
@@ -49,7 +49,7 @@ class PokemonDetailsViewModel {
    * @type {Object}
    * @memberof PokemonDetailsViewModel
    */
-  @observable pokemon;
+  pokemon;
 
   /**
    * Creates an instance of PokemonDetailsViewModel.
@@ -60,6 +60,13 @@ class PokemonDetailsViewModel {
     this.userAppModel = UserAppModel.instance;
     this.isLoading = true;
     this.pokemon = null;
+
+    makeObservable(this, {
+      isLoading: observable,
+      pokemon: observable,
+      loadPokemon: action.bound
+
+    });
   }
 
   /**
@@ -68,17 +75,22 @@ class PokemonDetailsViewModel {
    * @param {number} id Pokemon's ID
    * @memberof PokemonDetailsViewModel
    */
-  @action.bound
   async loadPokemon(id) {
     this.isLoading = true;
 
     try {
-      this.pokemon = await PokemonsRepository.getSinglePokemon(id);
+      const pokemon = await PokemonsRepository.getSinglePokemon(id);
+
+      runInAction(() => {
+        this.pokemon = pokemon;
+      });
     } catch (e) {
       NotificationsService.showDefaultErrorNotification();
     }
 
-    this.isLoading = false;
+    runInAction(() => {
+      this.isLoading = false;
+    });
   }
 }
 

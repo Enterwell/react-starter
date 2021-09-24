@@ -1,5 +1,5 @@
 // General imports
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action, runInAction } from 'mobx';
 
 // Repositories import
 import PokemonsRepository from '../repositories/PokemonsRepository';
@@ -43,7 +43,7 @@ class PokemonsViewModel {
    * @type {boolean}
    * @memberof PokemonsViewModel
    */
-  @observable isFirstLoad;
+  isFirstLoad;
 
   /**
    * Is loading flag.
@@ -51,7 +51,7 @@ class PokemonsViewModel {
    * @type {boolean}
    * @memberof PokemonsViewModel
    */
-  @observable isLoading;
+  isLoading;
 
   /**
    * Pokemons collection.
@@ -59,7 +59,7 @@ class PokemonsViewModel {
    * @type {Object[]}
    * @memberof PokemonsViewModel
    */
-  @observable pokemons;
+  pokemons;
 
   /**
    * Page number.
@@ -67,7 +67,7 @@ class PokemonsViewModel {
    * @type {number}
    * @memberof PokemonsViewModel
    */
-  @observable pageNumber;
+  pageNumber;
 
   /**
    * Page size.
@@ -75,7 +75,7 @@ class PokemonsViewModel {
    * @type {number}
    * @memberof PokemonsViewModel
    */
-  @observable pageSize;
+  pageSize;
 
   /**
    * Total Pokemons number.
@@ -83,7 +83,7 @@ class PokemonsViewModel {
    * @type {number}
    * @memberof PokemonsViewModel
    */
-  @observable totalPokemons;
+  totalPokemons;
 
   /**
    * Creates an instance of PokemonsViewModel.
@@ -97,6 +97,16 @@ class PokemonsViewModel {
     this.pageNumber = 0;
     this.pageSize = 10;
     this.totalPokemons = 0;
+
+    makeObservable(this, {
+      isFirstLoad: observable,
+      isLoading: observable,
+      pokemons: observable,
+      pageNumber: observable,
+      pageSize: observable,
+      totalPokemons: observable,
+      loadPokemons: action.bound
+    });
   }
 
   /**
@@ -105,7 +115,6 @@ class PokemonsViewModel {
    * @param {number} page Page number
    * @memberof PokemonsViewModel
    */
-  @action.bound
   async loadPokemons(page = this.pageNumber) {
     if (!this.isFirstLoad && this.isLoading) {
       return;
@@ -128,14 +137,18 @@ class PokemonsViewModel {
         count
       } = await PokemonsRepository.getPokemons(payload);
 
-      this.pokemons = results;
-      this.pageNumber = page;
-      this.totalPokemons = count;
+      runInAction(() => {
+        this.pokemons = results;
+        this.pageNumber = page;
+        this.totalPokemons = count;
+      });
     } catch (e) {
       NotificationsService.showDefaultErrorNotification();
     }
 
-    this.isLoading = false;
+    runInAction(() => {
+      this.isLoading = false;
+    });
   }
 }
 

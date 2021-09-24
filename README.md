@@ -6,7 +6,7 @@ Ovaj dokument predstavlja službenu dokumentaciju React startera. React starter 
 * organizacija projekta, odnosno njegovih mapa i datoteka
 * preporuka paketa koji su se pokazali korisnima u prošlosti
 
-Za bilo kakve nedoumice koje ostanu nakon čitanja ovog dokumenta, slobodno se obratite na e-mail **matej.radovic@enterwell.net**.
+Za bilo kakve nedoumice koje ostanu nakon čitanja ovog dokumenta, slobodno nam se obratite putem GH Issues.
 
 ## Zašto React i zašto Next.js?
 
