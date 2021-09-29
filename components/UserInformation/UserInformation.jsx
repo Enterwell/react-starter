@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
 // Components import
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
 // App models import
 import UserAppModel from '../../app-models/UserAppModel';
@@ -52,6 +52,7 @@ function UserInformation(props) {
       <div className={styles.newNameWrapper}>
         That's not really my name. You should rather call me
         <TextField
+          variant="standard"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyPress={(e) => {
