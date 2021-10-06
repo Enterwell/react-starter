@@ -24,7 +24,7 @@ class PokemonsMapper {
 
       pokemon.id = parts[parts.length - 2];
       pokemon.name = dto.name;
-      pokemon.image = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+      pokemon.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(pokemon.id).padStart(3, '0')}.png`;
 
       return pokemon;
     });
@@ -47,7 +47,7 @@ class PokemonsMapper {
     pokemon.weight = dto.weight;
     pokemon.abilities = dto.abilities.map((a) => a.ability.name);
     pokemon.baseExperience = dto.base_experience;
-    pokemon.image = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+    pokemon.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${String(pokemon.id).padStart(3, '0')}.png`;
 
     return pokemon;
   }
