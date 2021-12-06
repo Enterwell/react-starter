@@ -6,6 +6,8 @@ import IndexView from '../views/IndexView/IndexView';
  *
  * @returns page's elements
  */
-const Index = () => <IndexView />;
+function Index() {
+  return <IndexView />;
+}
 
 export default Index;

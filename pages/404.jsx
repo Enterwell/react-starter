@@ -6,6 +6,8 @@ import NotFoundView from '../views/NotFoundView/NotFoundView';
  *
  * @returns page's elements
  */
-const NotFound = () => <NotFoundView />;
+function NotFound() {
+  return <NotFoundView />;
+}
 
 export default NotFound;

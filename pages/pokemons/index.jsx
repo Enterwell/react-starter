@@ -6,7 +6,9 @@ import PokemonsView from '../../views/PokemonsView/PokemonsView';
  *
  * @returns page's elements
  */
-const Pokemons = () => <PokemonsView />;
+function Pokemons() {
+  return <PokemonsView />;
+}
 
 Pokemons.title = 'Pokemons';
 Pokemons.showUser = true;
