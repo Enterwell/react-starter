@@ -9,11 +9,13 @@ import { createElement } from 'react';
  * @param {function} ViewModelProvider View model provider
  * @returns component with view model injected
  */
-export const withViewModel = (Component, ViewModelProvider) => (props) => createElement(Component, {
-  ...props,
-  displayName: Component.displayName,
-  viewModel: ViewModelProvider.instance
-}, null);
+export const withViewModel = (Component, ViewModelProvider) => function WithViewModel(props) {
+  return createElement(Component, {
+    ...props,
+    displayName: Component.displayName,
+    viewModel: ViewModelProvider.instance
+  }, null);
+};
 
 /**
  * Wrapper around components that use app models.
@@ -23,18 +25,20 @@ export const withViewModel = (Component, ViewModelProvider) => (props) => create
  * @param {function|Object.<string, function>} AppModelProviders App model providers
  * @returns component with app models injected
  */
-export const withAppModels = (Component, AppModelProviders) => (props) => createElement(Component, {
-  ...props,
-  displayName: Component.displayName,
-  ...typeof AppModelProviders === 'function' ? {
-    appModel: AppModelProviders.instance
-  } : {
-    appModels: Object.entries(AppModelProviders).reduce((a, [k, v]) => ({
-      ...a,
-      [k]: v.instance
-    }), {})
-  }
-}, null);
+export const withAppModels = (Component, AppModelProviders) => function WithAppModels(props) {
+  return createElement(Component, {
+    ...props,
+    displayName: Component.displayName,
+    ...typeof AppModelProviders === 'function' ? {
+      appModel: AppModelProviders.instance
+    } : {
+      appModels: Object.entries(AppModelProviders).reduce((a, [k, v]) => ({
+        ...a,
+        [k]: v.instance
+      }), {})
+    }
+  }, null);
+};
 
 export default {
   withViewModel,
