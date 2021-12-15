@@ -1,238 +1,238 @@
 # Enterwell React starter
 
-Ovaj dokument predstavlja službenu dokumentaciju React startera. React starter je nastao zbog želje da se unificiraju svi React projekti koje ćemo u budućnosti razvijati. U ovom dokumentu će stoga biti objašnjeni i navedeni sljedeće zaključci oko kojih su se Enterwell starješine usuglasile nakon višesatnih dogovora:
+This document represents the official React starter documentation. React starter was created due to the desire to unify all React projects that we will develop in the future. This document will therefore explain and list out the following conclusions that the Enterwell elders agreed on after several multi-hour meetings:
 
-* arhitektura aplikacije
-* organizacija projekta, odnosno njegovih mapa i datoteka
-* preporuka paketa koji su se pokazali korisnima u prošlosti
+* application architecture
+* organization of the project files and folders
+* recommendation of npm packages that have proven useful in the past
 
-Za bilo kakve nedoumice koje ostanu nakon čitanja ovog dokumenta, slobodno nam se obratite putem GH Issues.
+If any doubts remain after reading this document, feel free to contact us via GH Issues.
 
-## Zašto React i zašto Next.js?
+## Why React and why Next.js?
 
-[React](https://reactjs.org/) je jedna od mnoštva JavaScript librarya i frameworka čiji je cilj olakšati izgradnju korisničkih sučelja. Iza Reacta stoji Facebook čiji projekt to i jest, a što osigurava određenu sigurnost da to nije samo još jedna tehnologija koja će biti hypeana mjesec dana te potom zaboravljena. Zašto se baš React odabrao za razvoj aplikacija, a ne recimo Vue ili Angular, to ne znam, no pošto se pokazalo da je dosta lako i brzo razvijati aplikacije korištenjem njega, nije bilo potrebe za promjenom.
+[React](https://reactjs.org/) is one of many JavaScript libraries and frameworks that aim to make building user interfaces easier. React is Facebook's project, which ensures a certain certainty that this is not just another buzzword technology that will be forgotten in a month. Why was React chosen for application development, and not, say, Vue or Angular, I do not know, but since it turned out to be quite easy and fast to develop applications with it, there was no need to change.
 
-[Next.js](https://nextjs.org/) je jedan od React frameworka koji smo relativno nedavno odlučili koristiti zajedno s Reactom. Njegovo korištenje omogućava lakšu konfiguraciju projekata (bez potrebe za petljanjem s [webpackom](https://webpack.js.org/)), pruža potporu za pre-rendering stranica i još mnoge druge stvari.
+[Next.js](https://nextjs.org/) is one of React frameworks that we relatively recently decided to use together with React. Its use makes it easier to configure projects (without having to mess around with [webpack](https://webpack.js.org/)), provides support for pre-rendering pages, and more.
 
-## Struktura projekta
+## Project structure
 
-U rootu React projekta se nalaze sve konfiguracijske datoteke alata koji se koriste tijekom developmenta i builda aplikacije te mape s različitim cjelinama aplikacije. 
+The React starter's root contains all the configuration files of the tools used during the development and build of the application, as well as folders with different aspects of the application.
 
-### Datoteke u rootu projekta
+### Project root files
 
-* `.babelrc` - služi za konfiguriranje [Babela](https://babeljs.io/)
-* `.eslintrc` - služi za konfiguriranje [ESLinta](https://eslint.org/) 
-* `.eslintignore` - služi za definiranje datoteka koje neće biti zahvaćene ESLintom
-* `.gitignore` - služi za definiranje datoteka čije promjene [Git](https://git-scm.com/) neće pratiti
-* `package.json` - služi da definiranje paketa koji se u aplikaciji koriste (tzv. `dependencies` i `devDependencies`)
-* `cypress.json` - služi da konfiguriranje [Cypressa](https://www.cypress.io/)
-* `yarn.lock` - služi [Yarnu](https://classic.yarnpkg.com/en/) da zna koje točno verzije paketa je potrebno instalirati
-* `next.config.js` - služi za navođenje ne-defaultnih konfiguracija Next.jsa
-* `README.md` - služi za opis projekta - kako ga pokrenuti, neke osnovne stvari o paketima koji se koriste ili neki drugi savjeti osobama koje će u budućnosti raditi na projektu
-* `CHANGELOG.md` - služi za vođenje [evidencije promjena aplikacije](https://keepachangelog.com/en/1.0.0/) (dodavanje novih značajki, popravljanje pogrešaka itd.) 
+* `.babelrc` - used for configuring [Babel](https://babeljs.io/)
+* `.eslintrc` - used for configuring [ESLint](https://eslint.org/)
+* `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
+* `.gitignore` - used for defining files whose changes [Git](https://git-scm.com/) will not track
+* `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDepenndencies`)
+* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
+* `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
+* `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
+* `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
+* `CHANGELOG.md` - used for keeping [application change logs](https://keepachangelog.com/en/1.0.0/) (adding new features, fixing bugs, etc.) 
 
-### Mape u rootu projekta
+### Project root folders
 
-* `app-models` - mjesto gdje se čuvaju svi tzv. app-modeli koji postoje unutar aplikacije 
-* `component-models` - mjesto gdje se čuvaju svi tzv. component-modeli koji postoje unutar aplikacije
-* `components` - mjesto gdje se čuvaju sve komponente koje nisu vezane uz samo jedan `view` (tzv. *shared components*)
-* `config` - mjesto gdje se čuvaju različite konfiguracijske datoteke koje koristi sama aplikacija (npr. kofiguracija internacionalizacije, Material-UI teme ili nešto drugo)
-* `cypress` - mjesto gdje se čuvaju datoteke vezane za Cypress
-* `helpers` - mjesto gdje se čuvaju svi tzv. helperi koji postoje unutar aplikacije
-* `mappers` - mjesto gdje se čuvaju svi tzv. maperi koji postoje unutar aplikacije
-* `models` - mjesto gdje se čuvaju svi modeli koji postoje unutar aplikacije
-* `pages` - mjesto čije podmape i datoteke tvore hijerarhiju dostupnim ruta aplikacije
-* `public` - mjesto gdje se čuvaju svi statički resursi aplikacije (npr. slike, svg-ovi i datoteke koje se mogu preuzeti kroz aplikaciju)
-* `repositories` - mjesto gdje se čuvaju svi repozitoriji koji postoje unutar aplikacije
-* `services` - mjesto gdje se čuvaju svi servisi koji postoje unutar aplikacije
-* `styles` - mjesto gdje se čuvaju svi globalni stilovi koji postoje unutar aplikacije
-* `view-models` - mjesto gdje se čuvaju svi tzv. view-modeli koji postoje unutar aplikacije
-* `views` - mjesto gdje se čuvaji svi tzv. viewovi i samo za njih vezane komponente
+* `app-models` - a place where all the app-models that exist within the application are stored
+* `component-models` - a place where all the component-models that exist within the application are stored
+* `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
+* `config` - a place where the various configuration files, used by the application itself, are stored (e.g. internationalization configuration, MUI themes, or something else)
+* `cypress` - a place where Cypress related files are stored
+* `helpers` - a place where all the helpers that exist within the application are stored
+* `mappers` - a place where all the mappers that exist within the application are stored
+* `models` - a place where all the models that exist within the application are stored
+* `pages` - a place whose subfolders and files form a hierarchy of available application routes
+* `public` - a place where all the static resources of the application are stored (e.g. images, SVGs and files that can be downloaded through the application)
+* `repositories` - a place where all the repositories that exist within the application are stored
+* `services` - a place where all the services that exist within the application are stored
+* `styles` - a place where all the global styles that exist within the application are stored
+* `view-models` - a place where all the view-models that exist within the application are stored
+* `views` - a place where all the views and only related components are stored
 
-Detaljnije o tome što su pojedini od ovih entiteta može se pročitati u dijelu o arhitekturi React starter aplikacije. Dodatna napomena: u nekim mapama je moguće pronaći datoteku imena `TODO_delete_this_later.txt` čija je jedina svrha učini mapu nepraznom kako bi ju Git zapamtio.
+More details on what each of these entities is can be read in the section on the architecture of the React starter application. Additional note: it is possible to find, in some folders, a file named `TODO_delete_this_later.txt` whose sole purpose is to make the folder not empty so that Git can track it.
 
-## Arhitektura
+## Architecture
 
-Krenimo odmah *in medias res* - slika neposredno ispod ovog teksta prikazuje arhitekturu Enterwell React aplikacija. Naravno da to nije jedina, a ponajmanje jedina ispravna arhitektura React aplikacija, već je riječ o arhitekturi oko koje su se starješine Enterwella gotovo pa jednoglasno usuglasile. U nastavku će biti objašnjeni različiti segmenti arhitekture.
+Let's start now *in medias res* - the image just below this paragraph shows the architecture of Enterwell React applications. Of course, this is not the only, and at least the only correct architecture of the React application, but it is an architecture around which the elders of Enterwell almost unanimously agreed. Different segments of the architecture will be explained below.
 
 <div style="margin: 50px 0; text-align: center;">
   <img src="./public/assets/images/architecture.png" alt="Arhitektura" >
 </div>
 
-### Komponente
+### Components
 
-Srž svake React aplikacije su njene komponente. Komponente su građevni dijelovi aplikacije i njima se definira korisničko sučelje koje će, na kraju krajeva, korisnik vidjeti. U Enterwellovoj React arhitekturi, komponente mogu odgovarati jednoj od sljedeće 3 skupine: `pages`, `views` i `components`.
+At the heart of any React application are its components. Components are the building blocks of an application and define the user interface that the user will ultimately see. In Enterwell's React architecture, components can correspond to one of the following 3 groups: `pages`, `views`, and `components`.
 
 #### Pages
 
-React aplikacije koje su u Enterwellu razvijane tokom prethodnih godina, za usmjeravanje (eng. *routing*) su koristile `react-router` i slične pakete. Prelaskom na Next.js nestala je potreba za korištenjem tih paketa, a rute (eng. *route*) aplikacije se definiraju hijerarhijom datoteka i mapa unutar [`pages`](https://nextjs.org/docs/basic-features/pages) mape (npr. `pages/index.jsx` datoteka odgovara ruti `/`, `pages/pokemons/index.jsx` datoteka odgovara ruti `/pokemons` itd.).
+React applications developed at Enterwell in previous years used `react-router` and similar packages for routing. By switching to Next.js, the need for using these packages has disappeared and the routes of applications are defined by a hierarchy of files and folders within [`pages`](https://nextjs.org/docs/basic-features/pages) folder (e.g. `pages/index.jsx` file matches the route `/`, `pages/pokemons/index.jsx` file matches the route `/pokemons` etc.).
 
-Pošto je ovakav način usmjeravanja svojstven Next.jsu, te zbog želje da aplikacije budu malo manje spregnute s njim, `pages` komponente služe samo kao enkapsulacija oko `views` komponenti.
+Since this way of routing is typical of Next.js, and due to the desire to make applications a little less coupled with it, `pages` components service only as an encapsulation around the `views` components.
 
-Važno je napomenuti da unutar `pages` mape postoje i datoteke koje ne odgovaraju direktno rutama aplikacije. Tu se misli na [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) i [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) datoteke koje imaju posebnu ulogu definiranu Next.jsom. 
+It is important to note that within the `pages` folder there are also files that do not correspond directly to the application routes. This refers to [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) and [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) files that have a special role defined by Next.js. 
 
 #### Views
 
-`views` komponente predstavljaju sve ono što korisnik vidi na nekoj ruti aplikacije, a one onda mogu unutar sebe koristiti jednu ili više "običnih" komponenti. Ukoliko `view` komponenta postane previše složena, preporučeno je razložiti ju na više "običnih" komponenti. Ako sw tako dobivene "obične" komponente koriste u samo tom `viewu` i nigdje drugdje, potrebno ih je smjestiti u zasebnu mapu unutar mape tog `viewa`. Komponente koje se koriste na više mjesta u aplikaciji potrebno je smjestiti u zasebnu mapu unutar `components` mapu.
+`views` components represent everything that the user sees on an application route, and they can then use one or more "ordinary" components within themselves. If the `view` component becomes too complex, it is recommended to break it down into more "ordinary" components. If the "ordinary" components obtained in such a way are used only in that `view` and nowhere else, they need to be placed in a separate folder within the folder of that `view`. Components used in multiple places in the application need to be placed in a separate folder within the `components` folder.
 
 #### Components
 
-`components` komponente predstavljaju sve one komponente koje se koriste na više mjesta u aplikaciji. Komponenta bi se trebala smjestiti u ovu mapu ako se koristi na barem dva mjesta u aplikaciji ili ako je dovoljno općenita da se može koristiti na više mjesta. Kad se tek krene s razvojem aplikacije, sve će komponente biti korištene na samo jednom mjestu, no za neke od njih se može unaprijed pretpostaviti da se mogu iskoristiti na više mjesta. Primjer takvih komponenti su razne `Input` komponente.
+`components` components represent all those components that are used in several places in the application. A component should be placed in this folder if it is used in at least two places in the application or if it is general enough to be used in multiple places. Once the development of the application has started, all components will be used in only one place, but some of them can be assumed in advance that they can be used in more places. Examples of such components are various `Input` components.
 
-### Podaci
+### Data
 
-Svaka React komponenta ima potporu za perzistenciju podataka u vidu svog `statea`. Ukoliko aplikacija ima malo veće komponente s većom količinom podataka, `state` tih komponenata vrlo lako može postati nepregledan, a same komponente previše zagađene logikom aplikacije. Kako bi se doskočilo tom problemu, s vremenom su se pojavili libraryi koji simuliraju ponašanje `state` (u smislu da aktiviraju re-render komponente kada se promijene podaci o kojima ovisi), ali i omogućuju da se podaci o kojima komponenta ovisi čuvaju izvan nje same. Jedan od tih librarya je i [`mobx`](#defaultni-paketi) koji se koristi u Enterwellovim React aplikacijama.
+Each React component has support for data persistence in the form of its `state`. If the application has slightly larger components with a larger amount of data, the `state` of these components can easily become obscure, and the components themselves become too polluted with the application's logic. To address this problem, over time, libraries have emerged that simulate `state` behavior (in the sense that they activate component re-render when data on which it depends changes) but also allow data on which the component depends to be stored outside of it. One of these libraries is [`mobx`](#defaultni-paketi) which is used in Enterwell React applications.
 
-Općenito, unutar Enterwellovih React aplikacija se kombiniraju oba načina pohrane podataka. Kada su u pitanju forme ili neke komponente s malim brojem podataka koji trebaju čuvati, tada se za pohranu koristi `state`. Kada je riječ o većim komponenata sa složenijom logikom, tada se podaci i logika izdvajaju iz komponenata u zasebne cjeline. U nastavku je navedena hijerahija cjelina za perzistenciju podataka u aplikaciji.
+In general, both data storage methods are combined within Enterwell React applications. When it comes to forms or some components with a small amount of data that need to be stored, then `state` is used for storage. When it comes to larger components with more complex logic, then data and logic are separated from the components into separate units. The following is a hierarchy of units for data persistence in the application.
 
 #### App-model
 
-U app-modelima se perzistiraju podaci koji su zajednički cijeloj aplikaciji i koji bi trebali biti očuvani tijekom cijelog vremena korištenja aplikacije, neovisno o ruti na kojoj je korisnik. 
+App-models persist data that is common to the entire application and that should be preserved throughout the use of the application, regardless of the route on which the user is located.
 
-App-modelima komponente mogu pristupiti izravno ili kroz view-model koji treba unutar sebe čuvati referencu na njega. Gotovo uvijek bi trebalo koristiti drugi način pristupanja app-modelima. Prvi način bi se trebao koristiti samo kada su u pitanju neke vršne komponente koje ne pripadaju direktno nijednom `viewu` (npr. layout komponenta koja je jednaka za većinu `viewa` pa je definirana unutar zajedničke `_app.jsx` komponente koja nema svoj view-model).
+App-models can be accessed directly or through a view-model that needs to keep a reference to it. You should almost always use the latter way of accessing app-models. The former method should only be used for some top components that do not belong directly to any `view` (e.g. layout component which is the same for most `views` and is defined within the common `_app.jsx` component which does not have its own view-model).
 
-Osim podataka, app-modeli sadrže i logiku za njihovo dohvaćanje i mijenjanje.
+In addition to data, app-models also contain logic for retrieving and modifying them.
 
 #### View-model
 
-U view-modelima se perzistiraju podaci koji su svojstveni za neki `view`. Ovisno o potrebama, view-modeli se mogu stvari i uništavati zajedno s `viewom` ili mogu postojati tokom cijelog vremena korištenja aplikacije. Kada u aplikaciji postoji `view` s listom nekih podataka (npr. lista svih Pokemona), tada je prikladno koristiti view-modele koji se stvori samo jednom i postoje koliko i aplikacija. Za `viewove` koji odgovaraju detaljima elemenata liste (npr. detalji nekog Pokemona), prikladno je koristiti view-modele koji traju koliko i `view` kojem pripadaju. U potonjem slučaju, kratkotrajni view-modeli su prikladni jer isti `view` služi za prikazivanje više različitih ruta (npr. `/pokemons/1`, `/pokemons/45` itd.) pa se time izbjegava slučaj pogrešnog prikaza podataka prilikom početnog rendera komponente.
+In view-models, the data that is characteristic to a `view` persists. Depending on the needs, view-models can be destroyed along with the `view` or can exist throughout the life of the application. When the application contains a `view` with a list of some data (e.g. a list of all Pokemon), then it is appropriate to use view-models that are created only once and that exist throughout the life of the application. For `views` that show the details of the list elements (e.g. details of a Pokemon), it is appropriate to use view-models that last as long as the `view` to which they belong. In the latter case, short-term view-models are suitable because the same `view` is used to display several different routes (e.g. `/pokemons/1`, `/pokemons/45` etc.) and with this, the case of incorrect data displaying during the initial component rendering is avoided.
 
-Gore navedeni slučajevi su samo primjer te životni vijek view-modela ovisi isključivo o potrebama neke aplikacije. Također, baš kao i app-modeli, view-modeli osim podataka sadrže i logiku za njihovo dohvaćanje i mijenjanje.
+The above cases are just examples and the lifespan of a view-model depends solely on the needs of an application. Also, just like app-models, view-models contain logic in addition to data to retrieve and modify it.
 
 #### Component-model
 
-U component-modelima perzistiraju podaci koju su svojstveni za neku `componentu`. Component-modeli se ne bi trebali praviti za sve komponente, već samo za one sa složenijom logikom (npr. kada se isti modal za stvaranje nečeg koristi na više `viewova` u aplikaciji, prikladnije je izdvojiti logiku u component-model, nego ju ponavljati u svakom view-modelu pa prosljeđivati komponenti).
+Data that is inherent to a `component` persists in component-models. Component-models should not be made for all components, but only for those with more complex logic (e.g. when the same modal is used to create something on multiple `views` in the application, it is more appropriate to separate logic into a component-model than to repeat it in each view model and then forward it to the component).
 
-### Logika
+### Logic
 
-Ranije je već spomenuto da se dio logike aplikacije nalazi raspoređen u app-modelima, view-modelima i component-modelima. Logika raspoređena po tim cjelinama bi trebala biti usko vezana samo uz podatke koje oni sadrže. Gledajući prethodnu sliku, vidljivo je da postoji još jedan sloj logike o čijim će cjelinama biti riječ u ovom dijelu.
+It has already been mentioned that part of the application logic is located in app-models, view-models and component-models. The logic distributed across these units should be closely related only to the data they contain. Looking at the previous picture, it is evident that there is another layer of logic whose segments will be discussed in this section.
 
 #### Model
 
-Modeli su razredi koji predstavljaju entitete koji se koriste u aplikaciji. Podaci koji se dohvate sa servera (ili iz drugog izvora podataka) trebaju se premapirati u odgovarajuće modele.
+Models are classes that represent entities used in an application. Data retrieved from the server (or other data source) needs to be mapped to appropriate models.
 
 #### Mapper
 
-Maperi su razredi koje pružaju uslugu mapiranja podataka. Najčešći slučaj kad se koriste je prilikom mapiranja podataka sa servera u modele koji se koriste u aplikaciji. Prilikom mapiranja, nad pojedinim podacima je moguće napraviti prikladne transformacije (npr. formatiranje datuma, lokaliziranja podataka itd.).
+Mappers are classes that provide a data mapping service. The most common use case is to use them when mapping data from the server to the models used in the application. When mapping, it is possible to make appropriate transformations over individual data (e.g. data formatting, data localization, etc.)
 
 #### Repository
 
-Repozitoriji su razredi koji služena kao svojevrsna granica aplikacije i preko kojih aplikacija dohvaća podatke. Kako će se podaci dohvaćati, to ovisi isključivo o repozitoriju odnosno samoj aplikaciji. Najčešći način dohvaća podatak jest s API-ja, no podaci se npr. mogu dohvaćati i iz `local storagea`.
+Repositories are classes that serve as application boundaries and through which the application retrieves data. How the data will be retrieved depends solely on the repository or the application itself. The most common way to retrieve data is from an API, but data can also be retrieved from `local storage`, for example.
 
-Metode repozitorija unutar se pozivaju logiku za mapiranje podataka koje dohvate.
+Repository methods use individual mappers to map the data they retrieve.
 
 #### Service
 
-Servisi su razredi koju pružaju u aplikaciji pružaju neku specifičnu ulogu, npr. prikazivanje notifikacija, komunikaciju s `local storageom`, komunikaciju s API-ijem ili nešto drugo.
+Services are classes that provide an application-specific role, such as displaying notifications, communicating with `local storage`, communicating with an API or something else.
 
 #### Helper
 
-Helperi (u nedostatku prikladne hrvatske riječi, mogli bismo ih nazvati i korisne funkcije?) su razredi svrhom vrlo slični servisima, no ipak malo manje specifični te najčešće pružaju neku "glupu" uslugu koja se ponavlja na više mjesta u aplikaciji.
+Helpers are classes very similar in purpose to services, but still a little less specific and they usually provide some "stupid" service that is repeated in several places in the application.
 
-### Primjer arhitekture
+### Architecture example
 
 <div style="margin: 50px 0; text-align: center;">
-  <img src="./public/assets/images/architecture-pokemons.png" alt="Arhitektura React starter aplikacije" >
+  <img src="./public/assets/images/architecture-pokemons.png" alt="React starter application architecture" >
 </div>
 
-Da sve ovo ne bi bilo samo mrtvo slovo na ekranu, u sklopu React startera je napravljena i jedna manja aplikacija koja implementira prethodno opisanu arhitekturu. Aplikacija u svom radu koristi PokéAPI te, kao što se već da naslutiti, služi za pregledavanje Pokemona.
+For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses PokéAPI and, as you can already guess, it is used to view Pokemon.
 
-Aplikaciju čine 3 "pametne" i 2 "glupe" stranice. Glupi stranice su one na koje korisnik inače neće svojevoljno doći gledati sadržaj, već će tamo bit preusmjeren u određenim situacijama. Te dvije "glupe" stranice su `_error.jsx` i `404.jsx`. `_error.jsx` se korisniku prikaže kada dođe do pogreške u aplikaciji, a `404.jsx` kada korisnik upiše rutu koja nije definirana. "Pametne" stranice su `index.jsx` (koji odgovara ruti `/`), `pokemons/index.jsx` (koji odgovara ruti `/pokemons`) i `pokemons/[id].jsx` (koji odgovara ruti `/pokemons/{pokemon-id}`). `index.jsx` stranica u ovoj aplikaciji prikazuje samo poruku da se tu ne može ništa vidjeti te usmjerava korisnika na stranicu s Pokemonima. `pokemons/index.jsx` prikazuje listu Pokemona s paginacijom. Klikom na pojedinog Pokemona s liste, otvara se `pokemons/[id].jsx` stranica koji prikazuje njegove detalje. Na `pokemons/index.jsx` i  `pokemons/[id].jsx` stranicama u desnom gornjem kutu se prikazuje komponenta u koju korisnik može unijeti svoje ime.
+The application consists of 3 "smart" and 2 "stupid" pages. Stupid pages are those to which the user will not otherwise voluntarily come to watch the content, but will be redirected there in certain situations. Those 2 "stupid" pages are `_error.jsx` and `404.jsx`. `_error.jsx` is displayed to the user when an application error occurs, and `404.jsx` when the user enters a route that is not defined. The "smart" pages are `index.jsx` (corresponding to route `/`), `pokemons/index.jsx` (corresponding to route `/pokemons`) and `pokemons/[id].jsx` (corresponding to route `/pokemons/{pokemon-id}`). The `index.jsx` page in this application only displays the message that nothing can be seen there and directs the user to the Pokemon page. `pokemons/index.jsx` displays a list of Pokemon with pagination. Clicking on an individual Pokemon from the list opens the `pokemons/[id].jsx` page showing its details. The `pokemons/index.jsx` and `pokemons/[id].jsx` pages in the upper right corner display a component where the user can enter their name.
 
-Pošto `index.jsx` stranica ne čuva nikakve podatke, za nju ni nije vezana nikakva logika pa u nastavku neće više biti spominjana.
+Since the `index.jsx` page does not store any data, no logic is tied to it, so it will not be mentioned below.
 
-Stranica `pokemons/index.jsx` prikazuje listu Pokemona koji se dohvaćaju s PokéAPI-ja. Komponenta koja odgovara toj stranici unutar sebe čuva primjerak `PokemonsViewModela`. Iako se taj view-model dohvaća svaki put kada korisnik dođe na tu rutu, za vrijeme korištenja aplikacije postoji samo jedna instanca tog view-modela (ako se baš ne napravi osvježavanje stranice ili ju se zatvori i opet otvori). Koristeći metode `PokemonsViewModela`, komponenta poziva dohvaćanje podataka te ih nakon toga prikazuje. `PokemonsViewModel` unutar sebe za dohvaćanje Pokemona koristi `PokemonsRepository` koji komunicira s API-jem. Nakon što se podaci dohvate s API-ja, `PokemonsRepository` ih proslijedi `PokemonsMapperu` koju ih premapira u `PokemonSimplified` modele i vrati natrag repozitoriju, a on zatim view-modelu. 
+The `pokemons/index.jsx` page displays a list of Pokemon retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonsViewModel` inside of itself. Although this view model is retrieved each time the user arrives on that route, there is only one instance of that view model while using the application (unless the page refreshes or the page is closed and reopened). Using the `PokemonsViewModel` methods, the component calls to retrieve the data and then displays it. The `PokemonsViewModel` uses the `PokemonsRepository` which communicates with an API, to retrieve Pokemon. After retrieving the data from an API, `PokemonsRepository` forwards the data to the `PokemonsMapper` which maps it to a collection of `PokemonSimplified` models and returns it to the repository. The repository then gives the mapped data to the `PokemonsViewModel`.
 
-Stranica `pokemons/[id].jsx` prikazuje detalje Pokemona koji se dohvaćaju s PokéAPI-ja. Komponenta koja odgovara toj stranici unutar sebe čuva primjerak `PokemonDetailsViewModela`. Za razliku od `PokemonsViewModela`, ne postoji samo jedna instanca `PokemonDetailsViewModela`, već se svaki put stvori nova (svaki put kad korisnik dođe na tu stranicu). Dohvaćanje detalja Pokemona funkcionira jednako kao i dohvaćanje liste njih - koriste se isti repozitorij i maper, a jedino se podaci mapiraju u drugi model. Još jedna razlika ove stranice u odnosu na `pokemons/index.jsx` je što je ovo stranici potreban podatak o nazivu trenutnog korisnika koji se čuva na razini aplikaciju u `UserAppModelu`. Instanca `UserAppModela` je stoga stranici dostupna kroz njen view-model. `UserAppModel` podatke o korisniku dohvaća korištenjem `UserAppRepository` koji komunicira s `local storageom`.
+The `pokemons/[id].jsx` page shows Pokemon details retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonDetailsViewModel`. Unlike `PokemonsViewModel`, there is not just one instance of `PokemonDetailsViewModel`, but a new one is created each time (each time a user comes to that page). Retrieving Pokemon details works the same as retrieving a list of them - the same repository and mapper are used, and only the data is mapped to another model. Another difference of this page in relation to `pokemons/index.jsx` is that this page needs information about the name of the current user which is stored at the application level in `UserAppModel`. `UserAppModel` instance is therefore accessible to the page through its view-model. `UserAppModel` retrieves user data using `UserAppRepository` which communicates with `local storage`.
 
-Komponente korištene unutar ove pokazne aplikacije nisu nužno usklađene s komponenatam kakve bi trebalo na "pravim" aplikacijama koristit. Ovo se prije sve odnosi na `LoadingContainer` komponentu oko koje se lome koplja i koja bi se po nekima trebala drugačije ponašati.
+The components used within this demo application are not necessarily compatible with the components that should be used on "real" applications. This primarily refers to the `LoadingContainer` component around which the spears are broken and which according to some should behave differently.
 
-## Stilovi
+## Styles
 
-Svaka komponenta (bilo da je riječ o `component` ili `view`) treba imati vlastite stilove. Stilovi se smještaju u istu mapu gdje je i datoteka komponente, a datoteka stilova se može prepoznati po nastavku `.module.scss`. Iznimka su globalni stilovi koji se odnose na cijelu aplikaciju i koji su smješteni u `styles` mapi. Kao globalni stilovi se definiraju i boje koje se koriste na više mjesta u aplikaciji te koje se na taj način mogu koristiti bez potrebe da ih se uvijek iznova piše (ovo je posebno prigodno kod glavnih boja teme koja se provlači kroz cijelu aplikaciju). Važno je napomenuti i da ne treba apsolutno sve boje izvlačiti u globalne stilove, pogotovo ako će se one koristiti samo na jednom mjestu.
+Each component (whether `component` or `view`) should have its own styles. Styles are placed in the same folder as the component file and the style file can be identifier by the `.module.scss` extension. The exception to this rule are global styles that apply to the entire application and are located in the `styles` folder. Colors that are used in the application are defined the same way as global styles. This way, they can be used in several places in the application without having to rewrite them over and over again (this is especially convenient for the main colors of the theme that runs throughout the application). It is important to note that not all colors should be extracted into global styles, especially if they will be used only in one place.
 
-## Imenovanje
+## Naming
 
-Imenovanje je nešto što uvijek izazive prijepore jer većina nas ima neki svoj stil koji preferira. I tijekom dogovaranja ovog React startera bilo je takvih problema, i svak je vukao na svoju stranu. Bilo je teško, a tvorci Reacta nisu bili baš od pomoći, pošto nikakva službena konvencija ne postoji. Promatranjem drugih React projekata, došli smo do odluka opisanih u nastavku.
+Naming is something that always provokes controversy because most of us have some style of our own that we prefer. Even while negotiating this React starter there were such problems, and everyone was wanting to have it their own way. It was difficult and the creators of React were not very helpful as there is no official convention. Observing other React projects, we came to the decisions described below.
 
-### Imenovanje mapa
+### Naming folders
 
-* Prilikom imenovanja mapa u root mapi, koristi se `kebab-case` (sve riječi se pišu malim slovima i međusobno su odvojene crticom)
-* Prilikom imenovanja mapa u podmapama, koristi se `PascalCase` (sve riječ se pišu velikim početnim slovom i međusobno nisu odvojene)
-* Iznimka od prošlog pravila su podmape mapa `pages` i `public` koje se također pišu `kebab-caseom`
+* When naming folders in the root folder, `kebab-case` is used (all words are written in lower case and are separated by a hyphen)
+* When naming folders in subfolders, `PascalCase` is used (all words are capitalized and are not separated from each other)
+* Exceptions to the previous rules are subfolders of `pages` and `public` folders which are also written with `kebab-case`
 
-### Imenovanje datoteka
+### Naming files
 
-* Konfiguracijske datoteke root mape ne podliježu nikakvim pravilima već se pišu u obliku koji je zahtjevan od strane alata koji ih koriste
-* Sve datoteke u `pages` i `styles` mapama pišu se `kebab-caseom`
-* Sve datoteke koje predstavljaju React komponente te datoteke iz koji se `exporta` neka klasa ili više funkcija pišu se `PascalCaseom`
-* Datoteke iz koji se `exporta` instanca nekog razreda (eng. *class*) ili objekt pišu se `camelCaseom` (prva riječ se piše malim početnim slovom, a preostale velikim te međusobno nisu odvojene)
-* Datoteke "lokalnih" stilova pišu se `PascalCaseom` uz ekstenziju `.module.scss` 
-* Datoteke iz `public` mape ne podliježu nikakvim pravilima
+* Configuration files in the root folder are not subject to any rules but are written in the form required by the tools that use them
+* All files in `pages` and `styles` folders are written with `kebab-case`
+* All files that represent React components and files from which a class or more functions are `exported` are written with `PascalCase`
+* Files from which a class instance or an object is `exported` are written in `camelCase` (the first word is written in lower case, the rest in uppercase and they are not separated from each other)
+* Files of "local" styles are written with `PascalCase` with extension `.module.scss`
+* Files from the `public` folder are not subject to any rules
 
-## Testiranje
+## Testing
 
-Pisanjem testova, automatizira se provjera radi li sve u aplikaciji kako treba. Automatizirani testovi su korisni jer se ne moraju ručno testirat sve funkcionalnosti svaki put kada se promjeni nešto u aplikaciji.
+By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application.
 
-Cypress je odabran kao najprikladniji library za testiranje rada aplikacije. U sklopu ovog React startera, napisani su samo integracijski testovi za svaki od `viewova`, no nekad će biti prikladno pisati i unit testove za pojedine komponente. Integracijski testovi `viewova` bi trebali neki minimum toga što bi u aplikaciji trebalo testirati.
+Cypess has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, only integration tests have been written for each of the `views`, but sometimes it will be appropriate to write unit tests for individual components. Integration tests of `views` should be a minimum of what should be tested in the application.
 
-Testovi se mogu pokrenuti direktno iz komandne linije korištenjem naredbe
+Tests can be run directly from the command line using the command
 
 ```
 yarn test
 ```
 
-ili se može otvoriti UI preko kojeg se mogu ručno pokretati. UI se otvara naredbom
+or a UI can be opened through which they can be manually run. The UI is opened by using the command
 
 ```
 yarn test-open
 ```
 
-Ponekad neki testovi ne prolaze kada se pokrenu preko komandne linije pa je preporuka uvijek ih pokretati korištenjem UI-a.
+Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI.
 
-## Paketi
+## Packages
 
-Pogledom na `package.json` može se okvirno dobiti dojam o nekim paketima koji se koriste. U React starter su uključeni samo osnovni paketi za koje smatramo da će uvijek biti korišteni u aplikaciji, no tu je još i cijeli set drugih paketa koji se koriste po potrebi. 
+By looking at `package.json` you can get an idea of some of the packages used. The React starter includes only the basic packages that we think will always be used in the application, but there is also a whole set of other packages that are used as needed.
 
-Jedno od pitanja koje se postavlja tijekom dodavanja paketa jest treba li ih dodati kao `dependencies` ili kao `devDependencies`. Granica je mutna, ali recimo da bi se u `dependencies` trebalo dodati sve ono bez čega aplikacija ne može raditi na produkciji, dok `devDependencies` obuhvaćaju pakete koji se koriste tijekom razvoja. Ne treba doduše toliko razbijati glavu oko toga jer će aplikacije koje mi razvijamo raditi ispravno neovisno o tome.
+One of the questions that come up when adding packages is whether they should be added as `dependencies` or as `devDependencies`. The limit is blurry, but let's say that only the packages without which the application can not work on production should be added as `dependencies`, while `devDependencies` should only include packages used during development. You don't need to worry so much about it, because the applications we develop will work properly regardless of that.
 
-### Defaultni paketi 
+### Default packages
 
-U nastavku su navedeni paketi koji su po defaultu dodani u projekt te koji će se vrlo vjerojatno koristiti u aplikaciji. Ukoliko se ispostavi da za nekim od njih nema potrebe, slobodno ih se može izbaciti. Napomena: nisu opisani paketi koji predstavljaju alate za pomoć developmenta i builda aplikacije (`babel`, `eslint`, `next`...).
+The following are packages that have been added to the project by default and will most likely be used in the application. If it turns out that there is no need for some of them, they can be removed freely. Note: packages that are tools to help the development and the build of the application (`babel`, `eslint`, `next`, etc.) are not described.
 
-* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library čija je uloga već ranije opisana,a koji stoji i u samom nazivu startera što implicira da ga je nemoguće ne koristiti 
-* [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library koji omogućava odvajanje aplikacijske logike od iscrtavanja komponenti (omogućava da promjene podataka izazovu ponovno renderiranje komponenata - ima sličan učinak kao i state komponente samo nije nužno vezan za nju)
-* [`cypress`](https://www.cypress.io/) - library koji omogućava pisanje testova za aplikaciju
-* [`@material-ui/core`](https://material-ui.com/) / [`@material-ui/icons`](https://material-ui.com/components/material-icons/) - kolekcija React komponenata i ikona koja omogućava da ne izmišljamo toplu vodu pisanjem vlastitih button, input i inih komponenti
-* [`axios`](https://github.com/axios/axios) - HTTP klijent koji omogućava jednostavnu komunikaciju aplikacije sa serverom odnosno API-jem
-* [`noty`](https://ned.im/noty/#/) - library korišten za prikazivanje notifikacija unutar aplikacije
-* [`clsx`](https://github.com/lukeed/clsx) - paket koji pojednostavljuje uvjetovano postavljanje klasa HTML elementima/React komponenatam
+* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library whose role has already been described and which name is in the name of the starter, which implies that it is impossible not to use 
+* [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library that allows you to separate application logic from rendering components (allows data changes to cause components to render - it has a similar effect as state components but it is not necessarily related to it)
+* [`cypress`](https://www.cypress.io/) - library that allows you to write tests for the application
+* [`@material-ui/core`](https://material-ui.com/) / [`@material-ui/icons`](https://material-ui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
+* [`axios`](https://github.com/axios/axios) - HTTP client that allows easy communication between the application and the server or an API
+* [`noty`](https://ned.im/noty/#/) - library used to display notifications within the application
+* [`clsx`](https://github.com/lukeed/clsx) - package that simplifies conditional class assignment to HTML elements / React components
 
-### Dodatni paketi
+### Additional packages
 
-Pošto cilj ovog startera nije pretrpati ga sa svim mogućim paketima koji bi se mogli koristit, mnoge od njih će trebati dodatno dodati po potrebi. U nastavku je naveden popis paketa koje je preporučeno koristiti ukoliko se javi potreba za opisanom funkcionalnošću aplikacije koju taj paket pruža. 
+Since the goal of this starter is not to bloat or overload it with all the possible packages that could be used, many of them will need to be added as needed. The following is a list of packages that are recommended for use if the described functionality of the application provided by that package is needed.
 
-Ukoliko nijedan od navedenih paketa ne odgovara željama i potrebama, potrebno je dodati neki po vlastitom izboru. [npm](https://www.npmjs.com/) je mjesto gdje se može pronaći poneki paket za svakog.
+If none of the following packages meet your wishes and demands, you need to add a new one of your choice. [npm](https://www.npmjs.com/) is a place where you can find packages for everything.
 
-* [`@enterwell/react-form-validation`](https://github.com/Enterwell/react-form-validation) - "domaći" paket za rad s React formama koji prvenstveno omogućava njihovu laganu validaciju
-* [`@enterwell/enum-helper`](https://github.com/Enterwell/js-enum-helper) - također "domaći" paket koji olakšava rad s enumima
-* [`@material-ui/lab`](https://material-ui.com/components/about-the-lab/) - dodatna kolekcija Material-UI komponenti koje još nisu postale sastavni dio core kolekcije
-* [`@material-ui/pickers`](https://material-ui-pickers.dev/) - kolekcija komponenata za odabir vremena i datuma također razvijena od strane Material-UI tima
-* [`sentry`](https://sentry.io/welcome/) - paket za praćenje pogrešaka aplikacije (tzv. _error monitoring_)
-* [`i18next`](https://www.i18next.com/) / [`react-i18next`](https://react.i18next.com/) - framework za internacionalizaciju aplikacije s minimalnim overheadom
-* [`moment`](https://momentjs.com/) - library koji olakšava rad datumima i vremenima
+* [`@enterwell/react-form-validation`](https://github.com/Enterwell/react-form-validation) - our own, "homemade" package for working with React forms that primarily allows for their easy validation
+* [`@enterwell/enum-helper`](https://github.com/Enterwell/js-enum-helper) - another "homemade" package that makes it easier to work with enums
+* [`@material-ui/lab`](https://material-ui.com/components/about-the-lab/) - an additional collection of Material-UI components that have not yet become an integral part of the core collection
+* [`@material-ui/pickers`](https://material-ui-pickers.dev/) - a collection of time and date picker components also developed by the Material-UI team
+* [`sentry`](https://sentry.io/welcome/) - application error tracking package (so-called *error monitoring*)
+* [`i18next`](https://www.i18next.com/) / [`react-i18next`](https://react.i18next.com/) - framework for internalization of applications with minimal overhead
+* [`moment`](https://momentjs.com/) - library that makes it easier to work with dates and times
 
-## Pokretanje aplikacije
+## Launching the application
 
-Prije nego se započne s razvijanjem aplikacije, potrebno je instalirati sve pakete koje ona koristi. Preporučeni način za to napraviti je korištenjem Yarna i naredbe
+Before you start developing an application, you need to install all the packages it uses. The recommended way to do this is by using `Yarn` and the command
 
 ```
 yarn install
 ```
 
-Jednom kad su svi paketi instalirani, moguće je pokrenutni samu aplikaciju. Više je naredbi kojima se to može napraviti, a sve ovisi o tome želi li se aplikacija pokrenut u `development` ili `production` modeu i želi li se koristiti lokalni API ili ne.
+Once all of the packages are installed, it is possible to run the application itself. There are several commands with which you can do this and it all depends on whether you want the application to run in `development` or `production` mode and whether you want to use the local API or not.
 
-Pokretanje aplikacije u `development` modeu uz korištenje remote API-ja vrši se naredbom
+Starting the application in `development` mode using the remote API is done with the command
 
 ```
 yarn dev
@@ -240,19 +240,18 @@ yarn dev
 
 </br>
 
-Pokretanje aplikacije u `development` modeu uz korištenje lokalnog API-ja vrši se naredbom
+Starting the application in `development` mode using the local API is done with the command
 
 ```
 yarn dev-local
 ```
-
-Pokretanje aplikacije u `production` modeu uz korištenje remote API-ja vrši se naredbom
+Starting the application in `production` mode using the remote API is done with the command
 
 ```
 yarn dev-prod
 ```
 
-Pokretanje aplikacije u `production` modeu uz korištenje lokalnog API-ja vrši se naredbom
+Starting the application in `production` mode using the local API is done with the command
 
 ```
 yarn dev-prod-local
@@ -260,7 +259,7 @@ yarn dev-prod-local
 
 </br>
 
-Kad je razvoj aplikacije gotov, aplikaciju je potrebno `buildati`. `build` aplikacije vrši se naredbama
+When application development is complete, the application needs to be `built`. `Building` the application is done using the commands
 
 ```
 yarn build
@@ -269,4 +268,4 @@ yarn build
 yarn build-local
 ```
 
-ovisno o tome hoće li aplikacija koristiti lokalni ili remote API.
+depending on whether the application uses a local or remote API.
