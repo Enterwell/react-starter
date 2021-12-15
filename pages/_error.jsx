@@ -6,6 +6,8 @@ import ErrorView from '../views/ErrorView/ErrorView';
  *
  * @returns page's elements
  */
-const Error = () => <ErrorView />;
+function Error() {
+  return <ErrorView />;
+}
 
 export default Error;
