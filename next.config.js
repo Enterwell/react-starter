@@ -25,7 +25,9 @@ module.exports = withPlugins([
     ENV: process.env.NODE_ENV
   },
   images: {
-    domains: ['assets.pokemon.com']
+    domains: ['assets.pokemon.com'],
+    loader: 'imgix',
+    path: ''
   },
   include: path.resolve(__dirname, './public/assets'),
   assetPrefix: process.env.ASSETS_PREFIX ? `/${process.env.ASSETS_PREFIX}` : '',
