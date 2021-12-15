@@ -25,11 +25,14 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - name: Install packages
-      run: npm install
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: install
     - name: Export static files
-      run: npm export
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: export
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
