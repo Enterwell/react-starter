@@ -81,7 +81,7 @@ It is important to note that within the `pages` folder there are also files that
 
 ### Data
 
-Each React component has support for data persistence in the form of its `state`. If the application has slightly larger components with a larger amount of data, the `state` of these components can easily become obscure, and the components themselves become too polluted with the application's logic. To address this problem, over time, libraries have emerged that simulate `state` behavior (in the sense that they activate component re-render when data on which it depends changes) but also allow data on which the component depends to be stored outside of it. One of these libraries is [`mobx`](#defaultni-paketi) which is used in Enterwell React applications.
+Each React component has support for data persistence in the form of its `state`. If the application has slightly larger components with a larger amount of data, the `state` of these components can easily become obscure, and the components themselves become too polluted with the application's logic. To address this problem, over time, libraries have emerged that simulate `state` behavior (in the sense that they activate component re-render when data on which it depends changes) but also allow data on which the component depends to be stored outside of it. One of these libraries is [`mobx`](#default-packages) which is used in Enterwell React applications.
 
 In general, both data storage methods are combined within Enterwell React applications. When it comes to forms or some components with a small amount of data that need to be stored, then `state` is used for storage. When it comes to larger components with more complex logic, then data and logic are separated from the components into separate units. The following is a hierarchy of units for data persistence in the application.
 
@@ -113,7 +113,7 @@ Models are classes that represent entities used in an application. Data retrieve
 
 #### Mapper
 
-Mappers are classes that provide a data mapping service. The most common use case is to use them when mapping data from the server to the models used in the application. When mapping, it is possible to make appropriate transformations over individual data (e.g. data formatting, data localization, etc.)
+Mappers are classes that provide a data mapping service. The most common use case is to use them when mapping data from the server to the models used in the application. When mapping, it is possible to make appropriate transformations over individual data (e.g. data formatting, data localization, etc.).
 
 #### Repository
 
@@ -174,7 +174,7 @@ Naming is something that always provokes controversy because most of us have som
 
 By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application.
 
-Cypess has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, only integration tests have been written for each of the `views`, but sometimes it will be appropriate to write unit tests for individual components. Integration tests of `views` should be a minimum of what should be tested in the application.
+Cypress has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, only integration tests have been written for each of the `views`, but sometimes it will be appropriate to write unit tests for individual components. Integration tests of `views` should be a minimum of what should be tested in the application.
 
 Tests can be run directly from the command line using the command
 
@@ -203,7 +203,7 @@ The following are packages that have been added to the project by default and wi
 * [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library whose role has already been described and which name is in the name of the starter, which implies that it is impossible not to use 
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library that allows you to separate application logic from rendering components (allows data changes to cause components to render - it has a similar effect as state components but it is not necessarily related to it)
 * [`cypress`](https://www.cypress.io/) - library that allows you to write tests for the application
-* [`@material-ui/core`](https://material-ui.com/) / [`@material-ui/icons`](https://material-ui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
+* [`@mui/material`](https://mui.com/) / [`@mui/icons-material`](https://mui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
 * [`axios`](https://github.com/axios/axios) - HTTP client that allows easy communication between the application and the server or an API
 * [`noty`](https://ned.im/noty/#/) - library used to display notifications within the application
 * [`clsx`](https://github.com/lukeed/clsx) - package that simplifies conditional class assignment to HTML elements / React components
@@ -216,8 +216,8 @@ If none of the following packages meet your wishes and demands, you need to add 
 
 * [`@enterwell/react-form-validation`](https://github.com/Enterwell/react-form-validation) - our own, "homemade" package for working with React forms that primarily allows for their easy validation
 * [`@enterwell/enum-helper`](https://github.com/Enterwell/js-enum-helper) - another "homemade" package that makes it easier to work with enums
-* [`@material-ui/lab`](https://material-ui.com/components/about-the-lab/) - an additional collection of Material-UI components that have not yet become an integral part of the core collection
-* [`@material-ui/pickers`](https://material-ui-pickers.dev/) - a collection of time and date picker components also developed by the Material-UI team
+* [`@mui/lab`](https://mui.com/components/about-the-lab/) - an additional collection of MUI components that have not yet become an integral part of the core collection
+* [`@material-ui/pickers`](https://material-ui-pickers.dev/) - a collection of time and date picker components also developed by the MUI (formerly known as Material-UI) team
 * [`sentry`](https://sentry.io/welcome/) - application error tracking package (so-called *error monitoring*)
 * [`i18next`](https://www.i18next.com/) / [`react-i18next`](https://react.i18next.com/) - framework for internalization of applications with minimal overhead
 * [`moment`](https://momentjs.com/) - library that makes it easier to work with dates and times
