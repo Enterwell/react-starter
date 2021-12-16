@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 // Components import
 import Link from 'next/link';
+import Image from 'next/image';
 
 // View models import
 import PokemonsViewModel from '../../view-models/PokemonsViewModel';
@@ -42,13 +43,17 @@ function PokemonsView(props) {
             key={p.id}
             href="/pokemons/[id]"
             as={`/pokemons/${p.id}`}
+            passHref
           >
             <div className={styles.item}>
-              <img
-                className={styles.image}
-                src={p.image}
-                alt={p.name}
-              />
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  width={36}
+                  height={36}
+                />
+              </div>
               <span className={styles.name}>
                 {p.name}
               </span>

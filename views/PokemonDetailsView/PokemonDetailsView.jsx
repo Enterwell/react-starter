@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 // Components import
 import Link from 'next/link';
+import Image from 'next/image';
 import LoadingContainer from '../../components/LoadingContainer/LoadingContainer';
 
 // View models import
@@ -46,11 +47,14 @@ function PokemonDetailsView(props) {
     <LoadingContainer isLoading={isLoading}>
       {pokemon && (
         <div className={styles.container}>
-          <img
-            className={styles.image}
-            src={pokemon.image}
-            alt={pokemon.name}
-          />
+          <div className={styles.imageWrapper}>
+            <Image
+              src={pokemon.image}
+              alt={pokemon.name}
+              width={250}
+              height={250}
+            />
+          </div>
           <span className={styles.name}>
             {pokemon.name}
           </span>
