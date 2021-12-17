@@ -39,7 +39,7 @@ function App(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {Component.showUser && (
-          <UserInformation />
+            <UserInformation />
           )}
           <Component {...pageProps} />
         </ThemeProvider>
