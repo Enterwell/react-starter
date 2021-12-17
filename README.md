@@ -23,7 +23,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `.babelrc` - used for configuring [Babel](https://babeljs.io/)
 * `.eslintrc` - used for configuring [ESLint](https://eslint.org/)
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
-* `.gitignore` - used for defining files whose changes [Git](https://git-scm.com/) will not track
+* `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
 * `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDepenndencies`)
 * `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
@@ -41,7 +41,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `helpers` - a place where all the helpers that exist within the application are stored
 * `mappers` - a place where all the mappers that exist within the application are stored
 * `models` - a place where all the models that exist within the application are stored
-* `pages` - a place whose subfolders and files form a hierarchy of available application routes
+* `pages` - a folder which subfolders and files form a hierarchy of available application routes
 * `public` - a place where all the static resources of the application are stored (e.g. images, SVGs and files that can be downloaded through the application)
 * `repositories` - a place where all the repositories that exist within the application are stored
 * `services` - a place where all the services that exist within the application are stored
@@ -49,7 +49,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `view-models` - a place where all the view-models that exist within the application are stored
 * `views` - a place where all the views and only related components are stored
 
-More details on what each of these entities is can be read in the section on the architecture of the React starter application. Additional note: it is possible to find, in some folders, a file named `TODO_delete_this_later.txt` whose sole purpose is to make the folder not empty so that Git can track it.
+More details on what each of these entities is can be read in the section on the architecture of the React starter application. Additional note: it is possible to find, in some folders, a file named `TODO_delete_this_later.txt` which sole purpose is to make the folder not empty so that Git can track it.
 
 ## Architecture
 
@@ -105,7 +105,7 @@ Data that is inherent to a `component` persists in component-models. Component-m
 
 ### Logic
 
-It has already been mentioned that part of the application logic is located in app-models, view-models and component-models. The logic distributed across these units should be closely related only to the data they contain. Looking at the previous picture, it is evident that there is another layer of logic whose segments will be discussed in this section.
+It has already been mentioned that part of the application logic is located in app-models, view-models and component-models. The logic distributed across these units should be closely related only to the data they contain. Looking at the previous picture, it is evident that there is another layer of logic which segments will be discussed in this section.
 
 #### Model
 
@@ -200,7 +200,7 @@ One of the questions that come up when adding packages is whether they should be
 
 The following are packages that have been added to the project by default and will most likely be used in the application. If it turns out that there is no need for some of them, they can be removed freely. Note: packages that are tools to help the development and the build of the application (`babel`, `eslint`, `next`, etc.) are not described.
 
-* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library whose role has already been described and which name is in the name of the starter, which implies that it is impossible not to use 
+* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library which role has already been described and which name is in the name of the starter, which implies that it is impossible not to use 
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library that allows you to separate application logic from rendering components (allows data changes to cause components to render - it has a similar effect as state components but it is not necessarily related to it)
 * [`cypress`](https://www.cypress.io/) - library that allows you to write tests for the application
 * [`@mui/material`](https://mui.com/) / [`@mui/icons-material`](https://mui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
@@ -230,6 +230,8 @@ Before you start developing an application, you need to install all the packages
 yarn install
 ```
 
+<br>
+
 Once all of the packages are installed, it is possible to run the application itself. There are several commands with which you can do this and it all depends on whether you want the application to run in `development` or `production` mode and whether you want to use the local API or not.
 
 Starting the application in `development` mode using the remote API is done with the command
@@ -237,9 +239,6 @@ Starting the application in `development` mode using the remote API is done with
 ```
 yarn dev
 ```
-
-</br>
-
 Starting the application in `development` mode using the local API is done with the command
 
 ```
