@@ -268,3 +268,14 @@ yarn build-local
 ```
 
 depending on whether the application uses a local or remote API.
+
+## Predeployment TODOs
+
+Before deploying the application, make sure that all the tasks from the list below have been completed.
+
+* Change application's name in the `package.json`
+* Change application's default title in the `_app.jsx`
+* Change favicon
+* Remove all unused and starter's specific files (e.g. `architecture.png`, `architecture-pokemons.png`, `PokemonsMapper.js`, `PokemonsRepository.js`...)
+* Remove all `TODO_delete_this_later` files and empty folders
+* Customize error pages
