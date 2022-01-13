@@ -13,6 +13,7 @@ module.exports = {
   core: {
     "builder": "webpack5"
   },
+  staticDirs: ['../public'],
   features: { emotionAlias: false },
   webpackFinal: async (config) => {
     // Add SCSS support for CSS Modules
