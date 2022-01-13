@@ -32,7 +32,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `CHANGELOG.md` - used for keeping [application change logs](https://keepachangelog.com/en/1.0.0/) (adding new features, fixing bugs, etc.) 
 
 ### Project root folders
-
+* `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
@@ -146,6 +146,16 @@ The `pokemons/index.jsx` page displays a list of Pokemon retrieved from PokéAPI
 The `pokemons/[id].jsx` page shows Pokemon details retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonDetailsViewModel`. Unlike `PokemonsViewModel`, there is not just one instance of `PokemonDetailsViewModel`, but a new one is created each time (each time a user comes to that page). Retrieving Pokemon details works the same as retrieving a list of them - the same repository and mapper are used, and only the data is mapped to another model. Another difference of this page in relation to `pokemons/index.jsx` is that this page needs information about the name of the current user which is stored at the application level in `UserAppModel`. `UserAppModel` instance is therefore accessible to the page through its view-model. `UserAppModel` retrieves user data using `UserAppRepository` which communicates with `local storage`.
 
 The components used within this demo application are not necessarily compatible with the components that should be used on "real" applications. This primarily refers to the `LoadingContainer` component around which the spears are broken and which according to some should behave differently.
+
+To make it easier to develop components (whether `component` or `view`) and isolate them from the rest of the application and its business logic during their development, we use [Storybook](https://storybook.js.org/docs/react/get-started/introduction). Storybook is an open source tool that allows us to build UI components and pages in isolation. It does not need to run the entire, possibly complex, dev stack, force test data, and navigate the entire application to develop a single component.
+
+In order to add new component to `Storybook` it is necessary to define a [story](https://storybook.js.org/docs/react/get-started/whats-a-story) file within the same folder as the component file, which can be identified by the `.stories.jsx` extension. You can read up on how to write a story [here](https://storybook.js.org/docs/react/writing-stories/introduction#how-to-write-stories).
+
+Starting the `Storybook` UI interface is done with the command
+```
+yarn storybook
+```
+This command will start `Storybook` locally and output the address at which the process is running. Depending on your system configuration, the address will automatically be opened in a new browser tab.
 
 ## Styles
 

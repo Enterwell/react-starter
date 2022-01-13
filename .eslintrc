@@ -3,7 +3,8 @@
   "extends": [
 		"airbnb",
 		"plugin:react/recommended",
-		"plugin:@next/next/recommended"
+		"plugin:@next/next/recommended",
+		"plugin:storybook/recommended"
 	],
 	"env": {
 		"browser": true,
