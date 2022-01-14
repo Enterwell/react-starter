@@ -2,23 +2,36 @@
 // Component import
 import LoadingContainer from './LoadingContainer';
 
-// Decorator import
-import { fullHeightStoryDecorator } from '../../.storybook/decorators';
-
 // CSF default export containing metadata about our component
 // Read more at https://storybook.js.org/docs/react/api/csf
 export default {
   title: 'Components/LoadingContainer',
   component: LoadingContainer,
-  decorators: [fullHeightStoryDecorator],
+  args: {
+    numberOfChildren: 2,
+    childContent: 'I am child content'
+  },
   argTypes: {
     numberOfChildren: {
       type: 'number',
-      defaultValue: 2
+      description: 'Number of children to display in the container (only used for demonstration)',
+      table: {
+        defaultValue: { summary: '-' }
+      }
     },
     childContent: {
       type: 'string',
-      defaultValue: 'Ja sam content'
+      description: 'Text to display as content placeholder (only used for demonstration)',
+      table: {
+        defaultValue: { summary: '-' }
+      }
+    },
+    isLoading: {
+      type: 'boolean',
+      description: 'Flag that indicates is the content loading or not',
+      table: {
+        defaultValue: { summary: 'false' }
+      }
     }
   }
 };
@@ -33,7 +46,7 @@ function Template(args) {
 
   return (
     <LoadingContainer {...rest}>
-      <div style={{flexDirection: 'column'}}>
+      <div>
         {[...Array(numberOfChildren).keys()].map((_, index) => (
           <p key={index}>{childContent}</p>
         ))}

@@ -66,4 +66,8 @@ function UserInformation(props) {
   );
 }
 
+// Export component without injected props so we can use it in Storybook
+export { UserInformation as SimpleUserInformation };
+
+// Default export with injected App Model
 export default withAppModels(observer(UserInformation), UserAppModel);

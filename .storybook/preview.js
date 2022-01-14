@@ -42,4 +42,23 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: 'centered',
+  backgrounds: {
+    default: theme.palette.mode,
+    values: [
+      {
+        name: theme.palette.mode,
+        value: theme.palette.background.default
+      },
+      // Prettier colors than the default ones (by default only light and dark ones are available)
+      {
+        name: 'twitter',
+        value: '#00aced',
+      },
+      {
+        name: 'facebook',
+        value: '#3b5998',
+      },
+    ]
+  }
 }
