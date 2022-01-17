@@ -9,14 +9,15 @@ export default {
   argTypes: {
     userName: {
       type: 'string',
-      description: 'User\'s name to show in the greeting part of the component.',
+      description: 'User\'s name to show in the greeting part of the component (only used for demonstration).',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'John Doe' }
       }
     },
     loadUser: { action: 'loadUser' },
-    editUser: { action: 'editUser' }
+    editUser: { action: 'editUser' },
+    appModel: { control: { disable: true }}
   }
 };
 

@@ -14,14 +14,14 @@ export default {
   argTypes: {
     numberOfChildren: {
       type: 'number',
-      description: 'Number of children to display in the container (only used for demonstration)',
+      description: 'Number of children to display in the container (only used for demonstration).',
       table: {
         defaultValue: { summary: '-' }
       }
     },
     childContent: {
       type: 'string',
-      description: 'Text to display as content placeholder (only used for demonstration)',
+      description: 'Text to display as content placeholder (only used for demonstration).',
       table: {
         defaultValue: { summary: '-' }
       }

@@ -1,6 +1,7 @@
 // General imports
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
+import PropTypes from 'prop-types';
 
 // Components import
 import { TextField } from '@mui/material';
@@ -71,3 +72,23 @@ export { UserInformation as SimpleUserInformation };
 
 // Default export with injected App Model
 export default withAppModels(observer(UserInformation), UserAppModel);
+
+/**
+ * User information prop types.
+ */
+UserInformation.propTypes = {
+  /**
+   * User application model containing <code>User: { name: string, clone(): User }</code>
+   * object and <code>loadUser(): void</code> and
+   * <code>editUser(name: string): void</code> functions
+   * to handle loading and editing user's name.
+   */
+  appModel: PropTypes.instanceOf(UserAppModel)
+};
+
+/**
+ * User information default props.
+ */
+UserInformation.defaultProps = {
+  appModel: UserAppModel
+};
