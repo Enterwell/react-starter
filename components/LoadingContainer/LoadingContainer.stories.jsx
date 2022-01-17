@@ -25,13 +25,6 @@ export default {
       table: {
         defaultValue: { summary: '-' }
       }
-    },
-    isLoading: {
-      type: 'boolean',
-      description: 'Flag that indicates is the content loading or not',
-      table: {
-        defaultValue: { summary: 'false' }
-      }
     }
   }
 };

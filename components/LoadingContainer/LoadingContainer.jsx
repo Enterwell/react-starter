@@ -1,3 +1,6 @@
+// General import
+import PropTypes from 'prop-types';
+
 // Components import
 import { CircularProgress } from '@mui/material';
 
@@ -24,3 +27,18 @@ function LoadingContainer(props) {
 }
 
 export default LoadingContainer;
+
+/**
+ * Loading container prop types.
+ */
+LoadingContainer.propTypes = {
+  /** Flag that indicates is the content loading or not. */
+  isLoading: PropTypes.bool
+};
+
+/**
+ * Loading container default props.
+ */
+LoadingContainer.defaultProps = {
+  isLoading: false
+};

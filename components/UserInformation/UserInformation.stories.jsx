@@ -9,8 +9,9 @@ export default {
   argTypes: {
     userName: {
       type: 'string',
-      description: 'User\'s name to show in the greeting part of the component',
+      description: 'User\'s name to show in the greeting part of the component.',
       table: {
+        type: { summary: 'string' },
         defaultValue: { summary: 'John Doe' }
       }
     },
