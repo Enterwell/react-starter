@@ -54,7 +54,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.2",
-    "cypress": "^4.9.0",
+    "cypress": "^9.2.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "19.0.1",
     "eslint-plugin-import": "2.25.3",
