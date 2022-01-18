@@ -15,9 +15,19 @@ export default {
         defaultValue: { summary: 'John Doe' }
       }
     },
+    appModel: {
+      description: `User application model containing <code>User: { name: string, clone(): User }</code>
+      object and <code>loadUser(): void</code> and
+      <code>editUser(name: string): void</code> functions
+      to handle loading and editing user's name`,
+      control: { disable: true },
+      table: {
+        type: { summary: 'UserAppModel' },
+        defaultValue: { summary: 'UserAppModel' }
+      }
+    },
     loadUser: { action: 'loadUser' },
-    editUser: { action: 'editUser' },
-    appModel: { control: { disable: true }}
+    editUser: { action: 'editUser' }
   }
 };
 
