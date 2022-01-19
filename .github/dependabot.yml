@@ -9,7 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    target-branch: "next"
+    target-branch: "main"
     assignees:
       - "radovix"
   - package-ecosystem: "github-actions"
