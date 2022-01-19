@@ -131,6 +131,7 @@ Basic.parameters = { controls: { include: 'count' } };
 // Disabled pagination story
 export const Disabled = Template.bind({});
 Disabled.args = {
+  ...Basic.args,
   disabled: true
 };
 // Only show 'disabled' control in the Disabled pagination story
@@ -139,7 +140,7 @@ Disabled.parameters = { controls: { include: 'disabled' } };
 // Primary pagination story
 export const Primary = Template.bind({});
 Primary.args = {
-  count: 2,
+  ...Basic.args,
   color: 'primary'
 };
 // Only show 'count' and 'color' controls in the Primary pagination story
@@ -152,7 +153,7 @@ Outlined.args = {
   variant: 'outlined'
 };
 // Only show 'count' and 'variant' controls in the Outlined pagination story
-Outlined.parameters = { controls: { include: ['count', 'color'] } };
+Outlined.parameters = { controls: { include: ['count', 'variant'] } };
 
 // Rounded pagination story
 export const Rounded = Template.bind({});
@@ -166,7 +167,6 @@ Rounded.parameters = { controls: { include: ['count', 'shape'] } };
 // Sibling count pagination story
 export const SiblingCount = Template.bind({});
 SiblingCount.args = {
-  ...Basic.args,
   count: 20,
   page: 10,
   siblingCount: 2

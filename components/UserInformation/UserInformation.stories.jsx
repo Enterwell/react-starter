@@ -50,6 +50,5 @@ function Template(args) {
 // Default story
 export const Default = Template.bind({});
 Default.args = {
-  ...Template.args,
   userName: 'John Doe'
 };

@@ -59,13 +59,11 @@ function Template(args) {
 // Not loading story
 export const NotLoading = Template.bind({});
 NotLoading.args = {
-  ...Template.args,
   isLoading: false
 };
 
 // Loading story
 export const Loading = Template.bind({});
 Loading.args = {
-  ...Template.args,
   isLoading: true
 };
