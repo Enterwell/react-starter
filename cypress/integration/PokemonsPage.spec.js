@@ -25,7 +25,7 @@ describe('Pokemons page', () => {
   it('has working pagination', () => {
     cy.visit('/pokemons');
 
-    cy.get('[class*="PokemonsView_arrow"]')
+    cy.get('[class*="MuiPaginationItem-previousNext"]')
       .eq(1)
       .click();
 
@@ -36,7 +36,7 @@ describe('Pokemons page', () => {
       .eq(1)
       .contains('butterfree');
 
-    cy.get('[class*="PokemonsView_arrow"]')
+    cy.get('[class*="MuiPaginationItem-previousNext"]')
       .eq(0)
       .click();
 

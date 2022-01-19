@@ -17,7 +17,9 @@
     "cypress-run": "cypress run --headed",
     "cypress-open": "cypress open --browser chrome",
     "test": "start-server-and-test dev 3000 cypress-run",
-    "test-open": "start-server-and-test dev 3000 cypress-open"
+    "test-open": "start-server-and-test dev 3000 cypress-open",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/react": "^11.7.0",
@@ -42,8 +44,15 @@
     "@moxy/next-env": "^2.0.1",
     "@next/bundle-analyzer": "^12.0.4",
     "@next/eslint-plugin-next": "^12.0.7",
+    "@storybook/addon-actions": "^6.4.13",
+    "@storybook/addon-essentials": "^6.4.13",
+    "@storybook/addon-links": "^6.4.13",
+    "@storybook/builder-webpack5": "^6.4.13",
+    "@storybook/manager-webpack5": "^6.4.13",
+    "@storybook/react": "^6.4.13",
     "@zeit/next-source-maps": "^0.0.3",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.3",
     "cross-env": "^7.0.2",
     "cypress": "^9.2.1",
     "eslint": "^7.32.0",
@@ -52,8 +61,10 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-storybook": "^0.5.5",
     "next-compose-plugins": "^2.2.0",
     "rimraf": "^3.0.2",
+    "sass-loader": "^12.4.0",
     "start-server-and-test": "^1.11.0"
   }
 }

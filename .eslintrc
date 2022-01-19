@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": [
 		"airbnb",
+		"plugin:storybook/recommended",
 		"plugin:react/recommended",
 		"plugin:@next/next/recommended"
 	],
