@@ -1,9 +1,15 @@
-// Components import
+// General imports
 import Head from 'next/head';
+
+// Components import
 import { StylesProvider } from '@mui/styles';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import UserInformation from '../components/UserInformation/UserInformation';
+import ThemeSwitcher from '../components/ThemeSwitcher/ThemeSwitcher';
+
+// Use dark mode hook import
+import useDarkMode from '../hooks/useDarkMode';
 
 // Configs import
 import theme from '../config/theme';
@@ -28,6 +34,10 @@ function App(props) {
     pageProps
   } = props;
 
+  const [isDarkMode, toggleThemeChange] = useDarkMode();
+
+  const finalTheme = theme(isDarkMode);
+
   return (
     <>
       <Head>
@@ -36,8 +46,12 @@ function App(props) {
         </title>
       </Head>
       <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={finalTheme}>
           <CssBaseline />
+          <ThemeSwitcher
+            isDarkMode={isDarkMode}
+            onModeChange={toggleThemeChange}
+          />
           {Component.showUser && (
             <UserInformation />
           )}
