@@ -38,6 +38,11 @@ function App(props) {
 
   const finalTheme = theme(isDarkMode);
 
+  // Resolving dark mode 'blink'.
+  if (isDarkMode == null) {
+    return null;
+  }
+
   return (
     <>
       <Head>
