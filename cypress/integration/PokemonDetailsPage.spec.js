@@ -2,8 +2,7 @@
  * API requests fixtures,
  */
 beforeEach(() => {
-  cy.server();
-  cy.route('GET', '**/pokemon/1', 'fixture:pokemonId1');
+  cy.intercept('GET', '**/pokemon/1', { fixture: 'pokemonId1' });
 });
 
 /**
