@@ -42,7 +42,7 @@
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-decorators": "^7.16.4",
     "@moxy/next-env": "^2.0.1",
-    "@next/bundle-analyzer": "^12.0.4",
+    "@next/bundle-analyzer": "^12.0.8",
     "@next/eslint-plugin-next": "^12.0.7",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
