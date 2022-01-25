@@ -7,7 +7,7 @@ import LoadingContainer from './LoadingContainer';
 /**
  * Loading container component tests.
  */
-describe('Loading Container', () => {
+describe('Loading container', () => {
   it('No loading indicator by default', () => {
     mount(
       <LoadingContainer>
