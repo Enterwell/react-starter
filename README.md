@@ -131,7 +131,7 @@ Helpers are classes very similar in purpose to services, but still a little less
 
 #### Hooks
 
-Hooks are similar in purpose to helpers, but they are primarily focused for being used in React components. They let us extract component logic into resusable functions. Hooks are JavaScript functions whose name starts with `use` and that may call other Hooks.
+Hooks are similar in purpose to helpers, but they are primarily focused for being used in React components. They let us extract component logic into reusable functions. Hooks are JavaScript functions whose name starts with `use` and that may call other Hooks.
 
 ### Architecture example
 
