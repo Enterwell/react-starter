@@ -24,17 +24,6 @@ describe('User information', () => {
       .should('include.text', 'Hi John Doe!');
   });
 
-  it('Shows information for the user input', () => {
-    cy.get('[class*="newNameWrapper"]')
-      .should('include.text', 'That\'s not really my name. You should rather call me');
-  });
-
-  it('Shows input', () => {
-    cy.get('input')
-      .should('exist')
-      .should('be.visible');
-  });
-
   it('Updates greeting name when the name is entered in the input', () => {
     cy.get('input')
       .type('Custom Name{enter}');
