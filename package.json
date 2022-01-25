@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@babel/plugin-proposal-decorators": "^7.16.7",
     "@cypress/react": "^5.12.1",
     "@cypress/webpack-dev-server": "^1.8.0",
     "@moxy/next-env": "^2.0.1",
