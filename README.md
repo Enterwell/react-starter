@@ -188,9 +188,9 @@ Naming is something that always provokes controversy because most of us have som
 
 By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application.
 
-Cypress has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, only integration tests have been written for each of the `views`, but sometimes it will be appropriate to write unit tests for individual components. Integration tests of `views` should be a minimum of what should be tested in the application.
+Cypress has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, integration tests have been written for each of the `views` and component tests for each of the `components`, but sometimes it will be appropriate to write unit tests for individual JavaScript modules. Integration tests of `views` and component tests of `components` should be a minimum of what should be tested in the application.
 
-Tests can be run directly from the command line using the command
+Integration tests can be run directly from the command line using the command
 
 ```
 yarn test
@@ -200,6 +200,18 @@ or a UI can be opened through which they can be manually run. The UI is opened b
 
 ```
 yarn test-open
+```
+
+Component tests can be run directly from the command line using the command
+
+```
+yarn component-test
+```
+
+or a UI can be opened through which they can be manually run. The UI is opened by using the command
+
+```
+yarn component-test-open
 ```
 
 Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI.

@@ -15,9 +15,14 @@
     "lint": "eslint --ext .jsx,.js .",
     "lint-fix": "eslint --ext .jsx,.js --fix .",
     "cypress-run": "cypress run --headed",
+    "cypress-run:ci": "cypress run --config video=false",
     "cypress-open": "cypress open --browser chrome",
     "test": "start-server-and-test dev 3000 cypress-run",
+    "test:ci": "start-server-and-test start 3000 cypress-run:ci",
     "test-open": "start-server-and-test dev 3000 cypress-open",
+    "component-test": "cypress run-ct --headed",
+    "component-test:ci": "cypress run-ct --config video=false",
+    "component-test-open": "cypress open-ct",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -41,6 +46,8 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@cypress/react": "^5.12.1",
+    "@cypress/webpack-dev-server": "^1.8.0",
     "@moxy/next-env": "^2.0.1",
     "@next/bundle-analyzer": "^12.0.8",
     "@next/eslint-plugin-next": "^12.0.7",
@@ -56,15 +63,17 @@
     "cross-env": "^7.0.2",
     "cypress": "^9.2.1",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb": "19.0.1",
+    "eslint-config-airbnb": "19.0.2",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-storybook": "^0.5.6",
+    "html-webpack-plugin": "5",
     "next-compose-plugins": "^2.2.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^12.4.0",
-    "start-server-and-test": "^1.11.0"
+    "start-server-and-test": "^1.11.0",
+    "webpack-dev-server": "3"
   }
 }

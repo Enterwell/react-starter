@@ -2,9 +2,8 @@
  * API requests fixtures,
  */
 beforeEach(() => {
-  cy.server();
-  cy.route('GET', '**/pokemon?offset=0&limit=10', 'fixture:pokemonsOffset0Limit10');
-  cy.route('GET', '**/pokemon?offset=10&limit=10', 'fixture:pokemonsOffset10Limit10');
+  cy.intercept('GET', '**/pokemon?offset=0&limit=10', { fixture: 'pokemonsOffset0Limit10' });
+  cy.intercept('GET', '**/pokemon?offset=10&limit=10', { fixture: 'pokemonsOffset10Limit10' });
 });
 
 /**
