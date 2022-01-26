@@ -22,7 +22,7 @@ export default function useDarkMode() {
 
   const toggleThemeChange = useCallback(() => {
     setIsDarkMode((prev) => !prev);
-  }, [setIsDarkMode]);
+  });
 
   return [isDarkMode, toggleThemeChange];
 }
