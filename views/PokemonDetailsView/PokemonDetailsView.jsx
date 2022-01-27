@@ -29,7 +29,8 @@ function PokemonDetailsView(props) {
     userAppModel,
     isLoading,
     pokemon,
-    loadPokemon
+    loadPokemon,
+    onUnmount
   } = viewModel;
   const {
     user
@@ -41,6 +42,8 @@ function PokemonDetailsView(props) {
     if (router.query && router.query.id) {
       loadPokemon(router.query.id);
     }
+
+    return onUnmount;
   }, [router.query]);
 
   return (

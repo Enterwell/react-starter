@@ -17,6 +17,14 @@ import NotificationsService from '../services/NotificationsService';
  */
 class PokemonDetailsViewModel {
   /**
+   * Instance of the view model.
+   *
+   * @static
+   * @memberof PokemonDetailsViewModel
+   */
+  static _viewModel = null;
+
+  /**
    * Returns the view model's instance.
    *
    * @static
@@ -24,7 +32,12 @@ class PokemonDetailsViewModel {
    * @memberof PokemonDetailsViewModel
    */
   static get instance() {
-    return new PokemonDetailsViewModel();
+    // Creates instance if it isn't set yet
+    if (PokemonDetailsViewModel._viewModel == null) {
+      PokemonDetailsViewModel._viewModel = new PokemonDetailsViewModel();
+    }
+
+    return PokemonDetailsViewModel._viewModel;
   }
 
   /**
@@ -64,8 +77,8 @@ class PokemonDetailsViewModel {
     makeObservable(this, {
       isLoading: observable,
       pokemon: observable,
-      loadPokemon: action.bound
-
+      loadPokemon: action.bound,
+      onUnmount: action.bound
     });
   }
 
@@ -91,6 +104,16 @@ class PokemonDetailsViewModel {
     runInAction(() => {
       this.isLoading = false;
     });
+  }
+
+  /**
+   * Method that resets the view model's variables on component unmount.
+   *
+   * @memberof PokemonDetailsViewModel
+   */
+  onUnmount() {
+    this.isLoading = true;
+    this.pokemon = null;
   }
 }
 

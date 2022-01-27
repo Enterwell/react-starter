@@ -20,7 +20,6 @@ The React starter's root contains all the configuration files of the tools used 
 
 ### Project root files
 
-* `.babelrc` - used for configuring [Babel](https://babeljs.io/)
 * `.eslintrc` - used for configuring [ESLint](https://eslint.org/)
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
@@ -39,6 +38,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `config` - a place where the various configuration files, used by the application itself, are stored (e.g. internationalization configuration, MUI themes, or something else)
 * `cypress` - a place where Cypress related files are stored
 * `helpers` - a place where all the helpers that exist within the application are stored
+* `hooks` - a place where all custom hooks that exist within the application are stored
 * `mappers` - a place where all the mappers that exist within the application are stored
 * `models` - a place where all the models that exist within the application are stored
 * `pages` - a folder which subfolders and files form a hierarchy of available application routes
@@ -128,6 +128,10 @@ Services are classes that provide an application-specific role, such as displayi
 #### Helper
 
 Helpers are classes very similar in purpose to services, but still a little less specific and they usually provide some "stupid" service that is repeated in several places in the application.
+
+#### Hooks
+
+Hooks are similar in purpose to helpers, but they are primarily focused for being used in React components. They let us extract component logic into reusable functions. Hooks are JavaScript functions whose name starts with `use` and that may call other Hooks.
 
 ### Architecture example
 

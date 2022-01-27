@@ -22,11 +22,13 @@ Object.defineProperty(NextImage, 'default', {
   )
 });
 
+const darkTheme = theme(true);
+
 // Integrating with the MUI by defining a global decorator
 export const decorators = [
   Story => (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Story />
       </ThemeProvider>
@@ -44,11 +46,11 @@ export const parameters = {
   },
   layout: 'centered',
   backgrounds: {
-    default: theme.palette.mode,
+    default: darkTheme.palette.mode,
     values: [
       {
-        name: theme.palette.mode,
-        value: theme.palette.background.default
+        name: darkTheme.palette.mode,
+        value: darkTheme.palette.background.default
       },
       // Prettier colors than the default ones (by default only light and dark ones are available)
       {

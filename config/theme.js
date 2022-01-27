@@ -4,11 +4,12 @@ import { createTheme } from '@mui/material/styles';
 /**
  * Material-UI theme.
  *
+ * @param {boolean} isDarkMode is dark mode selected flag
  * @type {Object}
  */
-const theme = createTheme({
+const theme = (isDarkMode) => createTheme({
   palette: {
-    mode: 'dark',
+    mode: isDarkMode ? 'dark' : 'light',
     primary: {
       main: '#2aa876',
       contrastText: '#ffffff'
