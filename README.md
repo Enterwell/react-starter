@@ -341,17 +341,6 @@ Starting the application in `development` mode using the local API is done with 
 ```
 $ yarn dev-local
 ```
-Starting the application in `production` mode using the remote API is done with the command
-
-```
-$ yarn dev-prod
-```
-
-Starting the application in `production` mode using the local API is done with the command
-
-```
-$ yarn dev-prod-local
-```
 
 </br>
 
@@ -376,7 +365,7 @@ Whether running in `development` or `production` mode, application is available 
 
 </br>
 
-Exporting your application to static HTML, which can then be run standalone without the need of a `Node.js` server is done with the command
+Exporting your application to static HTML, which can then be run standalone without the need of a `Node.js` server is done using the command
 
 ```
 $ yarn export
