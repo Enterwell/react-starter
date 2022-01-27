@@ -1,31 +1,31 @@
 <h1 align="center">
   Enterwell React starter
   <div>
-    <a href="https://reactjs.org/" target="blank">
+    <a href="https://reactjs.org/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
     </a>
-    <a href="https://www.javascript.com/" target="blank">
+    <a href="https://www.javascript.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="30" />
     </a>
-    <a href="https://nextjs.org/" target="blank">
+    <a href="https://nextjs.org/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" alt="nextjs" width="30" />
     </a>
-    <a href="https://mobx.js.org/README.html" target="blank">
+    <a href="https://mobx.js.org/README.html" target="_blank">
       <img src="https://mobx.js.org/assets/mobx.png" alt="mobx" width="30" />
     </a>
-    <a href="https://mui.com/" target="blank">
+    <a href="https://mui.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="mui" width="30" />
     </a>
-    <a href="https://sass-lang.com/" target="blank">
+    <a href="https://sass-lang.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="sass" width="30" />
     </a>
-    <a href="https://storybook.js.org/" target="blank">
+    <a href="https://storybook.js.org/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" alt="storybook" width="30" />
     </a>
-    <a href="https://www.cypress.io/" target="blank">
+    <a href="https://www.cypress.io/" target="_blank">
       <img src="https://www.cypress.io/icons/icon-48x48.png" alt="cypress" width="30" />
     </a>
-    <a href="https://yarnpkg.com/" target="blank">
+    <a href="https://yarnpkg.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg" alt="yarn" width="30" />
     </a>
   </div>
