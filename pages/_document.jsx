@@ -1,8 +1,12 @@
+// General import
 import React from 'react';
 
 // Components import
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@mui/styles';
+
+// Application description
+const APP_DESCRIPTION = "Enterwell's template for web apps based on the React and Next.js.";
 
 /**
  * Custom document component. It is used to augment application's
@@ -51,6 +55,8 @@ class CustomDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
+          <meta name="description" content={APP_DESCRIPTION} />
+
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>

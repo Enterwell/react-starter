@@ -22,6 +22,7 @@ function ThemeSwitcher(props) {
 
   return (
     <IconButton
+      aria-label="Dark mode toggle button"
       className={styles.themeSwitcher}
       onClick={onModeChange}
     >
