@@ -1,4 +1,44 @@
-# Enterwell React starter
+<h1 align="center">
+  <p>Enterwell React starter</p>
+  <div>
+    <a href="https://www.javascript.com/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="30" />
+    </a>
+    <a href="https://reactjs.org/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
+    </a>
+    <a href="https://nextjs.org/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" alt="nextjs" width="30" />
+    </a>
+    <a href="https://mobx.js.org/README.html" target="_blank">
+      <img src="https://mobx.js.org/assets/mobx.png" alt="mobx" width="30" />
+    </a>
+    <a href="https://mui.com/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="mui" width="30" />
+    </a>
+    <a href="https://sass-lang.com/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="sass" width="30" />
+    </a>
+    <a href="https://storybook.js.org/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" alt="storybook" width="30" />
+    </a>
+    <a href="https://www.cypress.io/" target="_blank">
+      <img src="https://www.cypress.io/icons/icon-48x48.png" alt="cypress" width="30" />
+    </a>
+  </div>
+</h1>
+
+<div align="center">
+
+![](https://img.shields.io/badge/%3C%2F%3E-JavaScript-informational)
+[![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
+![GitHub repo size](https://img.shields.io/github/repo-size/Enterwell/react-starter?label=GitHub%20repo%20size&logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
+[![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/Enterwell/react-starter)](https://github.com/Enterwell/react-starter/graphs/contributors)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/pulls)
+
+</div>
 
 This document represents the official React starter documentation. React starter was created due to the desire to unify all React projects that we will develop in the future. This document will therefore explain and list out the following conclusions that the Enterwell elders agreed on after several multi-hour meetings:
 
@@ -6,7 +46,28 @@ This document represents the official React starter documentation. React starter
 * organization of the project files and folders
 * recommendation of npm packages that have proven useful in the past
 
-If any doubts remain after reading this document, feel free to contact us via GH Issues.
+If any doubts remain after reading this document, feel free to contact us via [GH Issues](https://github.com/Enterwell/react-starter/issues).
+
+## Table of contents
+* [Why React and why Next.js?](#why-react-and-why-nextjs)
+* [Project structure](#project-structure)
+  * [Project root files](#project-root-files)
+  * [Project root folders](#project-root-folders)
+* [Architecture](#architecture)
+  * [Components](#components)
+  * [Data](#data)
+  * [Logic](#logic)
+  * [Architecture example](#architecture-example)
+* [Styles](#styles)
+* [Naming](#naming)
+  * [Naming folders](#naming-folders)
+  * [Naming files](#naming-files)
+* [Testing](#testing)
+* [Packages](#packages)
+  * [Default packages](#default-packages)
+  * [Additional packages](#additional-packages)
+* [Launching the application](#launching-the-application)
+* [Predeployment TODOs](#predeployment-todos)
 
 ## Why React and why Next.js?
 
@@ -157,7 +218,7 @@ In order to add new component to `Storybook` it is necessary to define a [story]
 
 Starting the `Storybook` UI interface is done with the command
 ```
-yarn storybook
+$ yarn storybook
 ```
 This command will start `Storybook` locally and output the address at which the process is running. Depending on your system configuration, the address will automatically be opened in a new browser tab.
 
@@ -193,25 +254,25 @@ Cypress has been selected as the most suitable library for testing the valid ope
 Integration tests can be run directly from the command line using the command
 
 ```
-yarn test
+$ yarn test
 ```
 
 or a UI can be opened through which they can be manually run. The UI is opened by using the command
 
 ```
-yarn test-open
+$ yarn test-open
 ```
 
 Component tests can be run directly from the command line using the command
 
 ```
-yarn component-test
+$ yarn component-test
 ```
 
 or a UI can be opened through which they can be manually run. The UI is opened by using the command
 
 ```
-yarn component-test-open
+$ yarn component-test-open
 ```
 
 Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI.
@@ -250,10 +311,17 @@ If none of the following packages meet your wishes and demands, you need to add 
 
 ## Launching the application
 
-Before you start developing an application, you need to install all the packages it uses. The recommended way to do this is by using `Yarn` and the command
+Clone the repository if you haven't already downloaded it and move to the appropriate directory.
 
 ```
-yarn install
+$ git clone https://github.com/Enterwell/react-starter.git <your-project-name>
+$ cd <your-project-name>
+```
+
+Before you start developing the application, you need to install all the packages it uses. The recommended way to do this is by using `Yarn` and the command
+
+```
+$ yarn install
 ```
 
 <br>
@@ -263,23 +331,12 @@ Once all of the packages are installed, it is possible to run the application it
 Starting the application in `development` mode using the remote API is done with the command
 
 ```
-yarn dev
+$ yarn dev
 ```
 Starting the application in `development` mode using the local API is done with the command
 
 ```
-yarn dev-local
-```
-Starting the application in `production` mode using the remote API is done with the command
-
-```
-yarn dev-prod
-```
-
-Starting the application in `production` mode using the local API is done with the command
-
-```
-yarn dev-prod-local
+$ yarn dev-local
 ```
 
 </br>
@@ -287,13 +344,30 @@ yarn dev-prod-local
 When application development is complete, the application needs to be `built`. `Building` the application is done using the commands
 
 ```
-yarn build
+$ yarn build
 ```
+
 ```
-yarn build-local
+$ yarn build-local
 ```
 
 depending on whether the application uses a local or remote API.
+
+When you have successfully `built` your application, you can start the `production` version using the command
+
+```
+$ yarn start
+```
+Whether running in `development` or `production` mode, application is available at `http://localhost:3000`.
+
+</br>
+
+Exporting your application to static HTML, which can then be run standalone without the need of a `Node.js` server is done using the command
+
+```
+$ yarn export
+```
+This command generates an `out` directory in the project root. Only use this command if you don't need any of the [features](https://nextjs.org/docs/advanced-features/static-html-export#unsupported-features) requiring a `Node.js` server.
 
 ## Predeployment TODOs
 
