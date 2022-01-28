@@ -2438,10 +2438,10 @@
     webpack-hot-middleware "^2.25.1"
     webpack-virtual-modules "^0.2.2"
 
-"@storybook/builder-webpack5@^6.4.13":
-  version "6.4.13"
-  resolved "https://registry.yarnpkg.com/@storybook/builder-webpack5/-/builder-webpack5-6.4.13.tgz#c1657bcd9e546a6b0510f3b50f1cb8d90f860c42"
-  integrity sha512-mJG9wL3q8gWj6QFL44oP1GiTpsc95HtM5F/yahT3c/zMripAiGcQs7i+Y23pik0X5s4aehq72HTeetTrrYKXYg==
+"@storybook/builder-webpack5@^6.4.15":
+  version "6.4.15"
+  resolved "https://registry.yarnpkg.com/@storybook/builder-webpack5/-/builder-webpack5-6.4.15.tgz#236aea5164c6a0ba1b49a44002aba212c8a48933"
+  integrity sha512-Xn07f2cw6ylp1rNu2765WM2PoF35wCsCkbt/ecwdSXYvC+K44LLRsCpQtSDM5tRwWwmC9HaSQD/9KIZfJ2ckCg==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-proposal-class-properties" "^7.12.1"
@@ -2463,21 +2463,21 @@
     "@babel/preset-env" "^7.12.11"
     "@babel/preset-react" "^7.12.10"
     "@babel/preset-typescript" "^7.12.7"
-    "@storybook/addons" "6.4.13"
-    "@storybook/api" "6.4.13"
-    "@storybook/channel-postmessage" "6.4.13"
-    "@storybook/channels" "6.4.13"
-    "@storybook/client-api" "6.4.13"
-    "@storybook/client-logger" "6.4.13"
-    "@storybook/components" "6.4.13"
-    "@storybook/core-common" "6.4.13"
-    "@storybook/core-events" "6.4.13"
-    "@storybook/node-logger" "6.4.13"
-    "@storybook/preview-web" "6.4.13"
-    "@storybook/router" "6.4.13"
+    "@storybook/addons" "6.4.15"
+    "@storybook/api" "6.4.15"
+    "@storybook/channel-postmessage" "6.4.15"
+    "@storybook/channels" "6.4.15"
+    "@storybook/client-api" "6.4.15"
+    "@storybook/client-logger" "6.4.15"
+    "@storybook/components" "6.4.15"
+    "@storybook/core-common" "6.4.15"
+    "@storybook/core-events" "6.4.15"
+    "@storybook/node-logger" "6.4.15"
+    "@storybook/preview-web" "6.4.15"
+    "@storybook/router" "6.4.15"
     "@storybook/semver" "^7.3.2"
-    "@storybook/store" "6.4.13"
-    "@storybook/theming" "6.4.13"
+    "@storybook/store" "6.4.15"
+    "@storybook/theming" "6.4.15"
     "@types/node" "^14.0.10"
     babel-loader "^8.0.0"
     babel-plugin-macros "^3.0.1"
@@ -2490,6 +2490,7 @@
     glob-promise "^3.4.0"
     html-webpack-plugin "^5.0.0"
     path-browserify "^1.0.1"
+    process "^0.11.10"
     stable "^0.1.8"
     style-loader "^2.0.0"
     terser-webpack-plugin "^5.0.3"
@@ -7708,7 +7709,7 @@ glob-to-regexp@^0.4.1:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz#c75297087c851b9a578bd217dd59a92f59fe546e"
   integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
-glob@7.1.7, glob@^7.1.3:
+glob@7.1.7:
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
   integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
@@ -7720,7 +7721,7 @@ glob@7.1.7, glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.3, glob@^7.1.4, glob@^7.1.6:
+glob@^7.0.3, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.0.tgz#d15535af7732e02e948f4c41628bd910293f6023"
   integrity sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==
