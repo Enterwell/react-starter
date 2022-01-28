@@ -52,6 +52,7 @@ function UserInformation(props) {
       <div className={styles.newNameWrapper}>
         That's not really my name. You should rather call me
         <TextField
+          label="Name"
           variant="standard"
           value={name}
           onChange={(e) => setName(e.target.value)}
