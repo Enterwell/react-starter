@@ -1,11 +1,11 @@
 <h1 align="center">
-  Enterwell React starter
+  <p>Enterwell React starter</p>
   <div>
-    <a href="https://reactjs.org/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
-    </a>
     <a href="https://www.javascript.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="30" />
+    </a>
+    <a href="https://reactjs.org/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
     </a>
     <a href="https://nextjs.org/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" alt="nextjs" width="30" />
@@ -24,9 +24,6 @@
     </a>
     <a href="https://www.cypress.io/" target="_blank">
       <img src="https://www.cypress.io/icons/icon-48x48.png" alt="cypress" width="30" />
-    </a>
-    <a href="https://yarnpkg.com/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg" alt="yarn" width="30" />
     </a>
   </div>
 </h1>
