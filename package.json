@@ -24,7 +24,9 @@
     "component-test:ci": "cypress run-ct --config video=false",
     "component-test-open": "cypress open-ct",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "storycap-approve": "rimraf ./.storycap-approved && storycap --serverCmd \"start-storybook --no-open -p 6006\" --serverTimeout 180000 -o .storycap-approved http://localhost:6006",
+    "storycap": "rimraf ./.storycap-pending && storycap --serverCmd \"start-storybook --no-open -p 6006\" --serverTimeout 180000 -o .storycap-pending http://localhost:6006 && node ./helpers/StorycapCompare"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -74,6 +76,7 @@
     "rimraf": "^3.0.2",
     "sass-loader": "^12.4.0",
     "start-server-and-test": "^1.11.0",
+    "storycap": "^3.1.0",
     "webpack-dev-server": "3"
   }
 }
