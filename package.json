@@ -38,7 +38,7 @@
     "clsx": "^1.1.1",
     "mobx": "^6.3.13",
     "mobx-react-lite": "^3.2.3",
-    "next": "^12.0.9",
+    "next": "^12.0.10",
     "next-react-svg": "^1.1.1",
     "noty": "^3.2.0-beta",
     "react": "^17.0.2",
