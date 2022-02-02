@@ -94,6 +94,7 @@ The React starter's root contains all the configuration files of the tools used 
 
 ### Project root folders
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
+* `.storycap-approved` - a place where images of all of the defined `Storybook` stories are stored
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
