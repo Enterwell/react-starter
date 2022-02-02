@@ -312,11 +312,11 @@ If none of the following packages meet your wishes and demands, you need to add 
 
 ## Developing using Storycap
 
-For a more organized development of components and pages, we use `Storybook` as we have already mentioned earlier. One of its add-ons we use in the application is called [Storycap](https://github.com/reg-viz/storycap).
+For a more organized development of components and pages, we use `Storybook` as we have already mentioned earlier. One of its add-ons we use is called [Storycap](https://github.com/reg-viz/storycap).
 
 `Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
 
-Within `project.json` two scripts have been defined that are used for this purpose.
+Two scripts have been defined within `project.json` that are used for this purpose.
 
 ```bash
 yarn storycap-approve
