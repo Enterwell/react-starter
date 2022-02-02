@@ -3,22 +3,25 @@
  */
 beforeEach(() => {
   cy.intercept('GET', '**/pokemon/1', { fixture: 'pokemonId1' });
+  cy.visit('/pokemons/1');
 });
 
 /**
  * Pokemon details page tests.
  */
 describe('Pokemon details page', () => {
+  /**
+   * Testing that the page shows pokemon's details data.
+   */
   it('shows the Pokemon\'s details data', () => {
-    cy.visit('/pokemons/1');
-
     cy.get('[class*="PokemonDetailsView_name"]')
       .contains('bulbasaur');
   });
 
+  /**
+   * Testing that the page contains link to go back to the pokemons page.
+   */
   it('has working link to Pokemons page', () => {
-    cy.visit('/pokemons/1');
-
     cy.get('[class*="PokemonDetailsView_link"]')
       .click();
 
@@ -28,9 +31,11 @@ describe('Pokemon details page', () => {
       });
   });
 
+  /**
+   * Testing that the page has user information component with which the user can change
+   * his username and that the name referring to the user will be changed accordingly.
+   */
   it('updates question when name is changed', () => {
-    cy.visit('/pokemons/1');
-
     cy.get('[class*="UserInformation_name"]')
       .contains('John Doe');
 
