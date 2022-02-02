@@ -91,6 +91,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
 * `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDepenndencies`)
 * `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
+* `jest.config.js` - used for configuring [Jest](https://jestjs.io/) 
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
 * `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
