@@ -84,7 +84,7 @@ npm install --global yarn
 Now you can setup the application without any hassle use the following command
 
 ```bash
-yarn create next-app -e https://github.com/DorijanH/react-starter
+yarn create next-app -e https://github.com/Enterwell/react-starter
 ```
 
 And success, you are ready to rumble!
