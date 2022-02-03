@@ -49,6 +49,8 @@ This document represents the official React starter documentation. React starter
 If any doubts remain after reading this document, feel free to contact us via [GH Issues](https://github.com/Enterwell/react-starter/issues).
 
 ## Table of contents
+
+* [Quick start](#quick-start)
 * [Why React and why Next.js?](#why-react-and-why-nextjs)
 * [Project structure](#project-structure)
   * [Project root files](#project-root-files)
@@ -68,6 +70,32 @@ If any doubts remain after reading this document, feel free to contact us via [G
   * [Additional packages](#additional-packages)
 * [Launching the application](#launching-the-application)
 * [Predeployment TODOs](#predeployment-todos)
+
+## Quick start
+
+This project uses [Yarn](https://classic.yarnpkg.com/en/) as its package manager so in order to get quickly up and running you will need to have it installed on your machine.
+
+If you don't already have it, you can easily install it by using the following command (assuming you have [Node.js](https://nodejs.org/en/) installed)
+
+```bash
+npm install --global yarn
+```
+
+Now you can setup the application without any hassle use the following command
+
+```bash
+yarn create next-app -e https://github.com/DorijanH/react-starter
+```
+
+And success, you are ready to rumble!
+
+Once in the project directory, you can start the `development` version of the application using the command
+
+```bash
+yarn dev
+```
+
+For documentation on running the application in other modes, see ['Launching the application' section](#launching-the-application).
 
 ## Why React and why Next.js?
 
@@ -311,22 +339,7 @@ If none of the following packages meet your wishes and demands, you need to add 
 
 ## Launching the application
 
-Clone the repository if you haven't already downloaded it and move to the appropriate directory.
-
-```
-$ git clone https://github.com/Enterwell/react-starter.git <your-project-name>
-$ cd <your-project-name>
-```
-
-Before you start developing the application, you need to install all the packages it uses. The recommended way to do this is by using `Yarn` and the command
-
-```
-$ yarn install
-```
-
-<br>
-
-Once all of the packages are installed, it is possible to run the application itself. There are several commands with which you can do this and it all depends on whether you want the application to run in `development` or `production` mode and whether you want to use the local API or not.
+There are several commands with which you can launch the application and it all depends on whether you want it to run in `development` or `production` mode and whether you want to use the local API or not.
 
 Starting the application in `development` mode using the remote API is done with the command
 
