@@ -33,7 +33,6 @@
 
 <div align="center">
 
-![](https://img.shields.io/badge/%3C%2F%3E-JavaScript-informational)
 [![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
 [![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
@@ -86,7 +85,7 @@ If you don't already have it, you can easily install it by using the following c
 npm install --global yarn
 ```
 
-Now you can setup the application without any hassle use the following command
+Now you can setup the application without any hassle using the following command
 
 ```bash
 yarn create next-app -e https://github.com/Enterwell/react-starter
