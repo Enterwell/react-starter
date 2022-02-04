@@ -72,6 +72,7 @@ If any doubts remain after reading this document, feel free to contact us via [G
 * [Packages](#packages)
   * [Default packages](#default-packages)
   * [Additional packages](#additional-packages)
+* [Developing using Storycap](#developing-using-storycap)
 * [Launching the application](#launching-the-application)
 * [Predeployment TODOs](#predeployment-todos)
 
@@ -101,6 +102,7 @@ The React starter's root contains all the configuration files of the tools used 
 ### Project root folders
 
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
+* `.storycap-approved` - a place where images of all of the defined `Storybook` stories are stored
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
@@ -349,6 +351,30 @@ If none of the following packages meet your wishes and demands, you need to add 
 * [`sentry`](https://sentry.io/welcome/) - application error tracking package (so-called *error monitoring*)
 * [`i18next`](https://www.i18next.com/) / [`react-i18next`](https://react.i18next.com/) - framework for internalization of applications with minimal overhead
 * [`moment`](https://momentjs.com/) - library that makes it easier to work with dates and times
+
+## Developing using Storycap
+
+For a more organized development of components and pages, we use `Storybook` as we have already mentioned earlier. One of its add-ons we use is called [Storycap](https://github.com/reg-viz/storycap).
+
+`Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
+
+Two scripts have been defined within `project.json` that are used for this purpose.
+
+```bash
+yarn storycap-approve
+```
+is used in the initial project setup. This command launches `Storycap` and places generated images to the `.storycap-approved` folder in the project root.
+
+Later, when developing and submitting changes to one of the version control services, we use a command
+
+```bash
+yarn storycap
+```
+which will also run `Storycap` and place generated images in the `.storycap-pending` folder in the project root. The command will then run our custom logic contained in the `StorycapCompare.js` helper.
+
+At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.storycap-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
+
+This gives us an easy way to get a visual comparison of the stories that have changed when reviewing the PRs.
 
 ## Launching the application
 
