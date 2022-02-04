@@ -11,6 +11,9 @@ import '../styles/global.scss';
 // Next image import
 import * as NextImage from 'next/image';
 
+// Storycap managed mode decorator import
+import { withScreenshot } from 'storycap';
+
 // Fix for getting next/image to work with Storybook
 // Source link https://dev.to/jonasmerlin/how-to-use-the-next-js-image-component-in-storybook-1415
 const OriginalNextImage = NextImage.default;
@@ -26,6 +29,7 @@ const darkTheme = theme(true);
 
 // Integrating with the MUI by defining a global decorator
 export const decorators = [
+  withScreenshot,
   Story => (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={darkTheme}>
@@ -62,5 +66,10 @@ export const parameters = {
         value: '#3b5998',
       },
     ]
+  },
+  screenshot: {
+    // Global screenshot parameters go here (e.g. viewport)
+    // Parameters can also be defined for each individual story
+    // See more at https://github.com/reg-viz/storycap#managed-mode
   }
 }

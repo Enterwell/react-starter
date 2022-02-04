@@ -2,12 +2,15 @@
 import { mount } from '@cypress/react';
 
 // Component import
-import ThemeSwitcher from './ThemeSwitcher';
+import ThemeSwitcher from '../../components/ThemeSwitcher/ThemeSwitcher';
 
 /**
  * Theme switcher component tests.
  */
 describe('Theme switcher', () => {
+  /**
+   * Testing that the component correctly renders without passing any props.
+   */
   it('Shows theme switcher with default props', () => {
     mount(<ThemeSwitcher />);
 
@@ -20,6 +23,9 @@ describe('Theme switcher', () => {
       .should('be.visible');
   });
 
+  /**
+   * Testing that the component shows light mode icon when passing 'false' to 'isDarkMode' prop.
+   */
   it('Shows light mode icon when "isDarkMode" flag is false', () => {
     mount(<ThemeSwitcher isDarkMode={false} />);
 
@@ -28,6 +34,9 @@ describe('Theme switcher', () => {
       .should('be.visible');
   });
 
+  /**
+   * Testing that the component shows dark mode icon when passing 'true' to 'isDarkMode' prop.
+   */
   it('Shows dark mode icon when "isDarkMode" flag is true', () => {
     mount(<ThemeSwitcher isDarkMode />);
 
@@ -36,6 +45,10 @@ describe('Theme switcher', () => {
       .should('be.visible');
   });
 
+  /**
+   * Testing that the component correctly triggers callback function passed
+   * to 'onModeChange' prop on its click.
+   */
   it('Should trigger function callback on icon click', () => {
     const triggerModeChange = cy.spy().as('triggerChange');
 
