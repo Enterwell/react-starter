@@ -2,12 +2,15 @@
 import { mount } from '@cypress/react';
 
 // Component import
-import Pagination from './Pagination';
+import Pagination from '../../components/Pagination/Pagination';
 
 /**
  * Pagination component tests.
  */
 describe('Pagination', () => {
+  /**
+   * Testing that the component correctly renders without passing any props.
+   */
   it('Shows pagination component with default props', () => {
     mount(<Pagination />);
 
@@ -22,6 +25,9 @@ describe('Pagination', () => {
       .should('have.length', 1);
   });
 
+  /**
+   * Testing that the pagination pages can be cycled through by using page buttons.
+   */
   it('Can switch between pages using page buttons', () => {
     mount(<Pagination count={2} />);
 
@@ -46,6 +52,9 @@ describe('Pagination', () => {
       .should('have.class', 'Mui-selected');
   });
 
+  /**
+   * Testing that the pagination pages can be cycled through by using arrow buttons.
+   */
   it('Can switch between pages using arrow buttons', () => {
     mount(<Pagination count={2} />);
 

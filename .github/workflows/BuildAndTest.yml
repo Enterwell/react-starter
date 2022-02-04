@@ -44,8 +44,11 @@ jobs:
       - name: Yarn lint
         run: yarn lint
 
+      - name: Run unit tests
+        run: yarn unit-test
+
       - name: Run component tests
         run: yarn component-test:ci
         
       - name: Run E2E tests
-        run: yarn test:ci
+        run: yarn e2e-test:ci

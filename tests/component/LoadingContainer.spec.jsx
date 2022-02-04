@@ -2,12 +2,16 @@
 import { mount } from '@cypress/react';
 
 // Component import
-import LoadingContainer from './LoadingContainer';
+import LoadingContainer from '../../components/LoadingContainer/LoadingContainer';
 
 /**
  * Loading container component tests.
  */
 describe('Loading container', () => {
+  /**
+   * Testing that the loading indicator is not shown when using the component
+   * without passing any props.
+   */
   it('No loading indicator by default', () => {
     mount(
       <LoadingContainer>
@@ -19,6 +23,9 @@ describe('Loading container', () => {
       .should('have.text', 'Content inside loading container');
   });
 
+  /**
+   * Testing that the loading indicator is show when passing 'true' to 'isLoading' prop.
+   */
   it('Loading indicator when the "isLoading" flag is true', () => {
     mount(
       <LoadingContainer isLoading>
