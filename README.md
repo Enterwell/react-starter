@@ -8,7 +8,7 @@
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
     </a>
     <a href="https://nextjs.org/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" alt="nextjs" width="30" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="nextjs" width="30" />
     </a>
     <a href="https://mobx.js.org/README.html" target="_blank">
       <img src="https://mobx.js.org/assets/mobx.png" alt="mobx" width="30" />
@@ -22,6 +22,9 @@
     <a href="https://storybook.js.org/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" alt="storybook" width="30" />
     </a>
+    <a href="https://jestjs.io/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="jest" width="30" />
+    </a>
     <a href="https://www.cypress.io/" target="_blank">
       <img src="https://www.cypress.io/icons/icon-48x48.png" alt="cypress" width="30" />
     </a>
@@ -32,7 +35,6 @@
 
 ![](https://img.shields.io/badge/%3C%2F%3E-JavaScript-informational)
 [![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
-![GitHub repo size](https://img.shields.io/github/repo-size/Enterwell/react-starter?label=GitHub%20repo%20size&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
 [![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
 [![GitHub contributors](https://img.shields.io/github/contributors/Enterwell/react-starter)](https://github.com/Enterwell/react-starter/graphs/contributors)
@@ -64,6 +66,9 @@ If any doubts remain after reading this document, feel free to contact us via [G
   * [Naming folders](#naming-folders)
   * [Naming files](#naming-files)
 * [Testing](#testing)
+  * [Unit testing](#unit-testing)
+  * [Component testing](#component-testing)
+  * [End-to-end testing](#e2e-end-to-end-testing)
 * [Packages](#packages)
   * [Default packages](#default-packages)
   * [Additional packages](#additional-packages)
@@ -85,8 +90,9 @@ The React starter's root contains all the configuration files of the tools used 
 * `.eslintrc` - used for configuring [ESLint](https://eslint.org/)
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
-* `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDepenndencies`)
-* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/)
+* `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDependencies`)
+* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
+* `jest.config.js` - used for configuring [Jest](https://jestjs.io/) 
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
 * `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
@@ -109,6 +115,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `repositories` - a place where all the repositories that exist within the application are stored
 * `services` - a place where all the services that exist within the application are stored
 * `styles` - a place where all the global styles that exist within the application are stored
+* `tests` - a place where all of the tests that exist within the application are stored
 * `view-models` - a place where all the view-models that exist within the application are stored
 * `views` - a place where all the views and only related components are stored
 
@@ -251,21 +258,27 @@ Naming is something that always provokes controversy because most of us have som
 
 ## Testing
 
-By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application.
+By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application. All of our tests are written inside the `tests` folder in the project root.
 
-Cypress has been selected as the most suitable library for testing the valid operation of the application. As part of this React starter, integration tests have been written for each of the `views` and component tests for each of the `components`, but sometimes it will be appropriate to write unit tests for individual JavaScript modules. Integration tests of `views` and component tests of `components` should be a minimum of what should be tested in the application.
+We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
 
-Integration tests can be run directly from the command line using the command
+### Unit testing
+
+Unit testing is different from other testing methods because it consists of testing isolated parts of the source code, testing the code and logic. We use them in the application to test `services` and `helpers` or any other JavaScript code when there is some advanced logic. We will never use unit tests, or any other testing method, for testing third-party code directly, because if we depend on a certain package, we must be able to assume that it will work properly.
+
+Unit tests are written inside the `tests/unit` folder. There are already 2 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service and `StorycapCompare.spec.js` testing the `StorycapComapre.js` helper.
+
+Unit tests can be run directly from the command line using the command
 
 ```bash
-yarn test
+yarn unit-test
 ```
 
-or a UI can be opened through which they can be manually run. The UI is opened by using the command
+### Component testing
 
-```bash
-yarn test-open
-```
+Component testing is conceptually the same as unit testing, except that instead of functions, we test components. We want to write these tests because the number of components can very easily reach a large number. Now, after each change in the source code, it becomes almost impossible to check all of their states to see if they still behave as expected.
+
+Component tests are written inside the `tests/component` folder. There are already tests written for each component in the application from the `components` folder. They can be recognized by the `spec.jsx` extension.
 
 Component tests can be run directly from the command line using the command
 
@@ -279,7 +292,31 @@ or a UI can be opened through which they can be manually run. The UI is opened b
 yarn component-test-open
 ```
 
-Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI.
+### E2E (end-to-end) testing
+
+E2E or end-to-end tests are used to verify that the application is working as a whole. They confirm big features and even entire pages. Most often, they "survive" refactoring because, despite refactoring, application still needs to work as expected. They represent how users use the application and give us the most confidence that the application is working properly.
+
+End-to-end tests are written inside the `tests/integration` folder. There are already tests written for each page of the application from the `views` folder. They can be recongnized by the `spec.js` extension.
+
+End-to-end tests can be run directly from the command line using the command
+
+```bash
+yarn e2e-test
+```
+
+or a UI can be opened through which they can be manually run. The UI is opened by using the command
+
+```bash
+yarn e2e-test-open
+```
+
+Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI if you can.
+
+Various different commands were shown that can run each testing method separately from each other. This can be useful if we want to focus on one type of tests without running others. But we can also run all of the tests at once by using the command
+
+```bash
+yarn test
+```
 
 ## Packages
 
