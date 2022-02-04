@@ -4,5 +4,6 @@
   "component": {
     "componentFolder": "tests/component",
     "testFiles": "*.@(spec|test).@(js|jsx|ts|tsx)"
-  }
+  },
+  "experimentalStudio": true
 }

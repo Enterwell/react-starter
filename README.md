@@ -346,6 +346,26 @@ Various different commands were shown that can run each testing method separatel
 yarn test
 ```
 
+#### Interactive testing using the Cypress Studio
+
+By using `Cypress` as our end-to-end testing tool we have been given an option to extend existing or create new tests entirely by clicking and recording interactions against the running application. This feature is called [Cypress Studio](https://docs.cypress.io/guides/core-concepts/cypress-studio).
+
+To open `Cypress Studio` you need to launch the `Test Runner` by executing the following command
+
+```bash
+yarn e2e-test-open
+```
+
+The window will open showing the list of all currently defined end-to-end tests from the `tests/integration` folder. Here, you can create a new `spec.js` file by clicking on the `New Spec File` button in the upper right section of the window, or run an already defined file by clicking on it.
+
+Once the tests complete their run, you can do one of the following two things:
+* Hover over any existing test and use the revealed `Add Commands to Test` icon, or
+* Hover over any `describe` block and use the revealed `Add New Test` icon
+
+Either way, `Cypress Studio` will open where you can freely interact with the application and see the generated testing commands in the `Command Log`. By right-clicking on any DOM element you can generate various assertions. Each generated command in the `Command Log` can be undone by hovering over it and using the delete button.
+
+Use `cancel` button to exit `Cypress Studio` and discard the recorded interactions. To save the generated commands use the `Save Commands` button. Once saved, underlying `spec.js` is updated with the recorded actions.
+
 ## Packages
 
 By looking at `package.json` you can get an idea of some of the packages used. The React starter includes only the basic packages that we think will always be used in the application, but there is also a whole set of other packages that are used as needed.
