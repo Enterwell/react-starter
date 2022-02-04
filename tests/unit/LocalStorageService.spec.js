@@ -100,6 +100,7 @@ describe('Local storage service unit tests', () => {
   /**
    * Testing that the local storage service does not store the given
    * value if the local storage is undefined.
+   * The service should not throw because accessing undefined.
    */
   it('Does not store if the local storage is undefined', () => {
     // Arrange
@@ -112,13 +113,11 @@ describe('Local storage service unit tests', () => {
     // Act
     LocalStorageService.set(storingKey, storingValue);
 
+    // Assert
+    expect(window.localStorage).toBeUndefined();
+
     // Setting back the local storage mock
     Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock() });
-
-    const result = window.localStorage.getItem(storingKey);
-
-    // Assert
-    expect(result).toBeNull();
   });
 
   /**
