@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Should local server be used
-const isLocalServer = process.env.LOCAL_SERVER;
+const isLocalServer = process.env.NEXT_PUBLIC_LOCAL_SERVER;
 
 // Response interceptors
 axios.interceptors.response.use(
@@ -24,7 +24,7 @@ class HttpService {
    */
   static _getBaseUrl = () => {
     if (isLocalServer) {
-      return 'https://localhost:5001/v1';
+      return 'https://localhost:5001/v1/';
     }
 
     return 'https://pokeapi.co/api/v2/';

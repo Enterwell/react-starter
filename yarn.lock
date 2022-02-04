@@ -1719,11 +1719,6 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@moxy/next-env@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@moxy/next-env/-/next-env-2.0.1.tgz#407cc8b94b33a640da1af6e3af8117c80bca99fb"
-  integrity sha512-SyTEvMyG8sueEeUbe0EEslC0S25THeBo//DH01CHXRgUSQzWqSnqWzQO64qR4y0UXMgkyza6LKuz1KXW3aZvsw==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
