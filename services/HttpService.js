@@ -28,14 +28,14 @@ class HttpService {
     }
 
     return 'https://pokeapi.co/api/v2/';
-  }
+  };
 
   /**
    * Gets the default headers.
    *
    * @returns default headers
    */
-  static _getDefaultHeaders = () => { }
+  static _getDefaultHeaders = () => { };
 
   /**
    * Makes the HTTP request.
