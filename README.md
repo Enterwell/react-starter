@@ -256,7 +256,7 @@ Naming is something that always provokes controversy because most of us have som
 
 By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application. All of our tests are written inside the `tests` folder in the project root.
 
-We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) as the most suitable libraries for testing the valid operation of the application. When we talk about application testing, we can divide all tests into three different logical levels.
+We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
 
 ### Unit testing
 
@@ -272,7 +272,7 @@ yarn unit-test
 
 ### Component testing
 
-Component testing is conceptually the same as unit testing, except that instead of functions, we test components. We want to write these tests because the number of components very easily reaches a large number, and then it becomes almost impossible to check them all to see if they still behave as expected in various cases after each change in the source code or their implementation.
+Component testing is conceptually the same as unit testing, except that instead of functions, we test components. We want to write these tests because the number of components can very easily reach a large number. Now, after each change in the source code, it becomes almost impossible to check all of their states to see if they still behave as expected.
 
 Component tests are written inside the `tests/component` folder. There are already tests written for each component in the application from the `components` folder. They can be recognized by the `spec.jsx` extension.
 
