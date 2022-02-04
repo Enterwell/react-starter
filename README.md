@@ -51,6 +51,7 @@ This document represents the official React starter documentation. React starter
 If any doubts remain after reading this document, feel free to contact us via [GH Issues](https://github.com/Enterwell/react-starter/issues).
 
 ## Table of contents
+
 * [Why React and why Next.js?](#why-react-and-why-nextjs)
 * [Project structure](#project-structure)
   * [Project root files](#project-root-files)
@@ -89,15 +90,16 @@ The React starter's root contains all the configuration files of the tools used 
 * `.eslintrc` - used for configuring [ESLint](https://eslint.org/)
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
-* `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDepenndencies`)
+* `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDependencies`)
 * `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
 * `jest.config.js` - used for configuring [Jest](https://jestjs.io/) 
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
 * `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
-* `CHANGELOG.md` - used for keeping [application change logs](https://keepachangelog.com/en/1.0.0/) (adding new features, fixing bugs, etc.) 
+* `CHANGELOG.md` - used for keeping [application change logs](https://keepachangelog.com/en/1.0.0/) (adding new features, fixing bugs, etc.)
 
 ### Project root folders
+
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
@@ -137,7 +139,7 @@ React applications developed at Enterwell in previous years used `react-router` 
 
 Since this way of routing is typical of Next.js, and due to the desire to make applications a little less coupled with it, `pages` components service only as an encapsulation around the `views` components.
 
-It is important to note that within the `pages` folder there are also files that do not correspond directly to the application routes. This refers to [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) and [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) files that have a special role defined by Next.js. 
+It is important to note that within the `pages` folder there are also files that do not correspond directly to the application routes. This refers to [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) and [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) files that have a special role defined by Next.js.
 
 #### Views
 
@@ -224,9 +226,11 @@ To make it easier to develop components (whether `component` or `views`) and iso
 In order to add new component to `Storybook` it is necessary to define a [story](https://storybook.js.org/docs/react/get-started/whats-a-story) file within the same folder as the component file, which can be identified by the `.stories.jsx` extension. You can read up on how to write a story [here](https://storybook.js.org/docs/react/writing-stories/introduction#how-to-write-stories).
 
 Starting the `Storybook` UI interface is done with the command
+
+```bash
+yarn storybook
 ```
-$ yarn storybook
-```
+
 This command will start `Storybook` locally and output the address at which the process is running. Depending on your system configuration, the address will automatically be opened in a new browser tab.
 
 ## Styles
@@ -324,7 +328,7 @@ One of the questions that come up when adding packages is whether they should be
 
 The following are packages that have been added to the project by default and will most likely be used in the application. If it turns out that there is no need for some of them, they can be removed freely. Note: packages that are tools to help the development and the build of the application (`babel`, `eslint`, `next`, etc.) are not described.
 
-* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library which role has already been described and which name is in the name of the starter, which implies that it is impossible not to use 
+* [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library which role has already been described and which name is in the name of the starter, which implies that it is impossible not to use
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library that allows you to separate application logic from rendering components (allows data changes to cause components to render - it has a similar effect as state components but it is not necessarily related to it)
 * [`cypress`](https://www.cypress.io/) - library that allows you to write tests for the application
 * [`@mui/material`](https://mui.com/) / [`@mui/icons-material`](https://mui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
@@ -350,60 +354,59 @@ If none of the following packages meet your wishes and demands, you need to add 
 
 Clone the repository if you haven't already downloaded it and move to the appropriate directory.
 
-```
-$ git clone https://github.com/Enterwell/react-starter.git <your-project-name>
-$ cd <your-project-name>
+```bash
+git clone https://github.com/Enterwell/react-starter.git <your-project-name>
+cd <your-project-name>
 ```
 
 Before you start developing the application, you need to install all the packages it uses. The recommended way to do this is by using `Yarn` and the command
 
+```bash
+yarn install
 ```
-$ yarn install
-```
-
-<br>
 
 Once all of the packages are installed, it is possible to run the application itself. There are several commands with which you can do this and it all depends on whether you want the application to run in `development` or `production` mode and whether you want to use the local API or not.
 
 Starting the application in `development` mode using the remote API is done with the command
 
+```bash
+yarn dev
 ```
-$ yarn dev
-```
+
 Starting the application in `development` mode using the local API is done with the command
 
+```bash
+yarn dev-local
 ```
-$ yarn dev-local
-```
-
-</br>
 
 When application development is complete, the application needs to be `built`. `Building` the application is done using the commands
 
-```
-$ yarn build
+```bash
+yarn build
 ```
 
-```
-$ yarn build-local
+```bash
+yarn build-local
 ```
 
 depending on whether the application uses a local or remote API.
 
 When you have successfully `built` your application, you can start the `production` version using the command
 
+```bash
+yarn start
 ```
-$ yarn start
-```
+
 Whether running in `development` or `production` mode, application is available at `http://localhost:3000`.
 
 </br>
 
 Exporting your application to static HTML, which can then be run standalone without the need of a `Node.js` server is done using the command
 
+```bash
+yarn export
 ```
-$ yarn export
-```
+
 This command generates an `out` directory in the project root. Only use this command if you don't need any of the [features](https://nextjs.org/docs/advanced-features/static-html-export#unsupported-features) requiring a `Node.js` server.
 
 ## Predeployment TODOs
