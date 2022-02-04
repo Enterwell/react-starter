@@ -4,15 +4,17 @@
 beforeEach(() => {
   cy.intercept('GET', '**/pokemon?offset=0&limit=10', { fixture: 'pokemonsOffset0Limit10' });
   cy.intercept('GET', '**/pokemon?offset=10&limit=10', { fixture: 'pokemonsOffset10Limit10' });
+  cy.visit('/pokemons');
 });
 
 /**
  * Pokemons page tests.
  */
 describe('Pokemons page', () => {
+  /**
+   * Testing that the page has list of 10 pokemons and that the first one is correct.
+   */
   it('shows the Pokemons data', () => {
-    cy.visit('/pokemons');
-
     cy.get('[class*="PokemonsView_item"]')
       .should('have.length', 10);
 
@@ -21,9 +23,10 @@ describe('Pokemons page', () => {
       .contains('ivysaur');
   });
 
+  /**
+   * Testing that the page contains working pagination with which we can change pages.
+   */
   it('has working pagination', () => {
-    cy.visit('/pokemons');
-
     cy.get('[class*="MuiPaginationItem-previousNext"]')
       .eq(1)
       .click();
@@ -47,9 +50,11 @@ describe('Pokemons page', () => {
       .contains('ivysaur');
   });
 
+  /**
+   * Testing that clicking on first pokemon from the page's list opens the
+   * correct pokemon details page.
+   */
   it('correctly opens Pokemon\'s details', () => {
-    cy.visit('/pokemons');
-
     cy.get('[class*="PokemonsView_item"]')
       .eq(0)
       .click();
