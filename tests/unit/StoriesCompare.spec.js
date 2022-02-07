@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Import testing script
-const { run } = require('../../helpers/StorycapCompare');
+const { run } = require('../../helpers/StoriesCompare');
 
 // Node helpers import
 const { getFilesRecursively, removeFolder } = require('../../helpers/NodeHelpers');
@@ -12,11 +12,11 @@ const { getFilesRecursively, removeFolder } = require('../../helpers/NodeHelpers
 const testRoot = path.join(__dirname, 'test_structure');
 
 // Directory names
-const APPROVED_DIR_NAME = '.storycap-approved';
-const PENDING_DIR_NAME = '.storycap-pending';
+const APPROVED_DIR_NAME = '.stories-approved';
+const PENDING_DIR_NAME = '.stories-pending';
 
-const APPROVED_STORYCAPS = path.join(testRoot, APPROVED_DIR_NAME);
-const PENDING_STORYCAPS = path.join(testRoot, PENDING_DIR_NAME);
+const APPROVED_STORIES = path.join(testRoot, APPROVED_DIR_NAME);
+const PENDING_STORIES = path.join(testRoot, PENDING_DIR_NAME);
 
 /**
  * Creates the directory with the given name and populates it with given files.
@@ -66,10 +66,10 @@ describe('Storycap compare unit tests', () => {
     const shouldBePending = [...files];
 
     // Act
-    run(APPROVED_STORYCAPS, PENDING_STORYCAPS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORYCAPS);
-    const pendingFiles = getFilesRecursively(PENDING_STORYCAPS);
+    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
+    const pendingFiles = getFilesRecursively(PENDING_STORIES);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -111,10 +111,10 @@ describe('Storycap compare unit tests', () => {
     const shouldBeApproved = [...pending];
 
     // Act
-    run(APPROVED_STORYCAPS, PENDING_STORYCAPS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORYCAPS);
-    const pendingFiles = getFilesRecursively(PENDING_STORYCAPS);
+    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
+    const pendingFiles = getFilesRecursively(PENDING_STORIES);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -156,10 +156,10 @@ describe('Storycap compare unit tests', () => {
     const shouldBePending = [...approved];
 
     // Act
-    run(APPROVED_STORYCAPS, PENDING_STORYCAPS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORYCAPS);
-    const pendingFiles = getFilesRecursively(PENDING_STORYCAPS);
+    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
+    const pendingFiles = getFilesRecursively(PENDING_STORIES);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -207,10 +207,10 @@ describe('Storycap compare unit tests', () => {
     ];
 
     // Act
-    run(APPROVED_STORYCAPS, PENDING_STORYCAPS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORYCAPS);
-    const pendingFiles = getFilesRecursively(PENDING_STORYCAPS);
+    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
+    const pendingFiles = getFilesRecursively(PENDING_STORIES);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);

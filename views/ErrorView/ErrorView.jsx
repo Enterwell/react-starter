@@ -9,7 +9,7 @@ import styles from './ErrorView.module.scss';
 function Error() {
   return (
     <div className={styles.container}>
-      There was an error. Developers are already notified.
+      There was an error. Please refresh the page.
     </div>
   );
 }

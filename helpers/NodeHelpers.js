@@ -1,6 +1,7 @@
 // General import
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const { stdout } = require('process');
 
 /**
@@ -47,11 +48,11 @@ module.exports.logProcess = (message, taskToRun) => {
   try {
     stdout.write(message);
     const valueToReturn = taskToRun();
-    stdout.write(' DONE ✔\n');
+    stdout.write(`${chalk.green(' DONE ✔')}\n`);
 
     return valueToReturn;
   } catch (error) {
-    stdout.write(' ERROR X\n');
+    stdout.write(`${chalk.red(' ERROR X')}\n`);
 
     throw error;
   }
