@@ -73,12 +73,13 @@ const run = (
       }
     });
 
-    if (numberOfChanges) {
-      console.log(`Detected ${numberOfChanges} changes`);
-    }
+    console.log(`Detected changes: ${numberOfChanges}`);
+
+    if (numberOfChanges) process.exit(1);
   } catch (error) {
-    console.error('Error occurred while running the script:');
-    console.error(error);
+    console.error(chalk.red('Error occurred while running the script:'));
+    console.error(chalk.red(error));
+    process.exit(2);
   }
 };
 

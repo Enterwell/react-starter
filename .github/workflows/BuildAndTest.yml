@@ -13,11 +13,13 @@ on:
 
 jobs:
   build-lint-and-test:
+    name: Build, lint and test
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2

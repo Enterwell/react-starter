@@ -65,6 +65,8 @@ describe('Storycap compare unit tests', () => {
     const shouldBeApproved = [...files];
     const shouldBePending = [...files];
 
+    const exitMock = jest.spyOn(process, 'exit').mockImplementation();
+
     // Act
     run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
@@ -87,6 +89,9 @@ describe('Storycap compare unit tests', () => {
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(shouldBePending[index].content);
     });
+
+    expect(exitMock).not.toHaveBeenCalled();
+    exitMock.mockRestore();
   });
 
   /**
@@ -110,6 +115,8 @@ describe('Storycap compare unit tests', () => {
     const shouldBePending = [...pending];
     const shouldBeApproved = [...pending];
 
+    const exitMock = jest.spyOn(process, 'exit').mockImplementation();
+
     // Act
     run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
@@ -132,6 +139,9 @@ describe('Storycap compare unit tests', () => {
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(shouldBePending[index].content);
     });
+
+    expect(exitMock).toHaveBeenCalled();
+    exitMock.mockRestore();
   });
 
   /**
@@ -155,6 +165,8 @@ describe('Storycap compare unit tests', () => {
     const shouldBeApproved = [...pending];
     const shouldBePending = [...approved];
 
+    const exitMock = jest.spyOn(process, 'exit').mockImplementation();
+
     // Act
     run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
@@ -177,6 +189,9 @@ describe('Storycap compare unit tests', () => {
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(shouldBePending[index].content);
     });
+
+    expect(exitMock).toHaveBeenCalled();
+    exitMock.mockRestore();
   });
 
   /**
@@ -206,6 +221,8 @@ describe('Storycap compare unit tests', () => {
       { name: 'Test1', content: 'Test1Content' }
     ];
 
+    const exitMock = jest.spyOn(process, 'exit').mockImplementation();
+
     // Act
     run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
@@ -228,5 +245,8 @@ describe('Storycap compare unit tests', () => {
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(shouldBePending[index].content);
     });
+
+    expect(exitMock).toHaveBeenCalled();
+    exitMock.mockRestore();
   });
 });
