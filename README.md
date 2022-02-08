@@ -404,21 +404,16 @@ For a more organized development of components and pages, we use `Storybook` as 
 
 `Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
 
-Two scripts have been defined within `project.json` that are used for this purpose.
-
-```bash
-yarn stories-approve
-```
-is used in the initial project setup. This command launches `Storycap` and places generated images to the `.stories-approved` folder in the project root.
-
-Later, when developing and submitting changes to one of the version control services, we use a command
+Script has been defined within `project.json` that is used for this purpose.
 
 ```bash
 yarn stories-check
 ```
-which will also run `Storycap` and place generated images in the `.stories-pending` folder in the project root. The command will then run our custom logic contained in the `StoriesCompare.js` helper.
+which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The command will then run our custom logic contained in the `StoriesCompare.js` helper.
 
 At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.stories-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
+
+This script is run automatically on all PRs to the `main` branch by the `.github/workflows/StoriesCheck.yml` GitHub Action. The workflow creates a commit with the modified images to the branch that targets `main`.
 
 This gives us an easy way to get a visual comparison of the stories that have changed when reviewing the PRs.
 

@@ -1,12 +1,12 @@
 // General imports
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 // Import testing script
 const { run } = require('../../helpers/StoriesCompare');
 
 // Node helpers import
-const { getFilesRecursively, removeFolder } = require('../../helpers/NodeHelpers');
+const { getFilesRecursively } = require('../../helpers/NodeHelpers');
 
 // Path to the temporary test folder structure.
 const testRoot = path.join(__dirname, 'test_structure');
@@ -46,7 +46,7 @@ describe('Storycap compare unit tests', () => {
    * Runs after each individual test.
    */
   afterEach(() => {
-    removeFolder(testRoot);
+    fs.removeSync(testRoot);
   });
 
   /**

@@ -1,5 +1,5 @@
 // General imports
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 
@@ -30,6 +30,9 @@ const run = (
   try {
     let numberOfChanges = 0;
 
+    // Ensure the approved directory exists.
+    fs.ensureDirSync(approvedStories);
+
     // Get all the approved files.
     const approvedFiles = logProcess('Fetching approved files...', () => getFilesRecursively(approvedStories));
 
@@ -44,7 +47,7 @@ const run = (
       // If the approved file is an old one (does not exist in the pending folder)
       // delete it from the approved folder.
       if (!pendingFiles.includes(possiblePending)) {
-        logProcess(`\t${chalk.red(`[-] ${approvedFileShort}`)}`, () => fs.unlinkSync(approvedFile));
+        logProcess(`\t${chalk.red(`[-] ${approvedFileShort}`)}`, () => fs.removeSync(approvedFile));
         numberOfChanges++;
       }
     });
@@ -57,7 +60,7 @@ const run = (
       // If the pending file is a new one (does not exist in the approved folder)
       // move it to the approved folder.
       if (!approvedFiles.includes(possibleNew)) {
-        logProcess(`\t${chalk.green(`[+] ${possibleNewShort}`)}`, () => fs.renameSync(pendingFile, possibleNew));
+        logProcess(`\t${chalk.green(`[+] ${possibleNewShort}`)}`, () => fs.moveSync(pendingFile, possibleNew, { overwrite: true }));
         numberOfChanges++;
       } else {
         const pendingFileBytes = fs.readFileSync(pendingFile);
@@ -65,7 +68,7 @@ const run = (
 
         // If the files are not the same, overwrite it.
         if (!pendingFileBytes.equals(approvedFileBytes)) {
-          logProcess(`\t${chalk.yellow(`[≠] ${possibleNewShort}`)}`, () => fs.renameSync(pendingFile, possibleNew));
+          logProcess(`\t${chalk.yellow(`[≠] ${possibleNewShort}`)}`, () => fs.moveSync(pendingFile, possibleNew, { overwrite: true }));
           numberOfChanges++;
         } else {
           console.log(`\t${chalk.white(`[=] ${possibleNewShort}`)}`);
