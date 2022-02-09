@@ -1,16 +1,8 @@
 // General import
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
+const chalk = require('chalk');
 const { stdout } = require('process');
-
-/**
- * Removes folder and all its contents on the provided path.
- *
- * @param {string} directory Path to the folder wanting to remove.
- */
-module.exports.removeFolder = (directory) => {
-  fs.rmSync(directory, { recursive: true, force: true });
-};
 
 /**
  * Gets all the file paths from the selected directory recursively.
@@ -47,11 +39,11 @@ module.exports.logProcess = (message, taskToRun) => {
   try {
     stdout.write(message);
     const valueToReturn = taskToRun();
-    stdout.write(' DONE ✔\n');
+    stdout.write(`${chalk.green(' DONE ✔')}\n`);
 
     return valueToReturn;
   } catch (error) {
-    stdout.write(' ERROR X\n');
+    stdout.write(`${chalk.red(' ERROR X')}\n`);
 
     throw error;
   }

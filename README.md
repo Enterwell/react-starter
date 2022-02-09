@@ -128,7 +128,7 @@ The React starter's root contains all the configuration files of the tools used 
 ### Project root folders
 
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
-* `.storycap-approved` - a place where images of all of the defined `Storybook` stories are stored
+* `.stories-approved` - a place where images of all of the defined `Storybook` stories are stored
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
@@ -294,7 +294,7 @@ We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypre
 
 Unit testing is different from other testing methods because it consists of testing isolated parts of the source code, testing the code and logic. We use them in the application to test `services` and `helpers` or any other JavaScript code when there is some advanced logic. We will never use unit tests, or any other testing method, for testing third-party code directly, because if we depend on a certain package, we must be able to assume that it will work properly.
 
-Unit tests are written inside the `tests/unit` folder. There are already 2 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service and `StorycapCompare.spec.js` testing the `StorycapComapre.js` helper.
+Unit tests are written inside the `tests/unit` folder. There are already 2 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service and `StoriesCompare.spec.js` testing the `StoriesCompare.js` helper.
 
 Unit tests can be run directly from the command line using the command
 
@@ -404,21 +404,16 @@ For a more organized development of components and pages, we use `Storybook` as 
 
 `Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
 
-Two scripts have been defined within `project.json` that are used for this purpose.
+Script has been defined within `project.json` that is used for this purpose.
 
 ```bash
-yarn storycap-approve
+yarn stories-check
 ```
-is used in the initial project setup. This command launches `Storycap` and places generated images to the `.storycap-approved` folder in the project root.
+which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The command will then run our custom logic contained in the `StoriesCompare.js` helper.
 
-Later, when developing and submitting changes to one of the version control services, we use a command
+At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.stories-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
 
-```bash
-yarn storycap
-```
-which will also run `Storycap` and place generated images in the `.storycap-pending` folder in the project root. The command will then run our custom logic contained in the `StorycapCompare.js` helper.
-
-At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.storycap-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
+This script is run automatically on all PRs to the `main` branch by the `.github/workflows/StoriesCheck.yml` GitHub Action. The workflow creates a commit with the modified images to the branch that targets `main`.
 
 This gives us an easy way to get a visual comparison of the stories that have changed when reviewing the PRs.
 

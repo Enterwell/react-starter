@@ -1,0 +1,43 @@
+name: Stories check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checkStories:
+    name: Stories check
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+
+      - name: Yarn install
+        run: yarn install --network-timeout 1000000
+
+      - name: Run stories-check
+        id: storiesCheck
+        run: yarn stories-check
+
+      - name: Commit story changes
+        id: csc
+        if: failure() && steps.storiesCheck.outcome == 'failure'
+        uses: EndBug/add-and-commit@v8
+        with:
+          add: '.stories-approved'
+          message: '[skip ci] [stories-check] Automated story changes'
+          new_branch: ${{ github.head_ref }}
+          default_author: github_actions
+      
+      - name: Workflow outputs
+        if: failure() && steps.storiesCheck.outcome == 'failure'
+        run: echo 'Commit short SHA - ${{ steps.csc.outputs.commit_sha }}'
