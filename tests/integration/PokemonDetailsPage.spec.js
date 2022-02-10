@@ -1,15 +1,15 @@
 /**
- * API requests fixtures.
- */
-beforeEach(() => {
-  cy.intercept('GET', '**/pokemon/1', { fixture: 'pokemonId1' });
-  cy.visit('/pokemons/1');
-});
-
-/**
  * Pokemon details page tests.
  */
 describe('Pokemon details page', () => {
+  /**
+   * API requests fixtures.
+   */
+  beforeEach(() => {
+    cy.intercept('GET', '**/pokemon/1', { fixture: 'pokemonId1' });
+    cy.visit('/pokemons/1');
+  });
+
   /**
    * Testing that the page shows pokemon's details data.
    */
