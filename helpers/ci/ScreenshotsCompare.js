@@ -1,43 +1,30 @@
 // General imports
 const fs = require('fs-extra');
-const path = require('path');
 const chalk = require('chalk');
 
 // Node helpers import
 const { getFilesRecursively, logProcess } = require('./NodeHelpers');
 
-// Directory paths
-const APPROVED_DIR_NAME = '.stories-approved';
-const PENDING_DIR_NAME = '.stories-pending';
-
-const APPROVED_STORIES = path.join(__dirname, `../${APPROVED_DIR_NAME}`);
-const PENDING_STORIES = path.join(__dirname, `../${PENDING_DIR_NAME}`);
-
 /**
  * Scripts main function.
  *
- * @param {string} approvedStories Path to the approved stories directory
- * @param {string} pendingStories Path to the pending stories directory
- * @param {string} approvedDirName Name of the approved stories directory
- * @param {string} pendingDirName Name of the pending stories directory
+ * @param {string} approvedPath Path to the approved screenshots directory
+ * @param {string} pendingPath Path to the pending screenshots directory
+ * @param {string} approvedDirName Name of the approved screenshots directory
+ * @param {string} pendingDirName Name of the pending screenshots directory
  */
-const run = (
-  approvedStories = APPROVED_STORIES,
-  pendingStories = PENDING_STORIES,
-  approvedDirName = APPROVED_DIR_NAME,
-  pendingDirName = PENDING_DIR_NAME
-) => {
+const compare = (approvedPath, pendingPath, approvedDirName, pendingDirName) => {
   try {
     let numberOfChanges = 0;
 
     // Ensure the approved directory exists.
-    fs.ensureDirSync(approvedStories);
+    fs.ensureDirSync(approvedPath);
 
     // Get all the approved files.
-    const approvedFiles = logProcess('Fetching approved files...', () => getFilesRecursively(approvedStories));
+    const approvedFiles = logProcess('Fetching approved files...', () => getFilesRecursively(approvedPath));
 
     // Get all the pending files.
-    const pendingFiles = logProcess('Fetching pending files...', () => getFilesRecursively(pendingStories));
+    const pendingFiles = logProcess('Fetching pending files...', () => getFilesRecursively(pendingPath));
 
     // Iterate all the approved files.
     approvedFiles.forEach((approvedFile) => {
@@ -86,4 +73,4 @@ const run = (
   }
 };
 
-module.exports = { run };
+module.exports = { compare };

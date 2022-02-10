@@ -1,9 +1,11 @@
 {
   "baseUrl": "http://localhost:3000",
   "integrationFolder": "tests/integration",
+  "screenshotsFolder": ".cypress-pending",
   "component": {
     "componentFolder": "tests/component",
-    "testFiles": "*.@(spec|test).@(js|jsx|ts|tsx)"
+    "testFiles": "*.@(spec|test).@(js|jsx|ts|tsx)",
+    "trashAssetsBeforeRuns": false
   },
   "experimentalStudio": true
 }

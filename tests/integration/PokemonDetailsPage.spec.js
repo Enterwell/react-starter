@@ -1,5 +1,5 @@
 /**
- * API requests fixtures,
+ * API requests fixtures.
  */
 beforeEach(() => {
   cy.intercept('GET', '**/pokemon/1', { fixture: 'pokemonId1' });
@@ -16,6 +16,9 @@ describe('Pokemon details page', () => {
   it('shows the Pokemon\'s details data', () => {
     cy.get('[class*="PokemonDetailsView_name"]')
       .contains('bulbasaur');
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-details');
   });
 
   /**
@@ -54,5 +57,8 @@ describe('Pokemon details page', () => {
 
     cy.get('[class*="PokemonDetailsView_user"]')
       .contains('Matej');
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-details-question-name-updated');
   });
 });

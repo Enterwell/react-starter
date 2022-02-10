@@ -9,5 +9,8 @@ describe('404 page', () => {
     cy.visit('/this/is/some/bad/url', { failOnStatusCode: false });
 
     cy.get('h1').contains('404');
+
+    cy.wait(3000);
+    cy.screenshot('404-page');
   });
 });

@@ -21,6 +21,9 @@ describe('Pokemons page', () => {
     cy.get('[class*="PokemonsView_item"]')
       .eq(1)
       .contains('ivysaur');
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-list');
   });
 
   /**
@@ -33,6 +36,9 @@ describe('Pokemons page', () => {
 
     cy.get('[class*="PokemonsView_item"]')
       .should('have.length', 9);
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-list-second-page');
 
     cy.get('[class*="PokemonsView_item"]')
       .eq(1)
