@@ -39,9 +39,12 @@ Cypress.Commands.overwrite('screenshot', (originalFn, fileName, options) => {
     }
   });
 
-  // Wait a little for all assets to be properly rendered
+  // Wait a little for all assets to be loaded properly
   cy.wait(200);
 
   // Call the original 'screenshot' function
   originalFn(fileName, options);
+
+  // 'Screenshot' is an asynchronous command and takes awhile to complete
+  cy.wait(400);
 });
