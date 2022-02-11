@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Import testing script
-const { run } = require('../../helpers/ci/StoriesCompare');
+const { run } = require('../../helpers/ci/CypressCompare');
 
 // Node helpers import
 const { getFilesRecursively } = require('../../helpers/ci/NodeHelpers');
@@ -12,11 +12,11 @@ const { getFilesRecursively } = require('../../helpers/ci/NodeHelpers');
 const testRoot = path.join(__dirname, 'test_structure');
 
 // Directory names
-const APPROVED_DIR_NAME = '.stories-approved';
-const PENDING_DIR_NAME = '.stories-pending';
+const APPROVED_DIR_NAME = '.cypress-approved';
+const PENDING_DIR_NAME = '.cypress-pending';
 
-const APPROVED_STORIES = path.join(testRoot, APPROVED_DIR_NAME);
-const PENDING_STORIES = path.join(testRoot, PENDING_DIR_NAME);
+const APPROVED_CYPRESS = path.join(testRoot, APPROVED_DIR_NAME);
+const PENDING_CYPRESS = path.join(testRoot, PENDING_DIR_NAME);
 
 /**
  * Creates the directory with the given name and populates it with given files.
@@ -32,9 +32,9 @@ const createAndPopulateDirectory = (dirName, filesToWrite) => {
 };
 
 /**
- * Stories compare helper unit tests.
+ * Cypress compare helper unit tests.
  */
-describe('Stories compare unit tests', () => {
+describe('Cypress compare unit tests', () => {
   /**
    * Runs before each individual test.
    */
@@ -50,7 +50,7 @@ describe('Stories compare unit tests', () => {
   });
 
   /**
-   * Newly captured stories are the same as already approved ones.
+   * Newly captured screenshots are the same as already approved ones.
    * Testing that the helper does nothing if approved and pending files are the same.
    */
   it('Should do nothing if approved and pending files are the same', () => {
@@ -68,10 +68,10 @@ describe('Stories compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
-    const pendingFiles = getFilesRecursively(PENDING_STORIES);
+    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
+    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -95,7 +95,7 @@ describe('Stories compare unit tests', () => {
   });
 
   /**
-   * There are fewer newly captured stories.
+   * There are fewer newly captured screenshots.
    * Testing that the helper deletes the extra approved files if they do not exist among
    * the pending files.
    */
@@ -118,10 +118,10 @@ describe('Stories compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
-    const pendingFiles = getFilesRecursively(PENDING_STORIES);
+    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
+    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -145,7 +145,7 @@ describe('Stories compare unit tests', () => {
   });
 
   /**
-   * There are more newly captured stories than approved stories.
+   * There are more newly captured screenshots than approved screenshots.
    * Testing that the helper approves the extra pending files if they do not exist among
    * the approved files.
    */
@@ -168,10 +168,10 @@ describe('Stories compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
-    const pendingFiles = getFilesRecursively(PENDING_STORIES);
+    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
+    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -195,7 +195,7 @@ describe('Stories compare unit tests', () => {
   });
 
   /**
-   * Not all newly captured stories are the same as already approved ones.
+   * Not all newly captured screenshots are the same as already approved ones.
    * Testing that the helper overwrites the approved files with their pending counterparts
    * if they are not the same.
    */
@@ -224,10 +224,10 @@ describe('Stories compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_STORIES, PENDING_STORIES, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_STORIES);
-    const pendingFiles = getFilesRecursively(PENDING_STORIES);
+    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
+    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);

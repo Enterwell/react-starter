@@ -23,3 +23,28 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+/**
+ * Cypress 'screenshot' method overwrite.
+ *
+ * @param {Function} originalFn Original 'screenshot' function that is begin overwritten.
+ * @param {string} fileName A name for the image file.
+ * @param {Object} options Options object to change the default behavior of the function.
+ */
+Cypress.Commands.overwrite('screenshot', (originalFn, fileName, options) => {
+  // If there is any focused element, blur it
+  cy.get('body').then(($body) => {
+    if ($body.find(':focus').length > 0) {
+      cy.get(':focus').blur();
+    }
+  });
+
+  // Wait a little for all assets to be loaded properly
+  cy.wait(200);
+
+  // Call the original 'screenshot' function
+  originalFn(fileName, options);
+
+  // 'Screenshot' is an asynchronous command and takes awhile to complete
+  cy.wait(1000);
+});

@@ -9,5 +9,8 @@ describe('Internal server error page', () => {
     cy.visit('/500', { failOnStatusCode: false });
 
     cy.get('h1').contains('500');
+
+    cy.wait(3000);
+    cy.screenshot('500-page');
   });
 });

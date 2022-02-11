@@ -129,6 +129,7 @@ The React starter's root contains all the configuration files of the tools used 
 
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
 * `.stories-approved` - a place where images of all of the defined `Storybook` stories are stored
+* `.cypress-approved` - a place where all cypress screenshots are stored
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
@@ -294,7 +295,7 @@ We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypre
 
 Unit testing is different from other testing methods because it consists of testing isolated parts of the source code, testing the code and logic. We use them in the application to test `services` and `helpers` or any other JavaScript code when there is some advanced logic. We will never use unit tests, or any other testing method, for testing third-party code directly, because if we depend on a certain package, we must be able to assume that it will work properly.
 
-Unit tests are written inside the `tests/unit` folder. There are already 2 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service and `StoriesCompare.spec.js` testing the `StoriesCompare.js` helper.
+Unit tests are written inside the `tests/unit` folder. There are already 3 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service, `StoriesCompare.spec.js` testing the `StoriesCompare.js` helper and `CypressCompare.spec.js` testing the `CypressCompare.js` helper.
 
 Unit tests can be run directly from the command line using the command
 
@@ -324,7 +325,7 @@ yarn component-test-open
 
 E2E or end-to-end tests are used to verify that the application is working as a whole. They confirm big features and even entire pages. Most often, they "survive" refactoring because, despite refactoring, application still needs to work as expected. They represent how users use the application and give us the most confidence that the application is working properly.
 
-End-to-end tests are written inside the `tests/integration` folder. There are already tests written for each page of the application from the `views` folder. They can be recongnized by the `spec.js` extension.
+End-to-end tests are written inside the `tests/integration` folder. There are already tests written for each page of the application from the `views` folder. They can be recognized by the `spec.js` extension.
 
 End-to-end tests can be run directly from the command line using the command
 
@@ -345,6 +346,33 @@ Various different commands were shown that can run each testing method separatel
 ```bash
 yarn test
 ```
+
+In both, component and end-to-end tests, we can use `Cypress`'s handy [screenshot](https://docs.cypress.io/api/commands/screenshot) command. Using this command we can generate a screenshot of the application under test at any desired moment. This can make it easier for us to review PRs and all new future changes.
+
+The screenshot command can be called with and without a parameter.
+
+```bash
+cy.screenshot()
+```
+takes a screenshot that will be stored in the `.cypress-pending` directory with a default name including the current test's suite and test name.
+
+```bash
+cy.screenshot(fileName)
+```
+takes a screenshot that will be stored in the `.cypress-pending` directory with a given name instead of the default one.
+
+We have defined our own `screenshot` command override in the `cypress/support/commands.js` module. Our custom `screenshot` implementation unfocuses any focused element (for consistent screenshots), waits `200ms` for any assets that may be loading, and then calls the original command.
+
+We have also defined the following script within `project.json`
+
+```bash
+yarn cypress-check
+```
+which runs our end-to-end and component tests and places the generated screenshots in the `.cypress-pending` folder in the project root. The script will then run our custom logic contained in the `CypressCompare.js` helper.
+
+This script is run automatically on all PRs to the `main` branch by the `.github/workflows/ScreenshotsCheck.yml` GitHub Action. The workflow creates a commit with the screenshots to the PR branch.
+
+This gives us an easy way to get a visual comparison of the tests that have changed when reviewing the PRs.
 
 #### Interactive testing using the Cypress Studio
 
@@ -409,11 +437,11 @@ Script has been defined within `project.json` that is used for this purpose.
 ```bash
 yarn stories-check
 ```
-which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The command will then run our custom logic contained in the `StoriesCompare.js` helper.
+which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The script will then run our custom logic contained in the `StoriesCompare.js` helper.
 
 At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.stories-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
 
-This script is run automatically on all PRs to the `main` branch by the `.github/workflows/StoriesCheck.yml` GitHub Action. The workflow creates a commit with the modified images to the branch that targets `main`.
+This script is run automatically on all PRs to the `main` branch by the `.github/workflows/ScreenshotsCheck.yml` GitHub Action. The workflow creates a commit with the modified images to the PR branch.
 
 This gives us an easy way to get a visual comparison of the stories that have changed when reviewing the PRs.
 

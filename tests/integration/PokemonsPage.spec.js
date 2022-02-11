@@ -1,16 +1,16 @@
 /**
- * API requests fixtures,
- */
-beforeEach(() => {
-  cy.intercept('GET', '**/pokemon?offset=0&limit=10', { fixture: 'pokemonsOffset0Limit10' });
-  cy.intercept('GET', '**/pokemon?offset=10&limit=10', { fixture: 'pokemonsOffset10Limit10' });
-  cy.visit('/pokemons');
-});
-
-/**
  * Pokemons page tests.
  */
 describe('Pokemons page', () => {
+  /**
+  * API requests fixtures.
+  */
+  beforeEach(() => {
+    cy.intercept('GET', '**/pokemon?offset=0&limit=10', { fixture: 'pokemonsOffset0Limit10' });
+    cy.intercept('GET', '**/pokemon?offset=10&limit=10', { fixture: 'pokemonsOffset10Limit10' });
+    cy.visit('/pokemons');
+  });
+
   /**
    * Testing that the page has list of 10 pokemons and that the first one is correct.
    */
@@ -21,6 +21,9 @@ describe('Pokemons page', () => {
     cy.get('[class*="PokemonsView_item"]')
       .eq(1)
       .contains('ivysaur');
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-list');
   });
 
   /**
@@ -33,6 +36,9 @@ describe('Pokemons page', () => {
 
     cy.get('[class*="PokemonsView_item"]')
       .should('have.length', 9);
+
+    cy.wait(3000);
+    cy.screenshot('pokemon-list-second-page');
 
     cy.get('[class*="PokemonsView_item"]')
       .eq(1)
