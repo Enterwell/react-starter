@@ -33,7 +33,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.4.2",
-    "@mui/styles": "^5.4.1",
+    "@mui/styles": "^5.4.2",
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
     "mobx": "^6.3.13",
