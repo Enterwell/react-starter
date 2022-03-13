@@ -38,11 +38,6 @@ function App(props) {
 
   const finalTheme = theme(isDarkMode);
 
-  // Resolving dark mode 'blink'.
-  if (isDarkMode == null) {
-    return null;
-  }
-
   return (
     <>
       <Head>
@@ -54,7 +49,7 @@ function App(props) {
         <ThemeProvider theme={finalTheme}>
           <CssBaseline />
           <ThemeSwitcher
-            isDarkMode={isDarkMode}
+            isDarkMode={isDarkMode ?? false}
             onModeChange={toggleThemeChange}
           />
           {Component.showUser && (
