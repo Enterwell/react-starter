@@ -2,11 +2,12 @@
 import Head from 'next/head';
 
 // Components import
-import { StylesProvider } from '@mui/styles';
+import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import UserInformation from '../components/UserInformation/UserInformation';
 import ThemeSwitcher from '../components/ThemeSwitcher/ThemeSwitcher';
+import createEmotionCache from '../config/createEmotionCache';
 
 // Use dark mode hook import
 import useDarkMode from '../hooks/useDarkMode';
@@ -20,6 +21,8 @@ import '../styles/global.scss';
 // Checks whether app is in production or development mode
 const isProduction = process.env.NODE_ENV === 'production';
 
+const clientSideEmotionCache = createEmotionCache();
+
 /**
  * Custom app component. This component is wrapper around each page so the logic common to
  * all pages should be placed here. More about custom app can be found on the following link
@@ -29,41 +32,29 @@ const isProduction = process.env.NODE_ENV === 'production';
  * @returns component's elements
  */
 function App(props) {
-  const {
-    Component,
-    pageProps
-  } = props;
-
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const [isDarkMode, toggleThemeChange] = useDarkMode();
-
   const finalTheme = theme(isDarkMode);
 
-  // Resolving dark mode 'blink'.
-  if (isDarkMode == null) {
-    return null;
-  }
-
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>
           {`${Component.title || 'React starter'} ${!isProduction ? ' - development' : ''}`}
         </title>
       </Head>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={finalTheme}>
-          <CssBaseline />
-          <ThemeSwitcher
-            isDarkMode={isDarkMode}
-            onModeChange={toggleThemeChange}
-          />
-          {Component.showUser && (
-            <UserInformation />
-          )}
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </StylesProvider>
-    </>
+      <ThemeProvider theme={finalTheme}>
+        <CssBaseline />
+        <ThemeSwitcher
+          isDarkMode={isDarkMode ?? false}
+          onModeChange={toggleThemeChange}
+        />
+        {Component.showUser && (
+        <UserInformation />
+        )}
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 

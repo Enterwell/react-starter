@@ -16,6 +16,7 @@ module.exports = withPlugins([
   withProdOnlyPlugin(withBundleAnalyzer),
   withReactSvg
 ], {
+  reactStrictMode: true,
   images: {
     domains: ['assets.pokemon.com'],
     loader: 'imgix',
