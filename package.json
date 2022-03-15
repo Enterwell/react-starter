@@ -29,7 +29,9 @@
     "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\""
   },
   "dependencies": {
+    "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.1",
+    "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
@@ -61,7 +63,7 @@
     "@storybook/addon-links": "^6.4.19",
     "@storybook/builder-webpack5": "^6.4.19",
     "@storybook/manager-webpack5": "^6.4.18",
-    "@storybook/react": "^6.4.18",
+    "@storybook/react": "^6.4.19",
     "@zeit/next-source-maps": "^0.0.3",
     "babel-loader": "^8.2.3",
     "chalk": "4.1.2",
