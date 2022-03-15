@@ -29,11 +29,13 @@
     "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\""
   },
   "dependencies": {
+    "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.1",
+    "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
-    "@mui/styles": "^5.4.2",
+    "@mui/styles": "^5.5.1",
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
     "mobx": "^6.4.1",
