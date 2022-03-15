@@ -4,5 +4,5 @@ import createCache from '@emotion/cache';
 // It allows developers to easily override MUI styles with other styling solutions,
 // like CSS modules.
 export default function createEmotionCache() {
-    return createCache({ key: 'css', prepend: true });
+  return createCache({ key: 'css', prepend: true });
 }
