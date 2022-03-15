@@ -38,7 +38,7 @@
     "@mui/styles": "^5.4.2",
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
-    "mobx": "^6.4.1",
+    "mobx": "^6.4.2",
     "mobx-react-lite": "^3.3.0",
     "next": "^12.1.0",
     "next-react-svg": "^1.1.1",
