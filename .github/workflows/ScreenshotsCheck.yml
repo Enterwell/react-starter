@@ -32,7 +32,7 @@ jobs:
       - name: Commit story changes
         id: csc
         if: steps.storiesCheck.outcome == 'failure'
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         with:
           add: '.stories-approved'
           message: '[skip ci] [stories-check] Automated story changes'
@@ -47,7 +47,7 @@ jobs:
       - name: Commit cypress changes
         id: ccc
         if: steps.cypressCheck.outcome == 'failure'
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         with:
           add: '.cypress-approved'
           message: '[skip ci] [cypress-check] Automated cypress changes'
