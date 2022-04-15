@@ -81,10 +81,12 @@
     "jest": "^27.5.1",
     "kill-port": "^1.6.1",
     "next-compose-plugins": "^2.2.0",
+    "postcss": "^8.4.12",
     "puppeteer": "^13.5.1",
     "rimraf": "^3.0.2",
     "sass-loader": "^12.4.0",
     "start-server-and-test": "^1.11.0",
+    "storybook-addon-next": "^1.6.2",
     "storycap": "^3.1.5",
     "webpack-dev-server": "4"
   }
