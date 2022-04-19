@@ -39,7 +39,7 @@ jobs:
           new_branch: ${{ github.head_ref }}
           default_author: github_actions
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Run cypress-check
         id: cypressCheck
@@ -56,4 +56,4 @@ jobs:
           new_branch: ${{ github.head_ref }}
           default_author: github_actions
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
