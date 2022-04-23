@@ -5788,7 +5788,7 @@ core-js-pure@^3.8.1, core-js-pure@^3.8.2:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.20.2.tgz#5d263565f0e34ceeeccdc4422fae3e84ca6b8c0f"
   integrity sha512-CmWHvSKn2vNL6p6StNp1EmMIfVY/pqn3JLAjfZQ8WZGPOlGoO92EkX9/Mk81i6GxvoPXjUqEQnpM3rJ5QxxIOg==
 
-core-js@^3.0.4, core-js@^3.2.1, core-js@^3.6.5, core-js@^3.8.2:
+core-js@^3.0.4, core-js@^3.6.5, core-js@^3.8.2:
   version "3.20.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
   integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
@@ -12825,10 +12825,10 @@ store2@^2.12.0:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.13.1.tgz#fae7b5bb9d35fc53dc61cd262df3abb2f6e59022"
   integrity sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==
 
-storycap@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.5.tgz#f9dc8609b310e88d223bbbe211e7cd930ffaf34f"
-  integrity sha512-5OXbMd5A20ToFk5cQxvVzPnC5mPIUlJbsvcdDNyHWBkd6hhKOZocA9729eiv/tM8UohBMpjNQ9fyXaxclfUh2g==
+storycap@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.7.tgz#9447de6bbb97bd001d631fbff954005a8cc35ac1"
+  integrity sha512-f5oOyI2YYeRin8qjn7vmUXGYiqIlXRmVPOoDlSMGKjHT0Fycuj1GIURL2nG5vrznxyKToAYBiGPyn8ljQW9h+A==
   dependencies:
     "@types/minimatch" "^3.0.3"
     "@types/mkdirp" "^1.0.0"
@@ -12836,19 +12836,18 @@ storycap@^3.1.5:
     "@types/rimraf" "^3.0.0"
     "@types/wait-on" "^5.0.0"
     "@types/yargs" "^16.0.0"
-    core-js "^3.2.1"
     minimatch "^3.0.4"
     mkdirp "^1.0.0"
     puppeteer-core "^9.0.0"
     rimraf "^3.0.0"
     sanitize-filename "^1.6.3"
-    storycrawler "^3.1.5"
+    storycrawler "^3.1.7"
     yargs "^16.0.0"
 
-storycrawler@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.5.tgz#a84e4c5f83c0dbd288a336dd2107973040df1398"
-  integrity sha512-QvxBci0n38PQZX7ggZcsgsNPa2Nuc1N04U+1xgKcSHF5pKQwaEayodpHvmX0Wk5hWJGfvlalBNC/2q++TU5MqA==
+storycrawler@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.7.tgz#004acc195a545a815b675206d7286811ccb39bce"
+  integrity sha512-pvdThBPJmXjknv+lRNgB44HzNZkT4XVXKw5g6k7/8SeM/+zYjvHj9PM1SauQfTJ1UtLJtRCGge8qDfeboatreQ==
   dependencies:
     "@types/chalk" "^2.2.0"
     "@types/node" "^16.0.0"
