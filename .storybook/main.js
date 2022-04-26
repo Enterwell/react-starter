@@ -8,23 +8,13 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "storycap"
+    "storycap",
+    "storybook-addon-next"
   ],
   framework: "@storybook/react",
   core: {
     "builder": "webpack5"
   },
   staticDirs: ['../public'],
-  features: { emotionAlias: false },
-  webpackFinal: async (config) => {
-    // Add SCSS support for CSS Modules
-    // Source link https://github.com/storybookjs/storybook/issues/12464#issuecomment-824107014
-    config.module.rules.push({
-      test: /\.scss$/,
-      include: path.resolve(__dirname, '../'),
-      use: ['style-loader', 'css-loader?modules&importLoaders', 'sass-loader'],
-    });
-    
-    return config;
-  }
+  features: { emotionAlias: false }
 }
