@@ -32,7 +32,7 @@ jobs:
       with:
         cmd: export
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.3.0
+      uses: JamesIves/github-pages-deploy-action@v4.3.2
       with:
         branch: gh-pages
         folder: out
