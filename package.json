@@ -38,7 +38,7 @@
     "@mui/styles": "^5.5.1",
     "axios": "^0.26.1",
     "clsx": "^1.1.1",
-    "mobx": "^6.5.0",
+    "mobx": "^6.6.0",
     "mobx-react-lite": "^3.3.0",
     "next": "^12.1.0",
     "next-react-svg": "^1.1.1",
@@ -50,7 +50,7 @@
     "webpack": "^5.70.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
+    "@babel/core": "^7.18.0",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-proposal-decorators": "^7.17.2",
     "@babel/preset-react": "^7.16.7",
