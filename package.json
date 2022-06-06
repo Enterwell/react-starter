@@ -21,7 +21,7 @@
     "e2e-test": "yarn build && start-server-and-test start 3000 cypress-run",
     "e2e-test:ci": "start-server-and-test start 3000 cypress-run:ci",
     "e2e-test-open": "start-server-and-test dev 3000 cypress-open",
-    "component-test": "cypress run-ct --headed",
+    "component-test": "cypress run --component",
     "component-test:ci": "cypress run-ct --browser chrome --config video=false",
     "component-test-open": "cypress open-ct",
     "storybook": "start-storybook -p 6006",
