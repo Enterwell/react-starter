@@ -15,10 +15,10 @@ export default defineConfig({
   },
   component: {
     // setupNodeEvents(on, config) {},
-    // specPattern: 'tests/component/*.@(spec|test).@(js|jsx|ts|tsx)',
     devServer: {
       framework: 'next',
       bundler: 'webpack',
     },
+    specPattern: 'tests/component/*.@(cy|test).@(js|jsx|ts|tsx)',
   }
 });
