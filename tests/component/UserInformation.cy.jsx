@@ -1,12 +1,9 @@
-// Mount import
-import { mount } from '@cypress/react';
-
 // Component import
 import UserInformation from '../../components/UserInformation/UserInformation';
 
 // As we don't pass any additional props, we can extract the mount call.
 beforeEach(() => {
-  mount(<UserInformation />);
+  cy.mount(<UserInformation />);
 });
 
 /**

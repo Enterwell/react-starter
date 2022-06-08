@@ -1,6 +1,3 @@
-// Mount import
-import { mount } from '@cypress/react';
-
 // Component import
 import Pagination from '../../components/Pagination/Pagination';
 
@@ -12,7 +9,7 @@ describe('Pagination', () => {
    * Testing that the component correctly renders without passing any props.
    */
   it('Shows pagination component with default props', () => {
-    mount(<Pagination />);
+    cy.mount(<Pagination />);
 
     cy.get('[class*="pagesList"]')
       .children()
@@ -29,7 +26,7 @@ describe('Pagination', () => {
    * Testing that the pagination pages can be cycled through by using page buttons.
    */
   it('Can switch between pages using page buttons', () => {
-    mount(<Pagination count={2} />);
+    cy.mount(<Pagination count={2} />);
 
     cy.get('[class*=Item-page]')
       .eq(0)
@@ -56,7 +53,7 @@ describe('Pagination', () => {
    * Testing that the pagination pages can be cycled through by using arrow buttons.
    */
   it('Can switch between pages using arrow buttons', () => {
-    mount(<Pagination count={2} />);
+    cy.mount(<Pagination count={2} />);
 
     cy.get('[class*=Item-previousNext]')
       .eq(0)
