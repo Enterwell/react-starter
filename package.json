@@ -22,8 +22,8 @@
     "e2e-test:ci": "start-server-and-test start 3000 cypress-run:ci",
     "e2e-test-open": "start-server-and-test dev 3000 cypress-open",
     "component-test": "cypress run --component",
-    "component-test:ci": "cypress run-ct --browser chrome --config video=false",
-    "component-test-open": "cypress open-ct",
+    "component-test:ci": "cypress run --component --browser chrome --config video=false",
+    "component-test-open": "cypress open --component",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\""
