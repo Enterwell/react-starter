@@ -34,7 +34,7 @@ function UserInformation(props) {
 
   useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   const onChangeName = () => {
     editUser(name);
