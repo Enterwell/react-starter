@@ -26,5 +26,19 @@ module.exports = withPlugins([
   assetPrefix: process.env.ASSETS_PREFIX ? `/${process.env.ASSETS_PREFIX}` : '',
   publicRuntimeConfig: {
     basePath: process.env.ASSETS_PREFIX ? `/${process.env.ASSETS_PREFIX}` : ''
+  },
+  eslint: {
+    dirs: [
+      '.storybook',
+      'app-models',
+      'component-models', 'components', 'config', 'cypress',
+      'helpers', 'hooks',
+      'mappers', 'models',
+      'pages',
+      'repositories',
+      'services',
+      'tests',
+      'view-models', 'views'
+    ]
   }
 });
