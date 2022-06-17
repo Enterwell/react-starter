@@ -79,7 +79,7 @@
         "eslint-plugin-storybook": "^0.5.12",
         "fs-extra": "^10.1.0",
         "html-webpack-plugin": "5",
-        "jest": "^28.1.0",
+        "jest": "^28.1.1",
         "jest-environment-jsdom": "^28.1.0",
         "kill-port": "^2.0.0",
         "next-compose-plugins": "^2.2.0",
