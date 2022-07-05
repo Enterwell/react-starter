@@ -118,8 +118,8 @@ The React starter's root contains all the configuration files of the tools used 
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
 * `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDependencies`)
-* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/) 
-* `jest.config.js` - used for configuring [Jest](https://jestjs.io/) 
+* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/)
+* `jest.config.js` - used for configuring [Jest](https://jestjs.io/)
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
 * `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
@@ -154,15 +154,13 @@ More details on what each of these entities is can be read in the section on the
 
 Let's start now *in medias res* - the image just below this paragraph shows the architecture of Enterwell React applications. Of course, this is not the only, and at least the only correct architecture of the React application, but it is an architecture around which the elders of Enterwell almost unanimously agreed. Different segments of the architecture will be explained below.
 
-<div style="margin: 50px 0; text-align: center;">
-  <img src="./public/assets/images/architecture.png" alt="Arhitektura" >
-</div>
+![Architecture](./public/assets/images/architecture.png)
 
 ### Components
 
 At the heart of any React application are its components. Components are the building blocks of an application and define the user interface that the user will ultimately see. In Enterwell's React architecture, components can correspond to one of the following 3 groups: `pages`, `views`, and `components`.
 
-#### Pages
+#### `Pages`
 
 React applications developed at Enterwell in previous years used `react-router` and similar packages for routing. By switching to Next.js, the need for using these packages has disappeared and the routes of applications are defined by a hierarchy of files and folders within [`pages`](https://nextjs.org/docs/basic-features/pages) folder (e.g. `pages/index.jsx` file matches the route `/`, `pages/pokemons/index.jsx` file matches the route `/pokemons` etc.).
 
@@ -170,11 +168,11 @@ Since this way of routing is typical of Next.js, and due to the desire to make a
 
 It is important to note that within the `pages` folder there are also files that do not correspond directly to the application routes. This refers to [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) and [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) files that have a special role defined by Next.js.
 
-#### Views
+#### `Views`
 
 `views` components represent everything that the user sees on an application route, and they can then use one or more "ordinary" components within themselves. If the `view` component becomes too complex, it is recommended to break it down into more "ordinary" components. If the "ordinary" components obtained in such a way are used only in that `view` and nowhere else, they need to be placed in a separate folder within the folder of that `view`. Components used in multiple places in the application need to be placed in a separate folder within the `components` folder.
 
-#### Components
+#### `Components`
 
 `components` components represent all those components that are used in several places in the application. A component should be placed in this folder if it is used in at least two places in the application or if it is general enough to be used in multiple places. Once the development of the application has started, all components will be used in only one place, but some of them can be assumed in advance that they can be used in more places. Examples of such components are various `Input` components.
 
@@ -234,9 +232,7 @@ Hooks are similar in purpose to helpers, but they are primarily focused for bein
 
 ### Architecture example
 
-<div style="margin: 50px 0; text-align: center;">
-  <img src="./public/assets/images/architecture-pokemons.png" alt="React starter application architecture" >
-</div>
+![Architecture - Pokemons](./public/assets/images/architecture-pokemons.png)
 
 For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses PokéAPI and, as you can already guess, it is used to view Pokemon.
 
@@ -354,11 +350,13 @@ The screenshot command can be called with and without a parameter.
 ```bash
 cy.screenshot()
 ```
+
 takes a screenshot that will be stored in the `.cypress-pending` directory with a default name including the current test's suite and test name.
 
 ```bash
 cy.screenshot(fileName)
 ```
+
 takes a screenshot that will be stored in the `.cypress-pending` directory with a given name instead of the default one.
 
 We have defined our own `screenshot` command override in the `cypress/support/commands.js` module. Our custom `screenshot` implementation unfocuses any focused element (for consistent screenshots), waits `200ms` for any assets that may be loading, and then calls the original command.
@@ -368,6 +366,7 @@ We have also defined the following script within `project.json`
 ```bash
 yarn cypress-check
 ```
+
 which runs our end-to-end and component tests and places the generated screenshots in the `.cypress-pending` folder in the project root. The script will then run our custom logic contained in the `CypressCompare.js` helper.
 
 This script is run automatically on all PRs to the `main` branch by the `.github/workflows/ScreenshotsCheck.yml` GitHub Action. The workflow creates a commit with the screenshots to the PR branch.
@@ -387,6 +386,7 @@ yarn e2e-test-open
 The window will open showing the list of all currently defined end-to-end tests from the `tests/integration` folder. Here, you can create a new `spec.js` file by clicking on the `New Spec File` button in the upper right section of the window, or run an already defined file by clicking on it.
 
 Once the tests complete their run, you can do one of the following two things:
+
 * Hover over any existing test and use the revealed `Add Commands to Test` icon, or
 * Hover over any `describe` block and use the revealed `Add New Test` icon
 
@@ -437,6 +437,7 @@ Script has been defined within `project.json` that is used for this purpose.
 ```bash
 yarn stories-check
 ```
+
 which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The script will then run our custom logic contained in the `StoriesCompare.js` helper.
 
 At the end of the execution, images of all of the stories that have changed in this development iteration have now been modified and overwritten in the `.stories-approved` folder (either because we modified the components or because we added, modified, or deleted some of the stories).
@@ -497,6 +498,7 @@ Before deploying the application, make sure that all the tasks from the list bel
 
 * Change application's name in the `package.json`
 * Change application's default title in the `_app.jsx`
+* Change application's description in `_document.jsx`
 * Change favicon
 * Remove all unused and starter's specific files (e.g. `architecture.png`, `architecture-pokemons.png`, `PokemonsMapper.js`, `PokemonsRepository.js`...)
 * Remove all `TODO_delete_this_later` files and empty folders
