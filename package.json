@@ -86,7 +86,7 @@
         "postcss": "8.4.14",
         "puppeteer": "15.3.1",
         "rimraf": "3.0.2",
-        "sass-loader": "13.0.0",
+        "sass-loader": "13.0.2",
         "start-server-and-test": "1.14.0",
         "storybook-addon-next": "1.6.7",
         "storycap": "3.1.8",
