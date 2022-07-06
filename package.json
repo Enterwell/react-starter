@@ -81,7 +81,7 @@
         "html-webpack-plugin": "5.5.0",
         "jest": "28.1.1",
         "jest-environment-jsdom": "28.1.1",
-        "kill-port": "2.0.0",
+        "kill-port": "2.0.1",
         "next-compose-plugins": "2.2.1",
         "postcss": "8.4.14",
         "puppeteer": "15.3.0",
