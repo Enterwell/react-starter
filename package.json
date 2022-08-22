@@ -49,9 +49,9 @@
         "webpack": "5.73.0"
     },
     "devDependencies": {
-        "@babel/core": "7.18.6",
-        "@babel/eslint-parser": "7.18.2",
-        "@babel/plugin-proposal-decorators": "7.18.6",
+        "@babel/core": "7.18.13",
+        "@babel/eslint-parser": "7.18.9",
+        "@babel/plugin-proposal-decorators": "7.18.10",
         "@babel/preset-react": "7.18.6",
         "@cypress/react": "6.0.0",
         "@cypress/webpack-dev-server": "2.0.0",
