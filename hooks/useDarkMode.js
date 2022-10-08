@@ -14,7 +14,7 @@ export default function useDarkMode() {
   }, []);
 
   useEffect(() => {
-    persistIsDarkMode(Boolean(isDarkMode));
+    persistIsDarkMode(isDarkMode);
   }, [isDarkMode]);
 
   const toggleThemeChange = useCallback(() => {
