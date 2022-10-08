@@ -1,8 +1,5 @@
-// General import
 import { useEffect, useState, useCallback } from 'react';
-
-// Theme service import
-import ThemeService from '../services/ThemeService';
+import { getIsDarkMode, setIsDarkMode as persistIsDarkMode } from '../services/ThemeService';
 
 /**
  * Hook that stores state about is dark mode on.
@@ -13,16 +10,16 @@ export default function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState();
 
   useEffect(() => {
-    setIsDarkMode(ThemeService.getIsDarkMode());
+    setIsDarkMode(getIsDarkMode());
   }, []);
 
   useEffect(() => {
-    ThemeService.setIsDarkMode(isDarkMode);
+    persistIsDarkMode(Boolean(isDarkMode));
   }, [isDarkMode]);
 
   const toggleThemeChange = useCallback(() => {
     setIsDarkMode((prev) => !prev);
-  });
+  }, []);
 
   return [isDarkMode, toggleThemeChange];
 }

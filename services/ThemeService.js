@@ -1,36 +1,23 @@
-// Service import
-import LocalStorageService from './LocalStorageService';
+import { getLocalStorageItem, setLocalStorageItem } from './LocalStorageService';
 
 /**
- * Class represents the theme service.
- * It uses local storage to handle user's selected page theme.
+ * Loads the flag representing is the dark theme selected from the local storage.
  *
- * @class ThemeService
+ * @static
+ * @returns flag representing is the dark theme selected
  */
-class ThemeService {
-  /**
-   * Loads the flag representing is the dark theme selected from the local storage.
-   *
-   * @static
-   * @returns flag representing is the dark theme selected
-   * @memberof ThemeService
-   */
-  static getIsDarkMode() {
-    const isDarkMode = LocalStorageService.get('isDarkMode');
+export function getIsDarkMode() {
+  const isDarkMode = getLocalStorageItem('isDarkMode');
 
-    return isDarkMode || false;
-  }
-
-  /**
-   * Saves the user's selected theme to the local storage.
-   *
-   * @static
-   * @param {boolean} isDark is dark mode selected flag
-   * @memberof ThemeService
-   */
-  static setIsDarkMode(isDark) {
-    LocalStorageService.set('isDarkMode', isDark);
-  }
+  return isDarkMode || false;
 }
 
-export default ThemeService;
+/**
+ * Saves the user's selected theme to the local storage.
+ *
+ * @static
+ * @param {boolean} isDark is dark mode selected flag
+ */
+export function setIsDarkMode(isDark) {
+  setLocalStorageItem('isDarkMode', isDark);
+}
