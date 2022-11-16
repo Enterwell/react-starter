@@ -28,10 +28,10 @@
         "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\""
     },
     "dependencies": {
-        "@emotion/cache": "11.10.3",
-        "@emotion/react": "11.10.4",
+        "@emotion/cache": "11.10.5",
+        "@emotion/react": "11.10.5",
         "@emotion/server": "11.10.0",
-        "@emotion/styled": "11.10.4",
+        "@emotion/styled": "11.10.5",
         "@mui/icons-material": "5.10.14",
         "@mui/material": "5.10.14",
         "@mui/styles": "5.10.14",
