@@ -68,7 +68,7 @@
         "babel-loader": "8.3.0",
         "chalk": "4.1.2",
         "cross-env": "7.0.3",
-        "cypress": "10.10.0",
+        "cypress": "10.11.0",
         "eslint": "8.27.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-config-next": "12.3.3",
