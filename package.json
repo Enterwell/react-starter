@@ -44,7 +44,7 @@
         "noty": "3.2.0-beta-deprecated",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "sass": "1.55.0",
+        "sass": "1.56.1",
         "typescript": "4.8.4",
         "webpack": "5.74.0"
     },
