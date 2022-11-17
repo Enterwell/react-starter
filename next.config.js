@@ -28,4 +28,9 @@ const nextConfig = {
   }
 };
 
-module.exports = withBundleAnalyzer(withReactSvg(nextConfig));
+const plugins = withBundleAnalyzer(withReactSvg(nextConfig));
+
+// NOTE: Workaround for https://github.com/Enterwell/react-starter/issues/340
+//       Should be removed when `next-react-svg` implements settings correctly.
+delete plugins.include;
+module.exports = plugins;
