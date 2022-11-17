@@ -44,7 +44,7 @@ function PokemonDetailsView(props) {
     }
 
     return onUnmount;
-  }, [router.query]);
+  }, [loadPokemon, onUnmount, router.query]);
 
   return (
     <LoadingContainer isLoading={isLoading}>
