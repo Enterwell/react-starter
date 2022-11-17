@@ -1602,10 +1602,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cypress/react@6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-6.2.1.tgz#3473136165c1bbe658f89becbe9fd0782aa506fa"
-  integrity sha512-c/ELgS2AgYM+6cKrSIRc0wd1fktalRWEvQRhuV+bVrvZHmU/BcrfIGsLT4juVLVjsK/jzl003vfQav2g9vF7ew==
+"@cypress/react@7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-7.0.1.tgz#30089e918434a934db70e5d0d7efaa49c653c791"
+  integrity sha512-kDTHt2A4kpnGsot7fh+86G5lSS+gSH2NQypQVtfLOolit99rdTOuEY9zit7fIlSvxcNsGzNQ27sE1vre7CsywA==
 
 "@cypress/request@^2.88.10":
   version "2.88.10"
