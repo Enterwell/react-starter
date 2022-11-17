@@ -84,7 +84,7 @@
         "kill-port": "2.0.1",
         "next-compose-plugins": "2.2.1",
         "postcss": "8.4.19",
-        "puppeteer": "18.2.1",
+        "puppeteer": "19.2.2",
         "rimraf": "3.0.2",
         "sass-loader": "13.2.0",
         "start-server-and-test": "1.14.0",
