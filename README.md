@@ -8,7 +8,7 @@
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="react" width="30" />
     </a>
     <a href="https://nextjs.org/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="nextjs" width="30" />
+      <img src="https://user-images.githubusercontent.com/643171/203530354-f898ddfc-864f-460e-9780-4f3717256130.png" alt="nextjs" width="30" />
     </a>
     <a href="https://mobx.js.org/README.html" target="_blank">
       <img src="https://mobx.js.org/assets/mobx.png" alt="mobx" width="30" />
