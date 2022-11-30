@@ -1,5 +1,4 @@
 import fs from 'fs-extra';
-import PackageJson from '@npmcli/package-json';
 import path from 'path';
 import { fileURLToPath } from 'url';
 // eslint-disable-next-line import/extensions
@@ -11,30 +10,28 @@ const __dirname = path.dirname(__filename);
 const args = process.argv;
 
 async function setScript(scriptName, value = undefined) {
-  const pkgJson = await PackageJson.load('.');
-  const newScripts = { ...pkgJson.content.scripts };
+  const pkgJson = fs.readJsonSync('package.json');
+  const newScripts = { ...pkgJson.scripts };
   if (!value) {
     delete newScripts[scriptName];
   } else {
     newScripts[scriptName] = value;
   }
-  pkgJson.update({ scripts: newScripts });
-  await pkgJson.save();
+  pkgJson.scripts = newScripts;
+  fs.writeJsonSync('package.json', pkgJson, { spaces: 4 });
 }
 
 async function removePackages(packageNames) {
-  const pkgJson = await PackageJson.load('.');
-  const newDependencies = { ...pkgJson.content.dependencies };
-  const newDevDependencies = { ...pkgJson.content.devDependencies };
+  const pkgJson = fs.readJsonSync('package.json');
+  const newDependencies = { ...pkgJson.dependencies };
+  const newDevDependencies = { ...pkgJson.devDependencies };
   packageNames.forEach((packageName) => {
     delete newDependencies[packageName];
     delete newDevDependencies[packageName];
   });
-  pkgJson.update({
-    dependencies: newDependencies,
-    devDependencies: newDevDependencies
-  });
-  await pkgJson.save();
+  pkgJson.dependencies = newDependencies;
+  pkgJson.devDependencies = newDevDependencies;
+  fs.writeJsonSync('package.json', pkgJson, { spaces: 4 });
 }
 
 function deleteFiles(directoryPath, regex) {
@@ -72,10 +69,9 @@ async function removeStorybook() {
   await setScript('build-storybook');
 
   // Edit .eslintrc remove storybook plugin
-  const eslint = fs.readFileSync('.eslintrc');
-  const eslintObj = JSON.parse(eslint);
+  const eslintObj = fs.readJsonSync('.eslintrc');
   eslintObj.extends = eslintObj.extends.filter((i) => i !== 'plugin:storybook/recommended');
-  fs.writeFileSync('.eslintrc', JSON.stringify(eslintObj, null, 4));
+  fs.writeJsonSync('.eslintrc', eslintObj, { spaces: 4 });
 }
 
 async function removeCypress() {
