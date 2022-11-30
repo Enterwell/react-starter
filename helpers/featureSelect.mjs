@@ -28,15 +28,13 @@ async function removeScript(scriptName) {
 
 async function removePackage(packageName) {
   const pkgJson = await PackageJson.load('.');
+  const newDependencies = { ...pkgJson.content.dependencies };
+  const newDevDependencies = { ...pkgJson.content.devDependencies };
+  delete newDependencies[packageName];
+  delete newDevDependencies[packageName];
   pkgJson.update({
-    dependencies: {
-      ...pkgJson.content.dependencies,
-      [packageName]: undefined
-    },
-    devDependencies: {
-      ...pkgJson.content.devDependencies,
-      [packageName]: undefined
-    }
+    dependencies: newDependencies,
+    devDependencies: newDevDependencies
   });
   await pkgJson.save();
 }
@@ -82,3 +80,6 @@ if (args.includes('storycap') || args.includes('storybook')) {
 if (args.includes('storybook')) {
   await removeStorybook();
 }
+
+// TODO: Add cypress
+// TODO: Add jest
