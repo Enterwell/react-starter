@@ -2537,13 +2537,6 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@npmcli/package-json@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/package-json/-/package-json-3.0.0.tgz#c9219a197e1be8dbf43c4ef8767a72277c0533b6"
-  integrity sha512-NnuPuM97xfiCpbTEJYtEuKz6CFbpUHtaT0+5via5pQeI25omvQDFbp1GcGJ/c4zvL/WX0qbde6YiLgfZbWFgvg==
-  dependencies:
-    json-parse-even-better-errors "^3.0.0"
-
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.7.tgz#58f8217ba70069cc6a73f5d7e05e85b458c150e2"
@@ -10183,11 +10176,6 @@ json-parse-even-better-errors@^2.3.0, json-parse-even-better-errors@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz#7c47805a94319928e05777405dc12e1f7a4ee02d"
   integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
-
-json-parse-even-better-errors@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/json-parse-even-better-errors/-/json-parse-even-better-errors-3.0.0.tgz#2cb2ee33069a78870a0c7e3da560026b89669cf7"
-  integrity sha512-iZbGHafX/59r39gPwVPRBGw0QQKnA7tte5pSMrhWOW7swGsVvVTjmfyAV9pNqk8YGT7tRCdxRu8uzcgZwoDooA==
 
 json-schema-traverse@^0.4.1:
   version "0.4.1"
