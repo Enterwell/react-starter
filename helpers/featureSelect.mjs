@@ -41,8 +41,8 @@ async function removePackage(packageName) {
   await pkgJson.save();
 }
 
-function deleteFiles(regex) {
-  const pathName = path.join(__dirname, '../');
+function deleteFiles(directoryPath, regex) {
+  const pathName = path.join(__dirname, directoryPath);
   getFilesRecursively(pathName)
     .filter(f => regex.test(f))
     .map(f => fs.unlinkSync(f));
@@ -59,7 +59,8 @@ async function removeStorycap() {
 
 async function removeStorybook() {
   deleteDirectory('.storybook');
-  deleteFiles(/\.stories\..*$/);
+  deleteFiles('../components', /\.stories\..*$/);
+  deleteFiles('../views', /\.stories\..*$/);
   await removePackage('@storybook/addon-actions');
   await removePackage('@storybook/addon-essential');
   await removePackage('@storybook/addon-link');
