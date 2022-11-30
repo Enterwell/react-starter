@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import PackageJson from '@npmcli/package-json';
 import path from 'path';
 import { fileURLToPath } from 'url';
+// eslint-disable-next-line import/extensions
 import { getFilesRecursively } from './ci/NodeHelpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -39,8 +40,8 @@ async function removePackages(packageNames) {
 function deleteFiles(directoryPath, regex) {
   const pathName = path.join(__dirname, directoryPath);
   getFilesRecursively(pathName)
-    .filter(f => regex.test(f))
-    .map(f => fs.removeSync(f));
+    .filter((f) => regex.test(f))
+    .map((f) => fs.removeSync(f));
 }
 
 async function removeStorycap() {
@@ -70,7 +71,11 @@ async function removeStorybook() {
   await setScript('storybook');
   await setScript('build-storybook');
 
-  // TODO: Edit .eslintrc remove storybook plugin
+  // Edit .eslintrc remove storybook plugin
+  const eslint = fs.readFileSync('.eslintrc');
+  const eslintObj = JSON.parse(eslint);
+  eslintObj.extends = eslintObj.extends.filter((i) => i !== 'plugin:storybook/recommended');
+  fs.writeFileSync('.eslintrc', JSON.stringify(eslintObj, null, 4));
 }
 
 async function removeCypress() {
