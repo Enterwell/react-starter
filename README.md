@@ -102,6 +102,15 @@ yarn dev
 
 For documentation on running the application in other modes, see ['Launching the application' section](#launching-the-application).
 
+### Customizing features
+
+You can remove features you don't plan to use by calling `yarn feature:remove &gt;FEATURE&lt;`. Feature that can be removed are as following:
+
+* `storycap`
+* `storybook` (also removed `storycap`)
+* `cypress`
+* `jest`
+
 ## Why React and why Next.js?
 
 [React](https://reactjs.org/) is one of many JavaScript libraries and frameworks that aim to make building user interfaces easier. React is Facebook's project, which ensures a certain certainty that this is not just another buzzword technology that will be forgotten in a month. Why was React chosen for application development, and not, say, Vue or Angular, I do not know, but since it turned out to be quite easy and fast to develop applications with it, there was no need to change.
@@ -258,6 +267,8 @@ yarn storybook
 
 This command will start `Storybook` locally and output the address at which the process is running. Depending on your system configuration, the address will automatically be opened in a new browser tab.
 
+If you don't plan to use Storybook you can remove it using `yarn feature:remove storybook`. Note that storybook is required for storycap functionality and will be removed if storybook is removed.
+
 ## Styles
 
 Each component (whether `component` or `view`) should have its own styles. Styles are placed in the same folder as the component file and the style file can be identifier by the `.module.scss` extension. The exception to this rule are global styles that apply to the entire application and are located in the `styles` folder. Colors that are used in the application are defined the same way as global styles. This way, they can be used in several places in the application without having to rewrite them over and over again (this is especially convenient for the main colors of the theme that runs throughout the application). It is important to note that not all colors should be extracted into global styles, especially if they will be used only in one place.
@@ -286,6 +297,8 @@ Naming is something that always provokes controversy because most of us have som
 By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application. All of our tests are written inside the `tests` folder in the project root.
 
 We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
+
+If you don't plan to use testing that is configure as part of this starter - use `yarn feature:remove cypress jest` to remove all related to these tests.
 
 ### Unit testing
 
@@ -431,6 +444,8 @@ If none of the following packages meet your wishes and demands, you need to add 
 For a more organized development of components and pages, we use `Storybook` as we have already mentioned earlier. One of its add-ons we use is called [Storycap](https://github.com/reg-viz/storycap).
 
 `Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
+
+If you don't plan to use storycap you can remove it using `yarn feature:remove storycap`.
 
 Script has been defined within `project.json` that is used for this purpose.
 
