@@ -104,7 +104,7 @@ For documentation on running the application in other modes, see ['Launching the
 
 ### Customizing features
 
-You can remove features you don't plan to use by calling `yarn feature:remove &gt;FEATURE&lt;`. Feature that can be removed are as following:
+You can remove features you don't plan to use by calling `yarn feature:remove <FEATURE>`. Feature that can be removed are as following:
 
 * `storycap`
 * `storybook` (also removed `storycap`)
