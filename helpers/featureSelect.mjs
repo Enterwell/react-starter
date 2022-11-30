@@ -1,10 +1,16 @@
+import fs from 'fs';
 import rimraf from 'rimraf';
 import PackageJson from '@npmcli/package-json';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { getFilesRecursively } from './ci/NodeHelpers.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const args = process.argv;
-console.log({ args });
 
-function deleteFileOrDirectory(path) {
+function deleteDirectory(path) {
   try {
     rimraf.sync(path);
   } catch (err) {
@@ -35,17 +41,25 @@ async function removePackage(packageName) {
   await pkgJson.save();
 }
 
+function deleteFiles(regex) {
+  const pathName = path.join(__dirname, '../');
+  getFilesRecursively(pathName)
+    .filter(f => regex.test(f))
+    .map(f => fs.unlinkSync(f));
+}
+
 async function removeStorycap() {
-  deleteFileOrDirectory('.stories-approved');
-  deleteFileOrDirectory('.stories-pending');
-  deleteFileOrDirectory('.storycap-pending');
+  deleteDirectory('.stories-approved');
+  deleteDirectory('.stories-pending');
+  deleteDirectory('.storycap-pending');
 
   await removePackage('storycap');
   await removeScript('stories-check');
 }
 
 async function removeStorybook() {
-  deleteFileOrDirectory('.storybook');
+  deleteDirectory('.storybook');
+  deleteFiles(/\.stories\..*$/);
   await removePackage('@storybook/addon-actions');
   await removePackage('@storybook/addon-essential');
   await removePackage('@storybook/addon-link');
@@ -59,12 +73,6 @@ async function removeStorybook() {
   await removeScript('build-storybook');
 
   // TODO: Edit .eslintrc remove storybook plugin
-
-  let regex = /[.]txt$/;
-  const stories = fs.readdirSync(path)
-    .filter(f => regex.test(f))
-    .map(f => fs.unlinkSync(path + f));
-    console.log({stories});
 }
 
 if (args.includes('storycap') || args.includes('storybook')) {
