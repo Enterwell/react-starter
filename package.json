@@ -58,6 +58,7 @@
         "@cypress/webpack-dev-server": "3.1.0",
         "@next/bundle-analyzer": "12.3.4",
         "@next/eslint-plugin-next": "12.3.4",
+        "@npmcli/package-json": "^3.0.0",
         "@storybook/addon-actions": "6.5.13",
         "@storybook/addon-essentials": "6.5.13",
         "@storybook/addon-links": "6.5.13",

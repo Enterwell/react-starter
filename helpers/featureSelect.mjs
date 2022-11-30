@@ -59,6 +59,12 @@ async function removeStorybook() {
   await removeScript('build-storybook');
 
   // TODO: Edit .eslintrc remove storybook plugin
+
+  let regex = /[.]txt$/;
+  const stories = fs.readdirSync(path)
+    .filter(f => regex.test(f))
+    .map(f => fs.unlinkSync(path + f));
+    console.log({stories});
 }
 
 if (args.includes('storycap') || args.includes('storybook')) {
