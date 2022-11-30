@@ -76,6 +76,7 @@ async function removeStorybook() {
 async function removeCypress() {
   fs.removeSync('.cypress-approved');
   fs.removeSync('.cypress-pending');
+  fs.removeSync('cypress');
   fs.removeSync('tests/component');
   fs.removeSync('tests/integration');
   fs.removeSync('./cypress.config.js');
