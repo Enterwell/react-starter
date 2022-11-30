@@ -1,5 +1,4 @@
-import fs from 'fs';
-import rimraf from 'rimraf';
+import fs from 'fs-extra';
 import PackageJson from '@npmcli/package-json';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,14 +9,6 @@ const __dirname = path.dirname(__filename);
 
 const args = process.argv;
 
-function deleteDirectory(path) {
-  try {
-    rimraf.sync(path);
-  } catch (err) {
-    console.error(err);
-  }
-}
-
 async function removeScript(scriptName) {
   const pkgJson = await PackageJson.load('.');
   const newScripts = { ...pkgJson.content.scripts };
@@ -26,12 +17,14 @@ async function removeScript(scriptName) {
   await pkgJson.save();
 }
 
-async function removePackage(packageName) {
+async function removePackages(packageNames) {
   const pkgJson = await PackageJson.load('.');
   const newDependencies = { ...pkgJson.content.dependencies };
   const newDevDependencies = { ...pkgJson.content.devDependencies };
-  delete newDependencies[packageName];
-  delete newDevDependencies[packageName];
+  packageNames.forEach((packageName) => {
+    delete newDependencies[packageName];
+    delete newDevDependencies[packageName];
+  });
   pkgJson.update({
     dependencies: newDependencies,
     devDependencies: newDevDependencies
@@ -43,31 +36,33 @@ function deleteFiles(directoryPath, regex) {
   const pathName = path.join(__dirname, directoryPath);
   getFilesRecursively(pathName)
     .filter(f => regex.test(f))
-    .map(f => fs.unlinkSync(f));
+    .map(f => fs.removeSync(f));
 }
 
 async function removeStorycap() {
-  deleteDirectory('.stories-approved');
-  deleteDirectory('.stories-pending');
-  deleteDirectory('.storycap-pending');
+  fs.removeSync('.stories-approved');
+  fs.removeSync('.stories-pending');
+  fs.removeSync('.storycap-pending');
 
-  await removePackage('storycap');
+  await removePackages(['storycap']);
   await removeScript('stories-check');
 }
 
 async function removeStorybook() {
-  deleteDirectory('.storybook');
+  fs.removeSync('.storybook');
   deleteFiles('../components', /\.stories\..*$/);
   deleteFiles('../views', /\.stories\..*$/);
-  await removePackage('@storybook/addon-actions');
-  await removePackage('@storybook/addon-essential');
-  await removePackage('@storybook/addon-link');
-  await removePackage('@storybook/addons');
-  await removePackage('@storybook/builder-webpack');
-  await removePackage('@storybook/manager-webpack');
-  await removePackage('@storybook/react');
-  await removePackage('eslint-plugin-storybook');
-  await removePackage('storybook-addon-next');
+  await removePackages([
+    '@storybook/addon-actions',
+    '@storybook/addon-essentials',
+    '@storybook/addon-links',
+    '@storybook/addons',
+    '@storybook/builder-webpack5',
+    '@storybook/manager-webpack5',
+    '@storybook/react',
+    'eslint-plugin-storybook',
+    'storybook-addon-next'
+  ]);
   await removeScript('storybook');
   await removeScript('build-storybook');
 
