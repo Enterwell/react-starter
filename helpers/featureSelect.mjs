@@ -9,10 +9,14 @@ const __dirname = path.dirname(__filename);
 
 const args = process.argv;
 
-async function removeScript(scriptName) {
+async function setScript(scriptName, value = undefined) {
   const pkgJson = await PackageJson.load('.');
   const newScripts = { ...pkgJson.content.scripts };
-  delete newScripts[scriptName];
+  if (!value) {
+    delete newScripts[scriptName];
+  } else {
+    newScripts[scriptName] = value;
+  }
   pkgJson.update({ scripts: newScripts });
   await pkgJson.save();
 }
@@ -44,8 +48,8 @@ async function removeStorycap() {
   fs.removeSync('.stories-pending');
   fs.removeSync('.storycap-pending');
 
-  await removePackages(['storycap']);
-  await removeScript('stories-check');
+  await removePackages(['storycap', 'puppeteer']);
+  await setScript('stories-check');
 }
 
 async function removeStorybook() {
@@ -63,10 +67,42 @@ async function removeStorybook() {
     'eslint-plugin-storybook',
     'storybook-addon-next'
   ]);
-  await removeScript('storybook');
-  await removeScript('build-storybook');
+  await setScript('storybook');
+  await setScript('build-storybook');
 
   // TODO: Edit .eslintrc remove storybook plugin
+}
+
+async function removeCypress() {
+  fs.removeSync('.cypress-approved');
+  fs.removeSync('.cypress-pending');
+  fs.removeSync('tests/component');
+  fs.removeSync('tests/integration');
+  fs.removeSync('./cypress.config.js');
+  await removePackages([
+    '@cypress/react',
+    '@cypress/webpack-dev-server',
+    'cypress',
+    'start-server-and-test'
+  ]);
+  await setScript('test');
+  await setScript('cypress-run');
+  await setScript('cypress-run:ci');
+  await setScript('cypress-open');
+  await setScript('cypress-check');
+  await setScript('e2e-test');
+  await setScript('e2e-test:ci');
+  await setScript('e2e-test-open');
+  await setScript('component-test');
+  await setScript('component-test:ci');
+  await setScript('component-test-open');
+}
+
+async function removeJest() {
+  fs.removeSync('tests/unit');
+  fs.removeSync('./jest.config.js');
+  await removePackages(['jest', 'jest-environment-jsdom']);
+  await setScript('unit-test');
 }
 
 if (args.includes('storycap') || args.includes('storybook')) {
@@ -75,6 +111,9 @@ if (args.includes('storycap') || args.includes('storybook')) {
 if (args.includes('storybook')) {
   await removeStorybook();
 }
-
-// TODO: Add cypress
-// TODO: Add jest
+if (args.includes('cypress')) {
+  await removeCypress();
+}
+if (args.includes('jest')) {
+  await removeJest();
+}
