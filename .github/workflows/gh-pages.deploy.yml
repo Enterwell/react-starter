@@ -24,11 +24,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install packages
-      uses: borales/actions-yarn@v3.0.0
+      uses: borales/actions-yarn@v4.2.0
       with:
         cmd: install
     - name: Export static files
-      uses: borales/actions-yarn@v3.0.0
+      uses: borales/actions-yarn@v4.2.0
       with:
         cmd: export
     - name: Deploy
