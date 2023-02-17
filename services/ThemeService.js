@@ -7,9 +7,7 @@ import { getLocalStorageItem, setLocalStorageItem } from './LocalStorageService'
  * @returns flag representing is the dark theme selected
  */
 export function getIsDarkMode() {
-  const isDarkMode = getLocalStorageItem('isDarkMode');
-
-  return isDarkMode || false;
+  return getLocalStorageItem('isDarkMode') || false;
 }
 
 /**

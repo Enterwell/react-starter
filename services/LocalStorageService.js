@@ -7,9 +7,13 @@
  */
 export function getLocalStorageItem(itemName) {
   if (typeof localStorage !== 'undefined') {
-    return JSON.parse(localStorage.getItem(itemName));
-  }
+    const value = localStorage.getItem(itemName);
+    if (value == null || value === 'undefined' || value === 'null') {
+      return null;
+    }
 
+    return JSON.parse(value);
+  }
   return null;
 }
 
@@ -22,7 +26,11 @@ export function getLocalStorageItem(itemName) {
  */
 export function setLocalStorageItem(itemName, itemValue) {
   if (typeof localStorage !== 'undefined') {
-    localStorage.setItem(itemName, JSON.stringify(itemValue));
+    if (itemValue == null) {
+      localStorage.removeItem(itemName);
+    } else {
+      localStorage.setItem(itemName, JSON.stringify(itemValue));
+    }
   }
 }
 
