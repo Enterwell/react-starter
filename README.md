@@ -163,7 +163,47 @@ More details on what each of these entities is can be read in the section on the
 
 Let's start now *in medias res* - the image just below this paragraph shows the architecture of Enterwell React applications. Of course, this is not the only, and at least the only correct architecture of the React application, but it is an architecture around which the elders of Enterwell almost unanimously agreed. Different segments of the architecture will be explained below.
 
-![Architecture](./public/assets/images/architecture.png)
+```mermaid
+flowchart LR
+    Component --> AppModel
+    View --> ViewModel
+    ViewModel --> Repository
+    Repository <--> Mapper
+    Mapper --> Model
+    AppModel --> Repository
+    Repository --> external
+    subgraph external[External resources]
+        direction LR
+        ExtApi[API]
+        ExtGraph[GraphQL]
+        ExtOther[Other resources...]
+    end
+
+    click View href "#views"
+    click Component href "#components"
+    click ViewModel href "#view-model"
+    click AppModel href "#app-model"
+    click Repository href "#repository"
+    click Mapper href "#mapper"
+    click Model href "#model"
+ ```
+ 
+ Missing from diagram above is `AppModel` since it's not used that often. It fits into above diagram as follows.
+ 
+ ```mermaid
+ flowchart LR
+    S1[...] -->  ViewModel
+    S2[...] -->  Component
+    ViewModel --> AppModel
+    Component --> AppModel
+    AppModel --> Repository
+    Repository --> ...
+    
+    click ViewModel href "#view-model"
+    click AppModel href "#app-model"
+    click Repository href "#repository"
+    click AppModel href "#app-model"
+ ```
 
 ### Components
 
