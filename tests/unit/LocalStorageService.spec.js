@@ -1,5 +1,5 @@
 // Import service
-import LocalStorageService from '../../services/LocalStorageService';
+import { getLocalStorageItem, setLocalStorageItem, removeLocalStorageItem } from '../../services/LocalStorageService';
 
 /**
  * Class representing the Local Storage mock.
@@ -49,7 +49,7 @@ describe('Local storage service unit tests', () => {
     window.localStorage.setItem(storingKey, JSON.stringify(storingValue));
 
     // Act
-    const result = LocalStorageService.get(storingKey);
+    const result = getLocalStorageItem(storingKey);
 
     // Assert
     expect(typeof result).toBe('object');
@@ -67,7 +67,7 @@ describe('Local storage service unit tests', () => {
     Object.defineProperty(window, 'localStorage', { value: undefined });
 
     // Act
-    const result = LocalStorageService.get(storingKey);
+    const result = getLocalStorageItem(storingKey);
 
     // Setting back the local storage mock
     Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock() });
@@ -88,7 +88,7 @@ describe('Local storage service unit tests', () => {
     const expectedValue = JSON.stringify(storingValue);
 
     // Act
-    LocalStorageService.set(storingKey, storingValue);
+    setLocalStorageItem(storingKey, storingValue);
 
     const result = window.localStorage.getItem(storingKey);
 
@@ -111,7 +111,7 @@ describe('Local storage service unit tests', () => {
     Object.defineProperty(window, 'localStorage', { value: undefined });
 
     // Act
-    LocalStorageService.set(storingKey, storingValue);
+    setLocalStorageItem(storingKey, storingValue);
 
     // Assert
     expect(window.localStorage).toBeUndefined();
@@ -132,7 +132,7 @@ describe('Local storage service unit tests', () => {
     window.localStorage.setItem(storingKey, storingValue);
 
     // Act
-    LocalStorageService.remove(storingKey);
+    removeLocalStorageItem(storingKey);
 
     const result = window.localStorage.getItem(storingKey);
 
