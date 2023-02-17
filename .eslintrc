@@ -30,7 +30,6 @@
 		"no-continue": 0,
 		"no-plusplus": 0,
 		"no-console": 0,
-		"no-alert": 0,
 		"no-nested-ternary": 0,
 		"no-underscore-dangle": 0,
 		"linebreak-style": 0,
