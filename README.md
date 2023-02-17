@@ -219,21 +219,21 @@ Models are classes that represent entities used in an application. Data retrieve
 
 #### Mapper
 
-Mappers are classes that provide a data mapping service. The most common use case is to use them when mapping data from the server to the models used in the application. When mapping, it is possible to make appropriate transformations over individual data (e.g. data formatting, data localization, etc.).
+Mappers are sets of functions that provide a data mapping service. The most common use case is to use them when mapping data from the server to the models used in the application. When mapping, it is possible to make appropriate transformations over individual data (e.g. data formatting, data localization, etc.).
 
 #### Repository
 
-Repositories are classes that serve as application boundaries and through which the application retrieves data. How the data will be retrieved depends solely on the repository or the application itself. The most common way to retrieve data is from an API, but data can also be retrieved from `local storage`, for example.
+Repositories are sets of functions that serve as application boundaries and through which the application retrieves data. How the data will be retrieved depends solely on the repository or the application itself. The most common way to retrieve data is from an API, but data can also be retrieved from `local storage`, for example.
 
 Repository methods use individual mappers to map the data they retrieve.
 
 #### Service
 
-Services are classes that provide an application-specific role, such as displaying notifications, communicating with `local storage`, communicating with an API or something else.
+Services are sets of functions that provide an application-specific role, such as displaying notifications, communicating with `local storage`, communicating with an API or something else.
 
 #### Helper
 
-Helpers are classes very similar in purpose to services, but still a little less specific and they usually provide some "stupid" service that is repeated in several places in the application.
+Helpers are sets of functions very similar in purpose to services, but still a little less specific and they usually provide some "stupid" service that is repeated in several places in the application.
 
 #### Hooks
 

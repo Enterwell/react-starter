@@ -1,14 +1,7 @@
-// General imports
 import { makeObservable, observable, action, runInAction } from 'mobx';
-
-// App models import
 import UserAppModel from '../app-models/UserAppModel';
-
-// Repositories import
-import PokemonsRepository from '../repositories/PokemonsRepository';
-
-// Services import
-import NotificationsService from '../services/NotificationsService';
+import { showDefaultErrorNotification } from '../services/NotificationsService';
+import { getSinglePokemon } from '../repositories/PokemonsRepository';
 
 /**
  * Class represents the view model of the PokemonDetailsView.
@@ -92,13 +85,14 @@ class PokemonDetailsViewModel {
     this.isLoading = true;
 
     try {
-      const pokemon = await PokemonsRepository.getSinglePokemon(id);
+      const pokemon = await getSinglePokemon(id);
 
       runInAction(() => {
         this.pokemon = pokemon;
       });
     } catch (e) {
-      NotificationsService.showDefaultErrorNotification();
+      console.error(e);
+      showDefaultErrorNotification();
     }
 
     runInAction(() => {

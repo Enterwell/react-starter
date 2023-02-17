@@ -40,7 +40,8 @@ export const withAppModels = (Component, AppModelProviders) => function WithAppM
   }, null);
 };
 
-export default {
+const exports = {
   withViewModel,
   withAppModels
 };
+export default exports;

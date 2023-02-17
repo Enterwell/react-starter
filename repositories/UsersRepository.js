@@ -1,41 +1,27 @@
-// Services import
-import LocalStorageService from '../services/LocalStorageService';
-
-// Mappers import
-import UsersMapper from '../mappers/UsersMapper';
+import { mapDtoToUser } from '../mappers/UsersMapper';
+import { getLocalStorageItem, setLocalStorageItem } from '../services/LocalStorageService';
 
 /**
- * Class represents the user repository used for accessing and modifying user data.
+ * Gets the User from API.
  *
- * @class UsersRepository
+ * @static
+ * @returns {User} User data
  */
-class UsersRepository {
-  /**
-   * Gets the User from API.
-   *
-   * @static
-   * @returns {User} User data
-   * @memberof UsersRepository
-   */
-  static getUser() {
-    const user = LocalStorageService.get('user');
+export function getUser() {
+  const user = getLocalStorageItem('user');
 
-    return UsersMapper.mapDtoToUser(user);
-  }
-
-  /**
-   * Edits the User.
-   *
-   * @static
-   * @param {User} payload User data
-   * @returns {User} User data
-   * @memberof UsersRepository
-   */
-  static editUser(payload) {
-    LocalStorageService.set('user', payload);
-
-    return payload;
-  }
+  return mapDtoToUser(user);
 }
 
-export default UsersRepository;
+/**
+ * Edits the User.
+ *
+ * @static
+ * @param {User} payload User data
+ * @returns {User} User data
+ */
+export function editUser(payload) {
+  setLocalStorageItem('user', payload);
+
+  return payload;
+}

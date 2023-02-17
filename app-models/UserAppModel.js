@@ -1,13 +1,6 @@
-// General imports
 import { makeObservable, observable, action } from 'mobx';
-
-// Repositories import
-import UsersRepository from '../repositories/UsersRepository';
-
-// Services import
-import NotificationsService from '../services/NotificationsService';
-
-// Models import
+import { showDefaultErrorNotification } from '../services/NotificationsService';
+import { getUser, editUser } from '../repositories/UsersRepository';
 import User from '../models/User';
 
 /**
@@ -70,9 +63,10 @@ class UserAppModel {
    */
   loadUser() {
     try {
-      this.user = UsersRepository.getUser();
+      this.user = getUser();
     } catch (e) {
-      NotificationsService.showDefaultErrorNotification();
+      console.error(e);
+      showDefaultErrorNotification();
     }
   }
 
@@ -87,9 +81,10 @@ class UserAppModel {
       const payload = this.user ? this.user.clone() : new User();
       payload.name = name;
 
-      this.user = UsersRepository.editUser(payload);
+      this.user = editUser(payload);
     } catch (e) {
-      NotificationsService.showDefaultErrorNotification();
+      console.error(e);
+      showDefaultErrorNotification();
     }
   }
 }

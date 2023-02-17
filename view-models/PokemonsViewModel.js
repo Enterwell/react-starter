@@ -1,11 +1,6 @@
-// General imports
 import { makeObservable, observable, action, runInAction } from 'mobx';
-
-// Repositories import
-import PokemonsRepository from '../repositories/PokemonsRepository';
-
-// Services import
-import NotificationsService from '../services/NotificationsService';
+import { showDefaultErrorNotification } from '../services/NotificationsService';
+import { getPokemons } from '../repositories/PokemonsRepository';
 
 /**
  * Class represents the view model of the PokemonsView.
@@ -135,7 +130,7 @@ class PokemonsViewModel {
       const {
         results,
         count
-      } = await PokemonsRepository.getPokemons(payload);
+      } = await getPokemons(payload);
 
       runInAction(() => {
         this.pokemons = results;
@@ -143,7 +138,8 @@ class PokemonsViewModel {
         this.totalPokemons = count;
       });
     } catch (e) {
-      NotificationsService.showDefaultErrorNotification();
+      console.error(e);
+      showDefaultErrorNotification();
     }
 
     runInAction(() => {
