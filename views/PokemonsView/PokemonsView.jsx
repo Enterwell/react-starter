@@ -36,7 +36,7 @@ function PokemonsView(props) {
     if (pageNumber === 0) {
       loadPokemons();
     }
-  }, []);
+  }, [loadPokemons, pageNumber]);
 
   const handlePageChange = (_, newPage) => {
     loadPokemons(newPage - 1);
