@@ -178,14 +178,6 @@ flowchart LR
         ExtGraph[GraphQL]
         ExtOther[Other resources...]
     end
-
-    click View href "#views"
-    click Component href "#components"
-    click ViewModel href "#view-model"
-    click AppModel href "#app-model"
-    click Repository href "#repository"
-    click Mapper href "#mapper"
-    click Model href "#model"
  ```
  
  Missing from diagram above is `AppModel` since it's not used that often. It fits into above diagram as follows.
@@ -197,12 +189,7 @@ flowchart LR
     ViewModel --> AppModel
     Component --> AppModel
     AppModel --> Repository
-    Repository --> ...
-    
-    click ViewModel href "#view-model"
-    click AppModel href "#app-model"
-    click Repository href "#repository"
-    click AppModel href "#app-model"
+    Repository --> S3[...]
  ```
 
 ### Components
