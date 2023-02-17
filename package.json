@@ -25,7 +25,8 @@
         "component-test-open": "cypress open --component",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\""
+        "stories-check": "rimraf ./.stories-pending && storycap --serverCmd \"start-storybook --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/StoriesCompare').run()\"",
+        "feature:remove": "node ./helpers/featureSelect.mjs"
     },
     "dependencies": {
         "@emotion/cache": "11.10.5",
