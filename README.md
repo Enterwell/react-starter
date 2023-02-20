@@ -163,7 +163,34 @@ More details on what each of these entities is can be read in the section on the
 
 Let's start now *in medias res* - the image just below this paragraph shows the architecture of Enterwell React applications. Of course, this is not the only, and at least the only correct architecture of the React application, but it is an architecture around which the elders of Enterwell almost unanimously agreed. Different segments of the architecture will be explained below.
 
-![Architecture](./public/assets/images/architecture.png)
+```mermaid
+flowchart LR
+    Component --> AppModel
+    View --> ViewModel
+    ViewModel --> Repository
+    Repository <--> Mapper
+    Mapper --> Model
+    AppModel --> Repository
+    Repository --> external
+    subgraph external[External resources]
+        direction LR
+        ExtApi[API]
+        ExtGraph[GraphQL]
+        ExtOther[Other resources...]
+    end
+ ```
+ 
+ Missing from diagram above is `AppModel` since it's not used that often. It fits into above diagram as follows.
+ 
+ ```mermaid
+ flowchart LR
+    S1[...] -->  ViewModel
+    S2[...] -->  Component
+    ViewModel --> AppModel
+    Component --> AppModel
+    AppModel --> Repository
+    Repository --> S3[...]
+ ```
 
 ### Components
 
@@ -241,7 +268,49 @@ Hooks are similar in purpose to helpers, but they are primarily focused for bein
 
 ### Architecture example
 
-![Architecture - Pokemons](./public/assets/images/architecture-pokemons.png)
+```mermaid
+flowchart TB
+    App --> IndexView
+    App --> PokemonsView
+    App --> PokemonDetailsView
+    App --> UserInformations
+    
+    UserInformations --> UserAppModel
+    
+    PokemonsView --> PokemonsViewModel
+    PokemonsViewModel --> PokemonsRepository
+
+    PokemonDetailsView --> PokemonDetailsViewModel
+    PokemonDetailsViewModel --> PokemonsRepository
+    PokemonDetailsViewModel --> UserAppModel
+    
+    UserAppModel --> UsersRepository
+        
+    PokemonsRepository --> external
+
+    subgraph subPokemonsRepository[Pokemons Repository]
+        direction BT
+        PokemonsRepository <--> PokemonsMapper
+        PokemonsMapper --> PokemonDetails
+        PokemonsMapper --> PokemonSimplified
+    end
+
+    UsersRepository --> external
+
+    subgraph subUsersRepository[Users Repository]
+        direction BT
+        UsersRepository <--> UsersMapper
+        UsersMapper --> User
+    end
+
+    subgraph external[External resources]
+        direction LR
+        ExtApi[API]
+        ExtGraph[GraphQL]
+        ExtLocalStorage[Local storage]
+        ExtOther[Other resources...]
+    end
+```
 
 For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses PokéAPI and, as you can already guess, it is used to view Pokemon.
 
@@ -515,6 +584,6 @@ Before deploying the application, make sure that all the tasks from the list bel
 * Change application's default title in the `_app.jsx`
 * Change application's description in `_document.jsx`
 * Change favicon
-* Remove all unused and starter's specific files (e.g. `architecture.png`, `architecture-pokemons.png`, `PokemonsMapper.js`, `PokemonsRepository.js`...)
+* Remove all unused and starter's specific files (e.g. `PokemonsMapper.js`, `PokemonsRepository.js`...)
 * Remove all `TODO_delete_this_later` files and empty folders
 * Customize error pages
