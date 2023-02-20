@@ -84,7 +84,7 @@
         "kill-port": "2.0.1",
         "postcss": "8.4.21",
         "puppeteer": "19.7.1",
-        "rimraf": "3.0.2",
+        "rimraf": "4.1.2",
         "sass-loader": "13.2.0",
         "start-server-and-test": "1.15.4",
         "storybook-addon-next": "1.7.1",
