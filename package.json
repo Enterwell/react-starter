@@ -83,7 +83,7 @@
         "jest-environment-jsdom": "29.4.3",
         "kill-port": "2.0.1",
         "postcss": "8.4.21",
-        "puppeteer": "19.3.0",
+        "puppeteer": "19.7.1",
         "rimraf": "3.0.2",
         "sass-loader": "13.2.0",
         "start-server-and-test": "1.15.4",
