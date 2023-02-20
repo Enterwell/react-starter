@@ -268,7 +268,49 @@ Hooks are similar in purpose to helpers, but they are primarily focused for bein
 
 ### Architecture example
 
-![Architecture - Pokemons](./public/assets/images/architecture-pokemons.png)
+```mermaid
+flowchart TB
+    App --> IndexView
+    App --> PokemonsView
+    App --> PokemonDetailsView
+    App --> UserInformations
+    
+    UserInformations --> UserAppModel
+    
+    PokemonsView --> PokemonsViewModel
+    PokemonsViewModel --> PokemonsRepository
+
+    PokemonDetailsView --> PokemonDetailsViewModel
+    PokemonDetailsViewModel --> PokemonsRepository
+    PokemonDetailsViewModel --> UserAppModel
+    
+    UserAppModel --> UsersRepository
+        
+    PokemonsRepository --> external
+
+    subgraph subPokemonsRepository[Pokemons Repository]
+        direction BT
+        PokemonsRepository <--> PokemonsMapper
+        PokemonsMapper --> PokemonDetails
+        PokemonsMapper --> PokemonSimplified
+    end
+
+    UsersRepository --> external
+
+    subgraph subUsersRepository[Users Repository]
+        direction BT
+        UsersRepository <--> UsersMapper
+        UsersMapper --> User
+    end
+
+    subgraph external[External resources]
+        direction LR
+        ExtApi[API]
+        ExtGraph[GraphQL]
+        ExtLocalStorage[Local storage]
+        ExtOther[Other resources...]
+    end
+```
 
 For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses PokéAPI and, as you can already guess, it is used to view Pokemon.
 
@@ -542,6 +584,6 @@ Before deploying the application, make sure that all the tasks from the list bel
 * Change application's default title in the `_app.jsx`
 * Change application's description in `_document.jsx`
 * Change favicon
-* Remove all unused and starter's specific files (e.g. `architecture.png`, `architecture-pokemons.png`, `PokemonsMapper.js`, `PokemonsRepository.js`...)
+* Remove all unused and starter's specific files (e.g. `PokemonsMapper.js`, `PokemonsRepository.js`...)
 * Remove all `TODO_delete_this_later` files and empty folders
 * Customize error pages
