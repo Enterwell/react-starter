@@ -50,21 +50,19 @@ function PokemonsView(props) {
             key={p.id}
             href="/pokemons/[id]"
             as={`/pokemons/${p.id}`}
-            passHref
+            className={styles.item}
           >
-            <div className={styles.item}>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  width={36}
-                  height={36}
-                />
-              </div>
-              <span className={styles.name}>
-                {p.name}
-              </span>
+            <div className={styles.imageWrapper}>
+              <Image
+                src={p.image}
+                alt={p.name}
+                width={36}
+                height={36}
+              />
             </div>
+            <span className={styles.name}>
+              {p.name}
+            </span>
           </Link>
         ))}
       </div>

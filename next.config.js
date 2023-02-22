@@ -1,16 +1,23 @@
 const path = require('path');
 
-const withReactSvg = require('next-react-svg');
+const withReactSvg = require('next-react-svg')({
+  include: path.resolve(__dirname, './public/assets')
+});
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  include: path.resolve(__dirname, './public/assets'),
   productionBrowserSourceMaps: true,
   images: {
-    domains: ['assets.pokemon.com']
+    remotePatterns: [
+      {
+        hostname: 'assets.pokemon.com',
+        protocol: 'https'
+      }
+    ]
   },
   eslint: {
     dirs: [
@@ -28,9 +35,4 @@ const nextConfig = {
   }
 };
 
-const plugins = withBundleAnalyzer(withReactSvg(nextConfig));
-
-// NOTE: Workaround for https://github.com/Enterwell/react-starter/issues/340
-//       Should be removed when `next-react-svg` implements settings correctly.
-delete plugins.include;
-module.exports = plugins;
+module.exports = withBundleAnalyzer(withReactSvg(nextConfig));

@@ -94,10 +94,8 @@ function PokemonDetailsView(props) {
             </span>
             ?
           </div>
-          <Link href="/pokemons">
-            <a className={styles.link}>
-              Go back
-            </a>
+          <Link href="/pokemons" className={styles.link}>
+            Go back
           </Link>
         </div>
       )}
