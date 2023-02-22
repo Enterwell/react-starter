@@ -87,7 +87,7 @@
         "rimraf": "4.1.2",
         "sass-loader": "13.2.0",
         "start-server-and-test": "1.15.4",
-        "storybook-addon-next": "1.7.1",
+        "storybook-addon-next": "1.7.2",
         "storycap": "4.0.0",
         "webpack-dev-server": "4.11.1"
     }
