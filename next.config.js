@@ -1,5 +1,4 @@
 const path = require('path');
-
 const withReactSvg = require('next-react-svg')({
   include: path.resolve(__dirname, './public/assets')
 });
@@ -17,7 +16,8 @@ const nextConfig = {
         hostname: 'assets.pokemon.com',
         protocol: 'https'
       }
-    ]
+    ],
+    unoptimized: true // NOTE: Remove this line when you don't export app as static
   },
   eslint: {
     dirs: [

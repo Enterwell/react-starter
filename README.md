@@ -580,6 +580,7 @@ This command generates an `out` directory in the project root. Only use this com
 
 Before deploying the application, make sure that all the tasks from the list below have been completed.
 
+* Check image optimization in `next.config.js`
 * Change application's name in the `package.json`
 * Change application's default title in the `_app.jsx`
 * Change application's description in `_document.jsx`
