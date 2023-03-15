@@ -21,15 +21,13 @@ const nextConfig = {
   },
   eslint: {
     dirs: [
-      '.storybook',
       'app-models',
-      'component-models', 'components', 'config', 'cypress',
-      'helpers', 'hooks',
+      'component-models', 'components', 'config',
+      'hooks',
       'mappers', 'models',
       'pages',
       'repositories',
       'services',
-      'tests',
       'view-models', 'views'
     ]
   }

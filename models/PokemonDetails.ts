@@ -55,7 +55,7 @@ class PokemonDetails {
   /**
    * Image.
    *
-   * @type {number}
+   * @type {string}
    * @memberof PokemonDetails
    */
   image;

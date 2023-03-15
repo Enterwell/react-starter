@@ -1,5 +1,5 @@
 // General imports
-import axios from 'axios';
+import axios, { AxiosRequestConfig, Method } from 'axios';
 
 // Should local server be used
 const isLocalServer = process.env.NEXT_PUBLIC_LOCAL_SERVER;
@@ -15,7 +15,7 @@ axios.interceptors.response.use(
    *
    * @returns API's URL
    */
-function _getBaseUrl() {
+function _getBaseUrl(): string {
   if (isLocalServer) {
     return 'https://localhost:5001/v1/';
   }
@@ -34,15 +34,15 @@ function _getDefaultHeaders() { return {}; }
  * Makes the HTTP request.
  *
  * @static
- * @param {string} method HTTP request method
+ * @param {Method} method HTTP request method
  * @param {string} url URL
- * @param {Object} data Payload that will be sent along with request
- * @param {Object} [headers={}] Request headers
- * @returns {Promise<any>} Promise
+ * @param {Object?} data Payload that will be sent along with request
+ * @param {Object?} [headers={}] Request headers
+ * @returns {Promise<AxiosResponse>} Promise
  */
-async function _request(method, url, data, headers) {
+async function _request(method: Method, url: string, data?: object, headers?: object) {
   // Prepares the request payload
-  let request = {
+  let request: AxiosRequestConfig = {
     url: `${_getBaseUrl()}${url}`,
     method,
     headers: {
@@ -57,8 +57,6 @@ async function _request(method, url, data, headers) {
       ...request,
       data
     };
-  } else if (data instanceof String) {
-    request = data;
   } else if (data instanceof Object) {
     request = {
       ...request,
@@ -79,8 +77,8 @@ async function _request(method, url, data, headers) {
  * @param {Object} [headers={}] Request headers
  * @returns {Promise<any>} Promise
  */
-export async function get(url, data, headers) {
-  return _request('get', url, data, headers, {});
+export async function get(url: string, data?: object, headers?: object) {
+  return _request('get', url, data, headers);
 }
 
 /**
@@ -92,9 +90,8 @@ export async function get(url, data, headers) {
  * @param {Object} [headers={}] Request headers
  * @returns {Promise<any>} Promise
  */
-export async function post(url, data, headers, config) {
-  //  Remove comment when API is finished
-  return _request('post', url, data, headers, config);
+export async function post(url: string, data?: object, headers?: object) {
+  return _request('post', url, data, headers);
 }
 
 /**
@@ -106,9 +103,8 @@ export async function post(url, data, headers, config) {
  * @param {Object} [headers={}] Request headers
  * @returns {Promise<any>} Promise
  */
-export async function put(url, data, headers) {
-  //  Remove comment when API is finished
-  return HttpService._request('put', url, data, headers);
+export async function put(url: string, data?: object, headers?: object) {
+  return _request('put', url, data, headers);
 }
 
 /**
@@ -120,6 +116,6 @@ export async function put(url, data, headers) {
  * @param {Object} [headers={}] Request headers
  * @returns {Promise<any>} Promise
  */
-export async function requestDelete(url, data, headers) {
-  return HttpService._request('delete', url, data, headers);
+export async function requestDelete(url: string, data?: object, headers?: object) {
+  return _request('delete', url, data, headers);
 }

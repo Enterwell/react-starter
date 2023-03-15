@@ -76,7 +76,7 @@ class UserAppModel {
    * @param {string} name Name
    * @memberof UserAppModel
    */
-  editUser(name) {
+  editUser(name: string) {
     try {
       const payload = this.user ? this.user.clone() : new User();
       payload.name = name;

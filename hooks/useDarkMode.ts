@@ -7,7 +7,7 @@ import { getIsDarkMode, setIsDarkMode as persistIsDarkMode } from '../services/T
  * @returns {[boolean, Function]} Tuple containing the state value and state setter.
  */
 export default function useDarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState();
+  const [isDarkMode, setIsDarkMode] = useState<boolean | undefined>();
 
   useEffect(() => {
     setIsDarkMode(getIsDarkMode());

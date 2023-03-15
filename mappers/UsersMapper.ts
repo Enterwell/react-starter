@@ -7,7 +7,7 @@ import User from '../models/User';
  * @param {Object|null} dto DTO
  * @returns User model
  */
-export function mapDtoToUser(dto) {
+export function mapDtoToUser(dto: null | { name: string }) {
   if (dto === null) {
     return null;
   }

@@ -20,7 +20,7 @@ export const INFO_TYPE = 'info';
  * @param {string} type Notification type
  * @returns notification
  */
-function _createNotification(message, type, timeout) {
+function _createNotification(message: string, type: Noty.Type, timeout: number) {
   // Creats the notification
   const notification = new Noty({
     text: message,
@@ -40,7 +40,7 @@ function _createNotification(message, type, timeout) {
  * @param {string} type Notification type
  * @returns notification
  */
-export function showNotification(message, type, timeout = 0) {
+export function showNotification(message: string, type: Noty.Type, timeout = 0) {
   // Creates and shows the notification
   const notification = _createNotification(message, type, timeout);
   notification.show();
@@ -55,7 +55,7 @@ export function showNotification(message, type, timeout = 0) {
  * @param {string} message Success message
  * @returns notification
  */
-export function showSuccessNotification(message) {
+export function showSuccessNotification(message: string) {
   return showNotification(message, SUCCESS_TYPE, 3000);
 }
 
@@ -66,7 +66,7 @@ export function showSuccessNotification(message) {
  * @param {string} message Error message
  * @returns notification
  */
-export function showErrorNotification(message) {
+export function showErrorNotification(message: string) {
   return showNotification(message, ERROR_TYPE);
 }
 
@@ -77,7 +77,7 @@ export function showErrorNotification(message) {
  * @param {string} message Warning message
  * @returns notification
  */
-export function showWarningNotification(message) {
+export function showWarningNotification(message: string) {
   return showNotification(message, WARNING_TYPE);
 }
 
@@ -88,7 +88,7 @@ export function showWarningNotification(message) {
  * @param {string} messageInfo message
  * @returns notification
  */
-export function showInfoNotification(message) {
+export function showInfoNotification(message: string) {
   return showNotification(message, INFO_TYPE);
 }
 

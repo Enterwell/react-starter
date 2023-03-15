@@ -1,31 +1,29 @@
-{
-	"parser": "@babel/eslint-parser",
-	"extends": [
+module.exports = {
+	extends: [
 		"airbnb",
 		"plugin:storybook/recommended",
 		"plugin:react/recommended",
+		"plugin:import/recommended",
+		"plugin:import/typescript",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"next/core-web-vitals"
 	],
-	"env": {
-		"browser": true,
-		"node": true,
-		"jest": true,
-		"es6": true
+	plugins: [
+		"@typescript-eslint"
+	],
+	root: true,
+	env: {
+		browser: true,
+		node: true,
+		jest: true,
+		es6: true
 	},
-	"parserOptions": {
-		"ecmaVersion": 6,
-		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"requireConfigFile": false,
-		"babelOptions": {
-			"presets": [
-				"@babel/preset-react"
-			]
-		}
+	parserOptions: {
+		project: true,
+		tsconfigRootDir: __dirname,
 	},
-	"rules": {
+	rules: {
 		"no-undef": 0,
 		"no-continue": 0,
 		"no-plusplus": 0,
@@ -51,6 +49,7 @@
 		"import/no-unresolved": 0,
 		"import/no-extraneous-dependencies": 0,
 		"import/prefer-default-export": 0,
+		"import/extensions": 0,
 		"react/function-component-definition": [
 			2,
 			{
@@ -68,6 +67,7 @@
 		"react/destructuring-assignment": 0,
 		"react/jsx-props-no-spreading": 0,
 		"react/jsx-tag-spacing": 0,
+		"react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
 		"react/prop-types": 0,
 		"react/no-unescaped-entities": 0,
 		"react/sort-comp": [

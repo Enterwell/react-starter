@@ -1,4 +1,5 @@
 import { mapDtoToUser } from '../mappers/UsersMapper';
+import User from '../models/User';
 import { getLocalStorageItem, setLocalStorageItem } from '../services/LocalStorageService';
 
 /**
@@ -17,10 +18,10 @@ export function getUser() {
  * Edits the User.
  *
  * @static
- * @param {User} payload User data
+ * @param {User | undefined} payload User data
  * @returns {User} User data
  */
-export function editUser(payload) {
+export function editUser(payload: User | undefined) {
   setLocalStorageItem('user', payload);
 
   return payload;
