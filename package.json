@@ -89,6 +89,6 @@
         "start-server-and-test": "2.0.0",
         "storybook-addon-next": "1.7.3",
         "storycap": "4.0.0",
-        "webpack-dev-server": "4.12.0"
+        "webpack-dev-server": "4.13.1"
     }
 }
