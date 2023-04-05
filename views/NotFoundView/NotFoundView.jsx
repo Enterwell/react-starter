@@ -9,7 +9,7 @@ import styles from './NotFoundView.module.scss';
 function NotFoundView() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>
+      <h1 className={styles.title} data-testid="heading">
         404
       </h1>
       <h2 className={styles.subtitle}>

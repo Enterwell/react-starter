@@ -27,6 +27,7 @@ const nextConfig = {
       'helpers', 'hooks',
       'mappers', 'models',
       'pages',
+      'playwright',
       'repositories',
       'services',
       'tests',
