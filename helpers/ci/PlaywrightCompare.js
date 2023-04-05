@@ -16,8 +16,8 @@ const PENDING_PLAYWRIGHT = path.join(__dirname, `../../${PENDING_DIR_NAME}`);
  *
  * @param {string} approvedPlaywright Path to the approved Playwright directory
  * @param {string} pendingPlaywright Path to the pending Playwright directory
- * @param {string} approvedDirName Name of the approved cypress directory
- * @param {string} pendingDirName Name of the pending cypress directory
+ * @param {string} approvedDirName Name of the approved Playwright directory
+ * @param {string} pendingDirName Name of the pending Playwright directory
  */
 const run = (
   approvedPlaywright = APPROVED_PLAYWRIGHT,

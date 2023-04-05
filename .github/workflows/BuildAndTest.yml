@@ -1,33 +1,46 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code, use linter to check the code and run tests
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: Build and test
 
-name: Build, lint and test
+# Variables
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
+# Triggering the workflow on PRs and pushes to relevant branches
 on:
   pull_request:
     branches:
       - main
+      - feature/**
   push:
     branches:
       - main
 
 jobs:
-  build-lint-and-test:
-    name: Build, lint and test
-
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Defining what Node.js version to use
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-          cache: 'yarn'
+          node-version: 16.x
+          cache: yarn
 
-      - name: 'Use Next.js cache'
+      # Installing node dependencies using Yarn
+      - name: Yarn install
+        run: yarn install
+        
+      # Linting the application
+      - name: Yarn lint
+        run: yarn lint
+
+      # Persisting Next.js' cache across builds
+      - name: Use Next.js cache
         uses: actions/cache@v3.3.1
         with:
           path: ${{ github.workspace }}/.next/cache
@@ -36,21 +49,37 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-          
-      - name: Yarn install
-        run: yarn install
-        
+
+      # Building the application
       - name: Yarn build
         run: yarn build
+
+      # Installing Playwright's browsers
+      - name: Install Playwright's browsers
+        run: npx playwright install --with-deps
+
+      # Running application tests
+      - name: Yarn test
+        run: yarn test
+
+      # Running E2E screenshots check
+      - name: E2E check
+        run: yarn e2e-check
+
+      # Committing E2E screenshot changes
+      - name: Commit E2E changes
+        uses: EndBug/add-and-commit@v9.1.1
+        with:
+          message: "[skip ci] [e2e-check] Automated Playwright E2E screenshot changes commit"
+          new_branch: ${{ env.BRANCH_NAME }}
       
-      - name: Yarn lint
-        run: yarn lint
+      # Running Storybook story screenshots check
+      - name: Run stories-check
+        run: yarn stories-check
 
-      - name: Run unit tests
-        run: yarn unit-test
-
-      - name: Run component tests
-        run: yarn component-test:ci
-        
-      - name: Run E2E tests
-        run: yarn e2e-test:ci
+      # Committing Storybook story screenshot changes
+      - name: Commit Storybook changes
+        uses: EndBug/add-and-commit@v9.1.1
+        with:
+          message: "[skip ci] [storybook-check] Automated Storybook screenshot changes commit"
+          new_branch: ${{ env.BRANCH_NAME }}

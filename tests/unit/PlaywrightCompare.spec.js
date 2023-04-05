@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Import testing script
-const { run } = require('../../helpers/ci/CypressCompare');
+const { run } = require('../../helpers/ci/PlaywrightCompare');
 
 // Node helpers import
 const { getFilesRecursively } = require('../../helpers/ci/NodeHelpers');
@@ -12,11 +12,11 @@ const { getFilesRecursively } = require('../../helpers/ci/NodeHelpers');
 const testRoot = path.join(__dirname, 'test_structure');
 
 // Directory names
-const APPROVED_DIR_NAME = '.cypress-approved';
-const PENDING_DIR_NAME = '.cypress-pending';
+const APPROVED_DIR_NAME = '.playwright-approved';
+const PENDING_DIR_NAME = '.playwright-pending';
 
-const APPROVED_CYPRESS = path.join(testRoot, APPROVED_DIR_NAME);
-const PENDING_CYPRESS = path.join(testRoot, PENDING_DIR_NAME);
+const APPROVED_PLAYWRIGHT = path.join(testRoot, APPROVED_DIR_NAME);
+const PENDING_PLAYWRIGHT = path.join(testRoot, PENDING_DIR_NAME);
 
 /**
  * Creates the directory with the given name and populates it with given files.
@@ -32,9 +32,9 @@ const createAndPopulateDirectory = (dirName, filesToWrite) => {
 };
 
 /**
- * Cypress compare helper unit tests.
+ * Playwright compare helper unit tests.
  */
-describe('Cypress compare unit tests', () => {
+describe('Playwright compare unit tests', () => {
   /**
    * Runs before each individual test.
    */
@@ -68,10 +68,10 @@ describe('Cypress compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_PLAYWRIGHT, PENDING_PLAYWRIGHT, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
-    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
+    const approvedFiles = getFilesRecursively(APPROVED_PLAYWRIGHT);
+    const pendingFiles = getFilesRecursively(PENDING_PLAYWRIGHT);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -118,10 +118,10 @@ describe('Cypress compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_PLAYWRIGHT, PENDING_PLAYWRIGHT, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
-    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
+    const approvedFiles = getFilesRecursively(APPROVED_PLAYWRIGHT);
+    const pendingFiles = getFilesRecursively(PENDING_PLAYWRIGHT);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -168,10 +168,10 @@ describe('Cypress compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_PLAYWRIGHT, PENDING_PLAYWRIGHT, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
-    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
+    const approvedFiles = getFilesRecursively(APPROVED_PLAYWRIGHT);
+    const pendingFiles = getFilesRecursively(PENDING_PLAYWRIGHT);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
@@ -224,10 +224,10 @@ describe('Cypress compare unit tests', () => {
     const exitMock = jest.spyOn(process, 'exit').mockImplementation();
 
     // Act
-    run(APPROVED_CYPRESS, PENDING_CYPRESS, APPROVED_DIR_NAME, PENDING_DIR_NAME);
+    run(APPROVED_PLAYWRIGHT, PENDING_PLAYWRIGHT, APPROVED_DIR_NAME, PENDING_DIR_NAME);
 
-    const approvedFiles = getFilesRecursively(APPROVED_CYPRESS);
-    const pendingFiles = getFilesRecursively(PENDING_CYPRESS);
+    const approvedFiles = getFilesRecursively(APPROVED_PLAYWRIGHT);
+    const pendingFiles = getFilesRecursively(PENDING_PLAYWRIGHT);
 
     // Assert
     expect(approvedFiles).toHaveLength(shouldBeApproved.length);
