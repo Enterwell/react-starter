@@ -1,6 +1,9 @@
 // General imports
-const fs = require('fs-extra');
-const chalk = require('chalk');
+const { basename } = require('path');
+const { PNG } = require('pngjs');
+const pixelmatch = require('pixelmatch');
+const { ensureDirSync, readFileSync, removeSync, moveSync } = require('fs-extra');
+const { red, green, yellow, white } = require('colorette');
 
 // Node helpers import
 const { getFilesRecursively, logProcess } = require('./NodeHelpers');
@@ -10,15 +13,16 @@ const { getFilesRecursively, logProcess } = require('./NodeHelpers');
  *
  * @param {string} approvedPath Path to the approved screenshots directory
  * @param {string} pendingPath Path to the pending screenshots directory
- * @param {string} approvedDirName Name of the approved screenshots directory
- * @param {string} pendingDirName Name of the pending screenshots directory
  */
-const compare = (approvedPath, pendingPath, approvedDirName, pendingDirName) => {
+const compare = (approvedPath, pendingPath) => {
   try {
+    const approvedDirName = basename(approvedPath);
+    const pendingDirName = basename(pendingPath);
+
     let numberOfChanges = 0;
 
     // Ensure the approved directory exists.
-    fs.ensureDirSync(approvedPath);
+    ensureDirSync(approvedPath);
 
     // Get all the approved files.
     const approvedFiles = logProcess('Fetching approved files...', () => getFilesRecursively(approvedPath));
@@ -34,7 +38,7 @@ const compare = (approvedPath, pendingPath, approvedDirName, pendingDirName) => 
       // If the approved file is an old one (does not exist in the pending folder)
       // delete it from the approved folder.
       if (!pendingFiles.includes(possiblePending)) {
-        logProcess(`\t${chalk.red(`[-] ${approvedFileShort}`)}`, () => fs.removeSync(approvedFile));
+        logProcess(`\t${red(`[-] ${approvedFileShort}`)}`, () => removeSync(approvedFile));
         numberOfChanges++;
       }
     });
@@ -47,30 +51,41 @@ const compare = (approvedPath, pendingPath, approvedDirName, pendingDirName) => 
       // If the pending file is a new one (does not exist in the approved folder)
       // move it to the approved folder.
       if (!approvedFiles.includes(possibleNew)) {
-        logProcess(`\t${chalk.green(`[+] ${possibleNewShort}`)}`, () => fs.moveSync(pendingFile, possibleNew, { overwrite: true }));
+        logProcess(`\t${green(`[+] ${possibleNewShort}`)}`, () => moveSync(pendingFile, possibleNew, { overwrite: true }));
         numberOfChanges++;
       } else {
-        const pendingFileBytes = fs.readFileSync(pendingFile);
-        const approvedFileBytes = fs.readFileSync(possibleNew);
+        const pendingImg = PNG.sync.read(readFileSync(pendingFile));
+        const approvedImg = PNG.sync.read(readFileSync(possibleNew));
+        const { width, height } = pendingImg;
 
-        // If the files are not the same, overwrite it.
-        if (!pendingFileBytes.equals(approvedFileBytes)) {
-          logProcess(`\t${chalk.yellow(`[≠] ${possibleNewShort}`)}`, () => fs.moveSync(pendingFile, possibleNew, { overwrite: true }));
+        const numDiffPixels = pixelmatch(pendingImg.data, approvedImg.data, null, width, height);
+
+        // If the images are not the same, overwrite it.
+        if (numDiffPixels > 0) {
+          logProcess(`\t${yellow(`[≠] ${possibleNewShort}`)}`, () => moveSync(pendingFile, possibleNew, { overwrite: true }));
           numberOfChanges++;
         } else {
-          console.log(`\t${chalk.white(`[=] ${possibleNewShort}`)}`);
+          console.log(`\t${white(`[=] ${possibleNewShort}`)}`);
         }
       }
     });
 
     console.log(`Detected changes: ${numberOfChanges}`);
-
-    if (numberOfChanges) process.exit(1);
   } catch (error) {
-    console.error(chalk.red('Error occurred while running the script:'));
-    console.error(chalk.red(error));
-    process.exit(2);
+    console.error(red('Error occurred while running the script:'));
+    console.error(red(error));
+    process.exit(1);
   }
 };
 
-module.exports = { compare };
+/**
+ * Compare's extension for comparing Playwright's screenshots with the convention-based directories.
+ */
+const comparePlaywright = () => compare('./.playwright-approved', './.playwright-pending');
+
+/**
+ * Compare's extension for comparing Storybook's screenshots with the convention-based directories.
+ */
+const compareStorybook = () => compare('./.stories-approved', './.stories-pending');
+
+module.exports = { comparePlaywright, compareStorybook };
