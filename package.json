@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-open": "start http://localhost:3000 && yarn dev",
     "dev-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next dev",
     "build": "next build",
     "build-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next build",
