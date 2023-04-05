@@ -25,8 +25,8 @@
     <a href="https://jestjs.io/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="jest" width="30" />
     </a>
-    <a href="https://www.cypress.io/" target="_blank">
-      <img src="https://www.cypress.io/icons/icon-48x48.png" alt="cypress" width="30" />
+    <a href="https://playwright.dev/" target="_blank">
+      <img src="https://playwright.dev/img/playwright-logo.svg" alt="playwright" width="30" />
     </a>
   </div>
 </h1>
@@ -108,7 +108,7 @@ You can remove features you don't plan to use by calling `yarn feature:remove <F
 
 * `storycap`
 * `storybook` (also removed `storycap`)
-* `cypress`
+* `playwright`
 * `jest`
 
 ## Why React and why Next.js?
@@ -127,7 +127,8 @@ The React starter's root contains all the configuration files of the tools used 
 * `.eslintignore` - used for defining files that will be ignored by [ESLint](https://eslint.org/)
 * `.gitignore` - used for defining files which changes [Git](https://git-scm.com/) will not track
 * `package.json` - used for defining packages used in the application (so-called `dependencies` and `devDependencies`)
-* `cypress.json` - used for configuring [Cypress](https://www.cypress.io/)
+* `playwright.config.js` - used for configuring [Playwright](https://playwright.dev/)
+* `playwright-ct.config.js` - used for configuring [Playwright's](https://playwright.dev/) component tests
 * `jest.config.js` - used for configuring [Jest](https://jestjs.io/)
 * `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
@@ -138,12 +139,12 @@ The React starter's root contains all the configuration files of the tools used 
 
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
 * `.stories-approved` - a place where images of all of the defined `Storybook` stories are stored
-* `.cypress-approved` - a place where all cypress screenshots are stored
+* `.playwright-approved` - a place where all Playwright screenshots are stored
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
 * `config` - a place where the various configuration files, used by the application itself, are stored (e.g. internationalization configuration, MUI themes, or something else)
-* `cypress` - a place where Cypress related files are stored
+* `playwright` - a place where Playwright related files are stored
 * `helpers` - a place where all the helpers that exist within the application are stored
 * `hooks` - a place where all custom hooks that exist within the application are stored
 * `mappers` - a place where all the mappers that exist within the application are stored
@@ -365,15 +366,15 @@ Naming is something that always provokes controversy because most of us have som
 
 By writing tests we achieve automated checks that everything in the application is working properly. Automated tests are useful because you don't have to manually test all the functionalities every time something changes in the application. All of our tests are written inside the `tests` folder in the project root.
 
-We have selected both [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
+We have selected both [Jest](https://jestjs.io/) and [Playwright](https://playwright.dev/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
 
-If you don't plan to use testing that is configure as part of this starter - use `yarn feature:remove cypress jest` to remove all related to these tests.
+If you don't plan to use testing that is configured as a part of this starter - use `yarn feature:remove playwright jest` to remove everything related to these tests.
 
 ### Unit testing
 
 Unit testing is different from other testing methods because it consists of testing isolated parts of the source code, testing the code and logic. We use them in the application to test `services` and `helpers` or any other JavaScript code when there is some advanced logic. We will never use unit tests, or any other testing method, for testing third-party code directly, because if we depend on a certain package, we must be able to assume that it will work properly.
 
-Unit tests are written inside the `tests/unit` folder. There are already 3 unit tests written in the application. They can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` testing the corresponding `LocalStorageService.js` service, `StoriesCompare.spec.js` testing the `StoriesCompare.js` helper and `CypressCompare.spec.js` testing the `CypressCompare.js` helper.
+Unit tests are written inside the `tests/unit` folder. There is only 1 unit test currently written in the application. It can be recognized by the `spec.js` extension. `LocalStorageService.spec.js` is testing the corresponding `LocalStorageService.js` service.
 
 Unit tests can be run directly from the command line using the command
 
@@ -417,64 +418,51 @@ or a UI can be opened through which they can be manually run. The UI is opened b
 yarn e2e-test-open
 ```
 
-Sometimes some tests do not pass when run by using the command line, so it is recommended to always run them using the UI if you can.
-
 Various different commands were shown that can run each testing method separately from each other. This can be useful if we want to focus on one type of tests without running others. But we can also run all of the tests at once by using the command
 
 ```bash
 yarn test
 ```
 
-In both, component and end-to-end tests, we can use `Cypress`'s handy [screenshot](https://docs.cypress.io/api/commands/screenshot) command. Using this command we can generate a screenshot of the application under test at any desired moment. This can make it easier for us to review PRs and all new future changes.
+In end-to-end tests, we can use `Playwright`'s handy [screenshot](https://playwright.dev/docs/screenshots) command. Using this command we can generate a screenshot of the application under test at any desired moment. This can make it easier for us to review PRs and all future changes.
 
-The screenshot command can be called with and without a parameter.
+The command accepts many parameters for image format, clip area, quality, etc.
 
-```bash
-cy.screenshot()
+We have defined our own `screenshot` function that wrapps the `Playwright's` in the `playwright/helpers/PlaywrightHelpers.js` module. The reasoning behind the wrapper was to normalize the directory that will contain the screenshots so we can use it later in our CI (*continuous integration*) pipeline. Our wrapper stores the screenshots in the root `.playwright-pending` directory following the hierarchy:
+
+```
+.playwright-pending
+├── <test_file_name>
+│   ├── <screenshot_name>-<browser_name>.png
+│   └── ...
+...
 ```
 
-takes a screenshot that will be stored in the `.cypress-pending` directory with a default name including the current test's suite and test name.
+An example of calling the screenshot command:
 
 ```bash
-cy.screenshot(fileName)
+...
+test('shows the Pokemons data', async ({ page, browserName }) => {
+    await screenshot(page, browserName, __filename, 'pokemonList');
+});
+...
 ```
-
-takes a screenshot that will be stored in the `.cypress-pending` directory with a given name instead of the default one.
-
-We have defined our own `screenshot` command override in the `cypress/support/commands.js` module. Our custom `screenshot` implementation unfocuses any focused element (for consistent screenshots), waits `200ms` for any assets that may be loading, and then calls the original command.
 
 We have also defined the following script within `project.json`
 
 ```bash
-yarn cypress-check
+yarn e2e-check
 ```
 
-which runs our end-to-end and component tests and places the generated screenshots in the `.cypress-pending` folder in the project root. The script will then run our custom logic contained in the `CypressCompare.js` helper.
+which runs our custom logic contained in the `ScreenshotsCompare` helper.
 
-This script is run automatically on all PRs to the `main` branch by the `.github/workflows/ScreenshotsCheck.yml` GitHub Action. The workflow creates a commit with the screenshots to the PR branch.
+This script is run automatically on all PRs to the `main` and `feature/**` branches, as well as on pushes to the `main` branch by the `.github/workflows/BuildAndTest.yml` GitHub Workflow. The workflow creates a commit with the screenshots to the PR branch.
 
 This gives us an easy way to get a visual comparison of the tests that have changed when reviewing the PRs.
 
-#### Interactive testing using the Cypress Studio
+#### Interactive testing using the Playwright's test generator
 
-By using `Cypress` as our end-to-end testing tool we have been given an option to extend existing or create new tests entirely by clicking and recording interactions against the running application. This feature is called [Cypress Studio](https://docs.cypress.io/guides/core-concepts/cypress-studio).
-
-To open `Cypress Studio` you need to launch the `Test Runner` by executing the following command
-
-```bash
-yarn e2e-test-open
-```
-
-The window will open showing the list of all currently defined end-to-end tests from the `tests/integration` folder. Here, you can create a new `spec.js` file by clicking on the `New Spec File` button in the upper right section of the window, or run an already defined file by clicking on it.
-
-Once the tests complete their run, you can do one of the following two things:
-
-* Hover over any existing test and use the revealed `Add Commands to Test` icon, or
-* Hover over any `describe` block and use the revealed `Add New Test` icon
-
-Either way, `Cypress Studio` will open where you can freely interact with the application and see the generated testing commands in the `Command Log`. By right-clicking on any DOM element you can generate various assertions. Each generated command in the `Command Log` can be undone by hovering over it and using the delete button.
-
-Use `cancel` button to exit `Cypress Studio` and discard the recorded interactions. To save the generated commands use the `Save Commands` button. Once saved, underlying `spec.js` is updated with the recorded actions.
+By using `Playwright` as our end-to-end testing tool we have been given an option to extend existing or create new tests entirely by [clicking and recording interactions against the running application](https://playwright.dev/docs/codegen).
 
 ## Packages
 
@@ -488,7 +476,7 @@ The following are packages that have been added to the project by default and wi
 
 * [`react`](https://reactjs.org/) / [`react-dom`](https://reactjs.org/docs/react-dom.html) - library which role has already been described and which name is in the name of the starter, which implies that it is impossible not to use
 * [`mobx`](https://mobx.js.org/README.html) / [`mobx-react-lite`](https://mobx-react.js.org/) - state management library that allows you to separate application logic from rendering components (allows data changes to cause components to render - it has a similar effect as state components but it is not necessarily related to it)
-* [`cypress`](https://www.cypress.io/) - library that allows you to write tests for the application
+* [`playwright`](https://playwright.dev/) - library that allows you to write tests for the application
 * [`@mui/material`](https://mui.com/) / [`@mui/icons-material`](https://mui.com/components/material-icons/) - a collection of React components and icons that allows us not to reinvent the wheel by writing our own buttons, inputs and other components
 * [`axios`](https://github.com/axios/axios) - HTTP client that allows easy communication between the application and the server or an API
 * [`noty`](https://ned.im/noty/#/) - library used to display notifications within the application

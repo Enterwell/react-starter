@@ -12,14 +12,19 @@ const PLAYWRIGHT_PENDING_DIR = '.playwright-pending';
  * @param {string} executingFilePath '__filename' of the caller
  * @param {string} screenshotName Desired name of the screenshot
  * that will be appended the browser's name
+ * @param {object} additionalOptions Additional options to pass to the screenshot function
  */
 export async function screenshot(
   page,
   browserName,
   executingFilePath,
-  screenshotName
+  screenshotName,
+  additionalOptions = {}
 ) {
   const directoryName = path.basename(executingFilePath).replace(/\..+$/, '');
 
-  await page.screenshot({ path: `${PLAYWRIGHT_PENDING_DIR}/${directoryName}/${screenshotName}-${browserName}.png`});
+  await page.screenshot({
+    path: `${PLAYWRIGHT_PENDING_DIR}/${directoryName}/${screenshotName}-${browserName}.png`,
+    ...additionalOptions
+  });
 }
