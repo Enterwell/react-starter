@@ -72,6 +72,8 @@ jobs:
         with:
           message: "[skip ci] [e2e-check] Automated Playwright E2E screenshot changes commit"
           new_branch: ${{ env.BRANCH_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.AT_PAT }}
       
       # Running Storybook story screenshots check
       - name: Run stories-check
@@ -83,3 +85,5 @@ jobs:
         with:
           message: "[skip ci] [storybook-check] Automated Storybook screenshot changes commit"
           new_branch: ${{ env.BRANCH_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.AT_PAT }}
