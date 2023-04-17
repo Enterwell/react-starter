@@ -1,5 +1,24 @@
 <h1 align="center">
+  <a style="display: inline-block;" href="https://enterwell.net" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="http://dev.enterwell.space/EW_logo_white.svg">
+      <img width="128" height="128" alt="logo" src="http://dev.enterwell.space/EW_logo_black.svg">
+    </picture>
+  </a>
   <p>Enterwell React starter</p>
+</h1>
+
+<div align="center">
+  <p>Enterwell's template for web apps based on the React and Next.js.</p>
+  <div>
+
+  [![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
+  [![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
+  [![GitHub contributors](https://img.shields.io/github/contributors/Enterwell/react-starter)](https://github.com/Enterwell/react-starter/graphs/contributors)
+  [![GitHub pull requests](https://img.shields.io/github/issues-pr/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/pulls)
+
+  </div>
   <div>
     <a href="https://www.javascript.com/" target="_blank">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="30" />
@@ -29,17 +48,9 @@
       <img src="https://playwright.dev/img/playwright-logo.svg" alt="playwright" width="30" />
     </a>
   </div>
-</h1>
-
-<div align="center">
-
-[![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
-![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
-[![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
-[![GitHub contributors](https://img.shields.io/github/contributors/Enterwell/react-starter)](https://github.com/Enterwell/react-starter/graphs/contributors)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/pulls)
-
 </div>
+
+## Introduction
 
 This document represents the official React starter documentation. React starter was created due to the desire to unify all React projects that we will develop in the future. This document will therefore explain and list out the following conclusions that the Enterwell elders agreed on after several multi-hour meetings:
 
