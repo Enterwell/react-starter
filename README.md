@@ -12,7 +12,8 @@
   <p>Enterwell's template for web apps based on the React and Next.js.</p>
   <div>
 
-  [![Build](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/BuildAndTest.yml)
+  [![CI](https://github.com/Enterwell/react-starter/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/Enterwell/react-starter/actions/workflows/CI.yml)
+  [![CodeQL](https://github.com/Enterwell/react-starter/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Enterwell/react-starter/actions/workflows/codeql-analysis.yml)
   ![GitHub last commit](https://img.shields.io/github/last-commit/Enterwell/react-starter?label=Last%20commit)
   [![GitHub issues](https://img.shields.io/github/issues/Enterwell/react-starter?color=0088ff)](https://github.com/Enterwell/react-starter/issues)
   [![GitHub contributors](https://img.shields.io/github/contributors/Enterwell/react-starter)](https://github.com/Enterwell/react-starter/graphs/contributors)

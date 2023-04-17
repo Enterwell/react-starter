@@ -1,4 +1,4 @@
-name: Build and test
+name: CI
 
 # Variables
 env:
@@ -10,14 +10,13 @@ on:
     branches:
       - main
       - feature/**
-  push:
-    branches:
-      - main
 
 jobs:
   build-and-test:
     name: Build and test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       # Checkout
@@ -45,10 +44,10 @@ jobs:
         with:
           path: ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
 
       # Building the application
       - name: Yarn build
@@ -72,8 +71,6 @@ jobs:
         with:
           message: "[skip ci] [e2e-check] Automated Playwright E2E screenshot changes commit"
           new_branch: ${{ env.BRANCH_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.AT_PAT }}
       
       # Running Storybook story screenshots check
       - name: Run stories-check
@@ -85,5 +82,3 @@ jobs:
         with:
           message: "[skip ci] [storybook-check] Automated Storybook screenshot changes commit"
           new_branch: ${{ env.BRANCH_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.AT_PAT }}
