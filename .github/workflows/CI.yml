@@ -22,9 +22,6 @@ jobs:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ env.BRANCH_NAME }}
 
       # Defining what Node.js version to use
       - name: Use Node.js 16.x
