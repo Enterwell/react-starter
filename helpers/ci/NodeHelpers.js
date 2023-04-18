@@ -38,6 +38,7 @@ module.exports.getFilesRecursively = (directory) => {
 module.exports.logProcess = (message, taskToRun) => {
   try {
     stdout.write(message);
+
     const valueToReturn = taskToRun();
     stdout.write(`${chalk.green(' DONE ✔')}\n`);
 

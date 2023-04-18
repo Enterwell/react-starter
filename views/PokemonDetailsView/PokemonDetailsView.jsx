@@ -58,7 +58,7 @@ function PokemonDetailsView(props) {
               height={250}
             />
           </div>
-          <span className={styles.name}>
+          <span className={styles.name} data-testid="pokemon-name">
             {pokemon.name}
           </span>
           <div className={styles.data}>
@@ -89,12 +89,12 @@ function PokemonDetailsView(props) {
           </div>
           <div className={styles.feedback}>
             {`What do you think about ${pokemon.name} `}
-            <span className={styles.user}>
+            <span className={styles.user} data-testid="pokemon-user-name">
               {`${user ? user.name : 'John Doe'}`}
             </span>
             ?
           </div>
-          <Link href="/pokemons" className={styles.link}>
+          <Link href="/pokemons" className={styles.link} data-testid="pokemon-link">
             Go back
           </Link>
         </div>

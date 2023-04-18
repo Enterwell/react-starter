@@ -5,10 +5,11 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-/cypress/screenshots
-/cypress/videos
+# playwright
+**/test-results
+**/playwright-report
+**/playwright/.cache
+.playwright-pending
 
 # next.js
 /.next/
@@ -19,9 +20,6 @@
 
 # storycap
 /.stories-pending
-
-# cypress screenshots
-/.cypress-pending
 
 # production
 /build

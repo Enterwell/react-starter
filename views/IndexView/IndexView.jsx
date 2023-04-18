@@ -15,7 +15,12 @@ function IndexView() {
       <span>
         Not much to see here. If you are intereseted in Pokemons, visit
       </span>
-      <Link href="/pokemons" as="/pokemons" className={styles.link}>
+      <Link
+        href="/pokemons"
+        as="/pokemons"
+        className={styles.link}
+        data-testid="pokemons-link"
+      >
         Pokemons page
       </Link>
     </div>

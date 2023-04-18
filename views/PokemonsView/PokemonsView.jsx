@@ -51,6 +51,7 @@ function PokemonsView(props) {
             href="/pokemons/[id]"
             as={`/pokemons/${p.id}`}
             className={styles.item}
+            data-testid="pokemon-item"
           >
             <div className={styles.imageWrapper}>
               <Image

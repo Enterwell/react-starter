@@ -23,10 +23,11 @@ const nextConfig = {
     dirs: [
       '.storybook',
       'app-models',
-      'component-models', 'components', 'config', 'cypress',
+      'component-models', 'components', 'config',
       'helpers', 'hooks',
       'mappers', 'models',
       'pages',
+      'playwright',
       'repositories',
       'services',
       'tests',

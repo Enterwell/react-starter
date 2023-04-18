@@ -46,7 +46,7 @@ function UserInformation(props) {
       <div className={styles.nameWrapper}>
         Hi
         {' '}
-        <span className={styles.name}>{(user && user.name) || 'John Doe'}</span>
+        <span className={styles.name} data-testid="user-name">{(user && user.name) || 'John Doe'}</span>
         !
       </div>
       <div className={styles.newNameWrapper}>

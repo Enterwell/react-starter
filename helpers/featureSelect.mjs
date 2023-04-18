@@ -74,30 +74,22 @@ async function removeStorybook() {
   fs.writeJsonSync('.eslintrc', eslintObj, { spaces: 4 });
 }
 
-async function removeCypress() {
-  fs.removeSync('.cypress-approved');
-  fs.removeSync('.cypress-pending');
-  fs.removeSync('cypress');
+async function removePlaywright() {
+  fs.removeSync('.playwright-approved');
+  fs.removeSync('.playwright-pending');
+  fs.removeSync('playwright');
   fs.removeSync('tests/component');
   fs.removeSync('tests/integration');
-  fs.removeSync('./cypress.config.js');
+  fs.removeSync('./playwright.config.js');
+  fs.removeSync('./playwright-ct.config.js');
   await removePackages([
-    '@cypress/react',
-    '@cypress/webpack-dev-server',
-    'cypress',
-    'start-server-and-test'
+    '@playwright/test',
+    '@playwright/experimental-ct-react'
   ]);
   await setScript('test');
-  await setScript('cypress-run');
-  await setScript('cypress-run:ci');
-  await setScript('cypress-open');
-  await setScript('cypress-check');
   await setScript('e2e-test');
-  await setScript('e2e-test:ci');
-  await setScript('e2e-test-open');
+  await setScript('e2e-check');
   await setScript('component-test');
-  await setScript('component-test:ci');
-  await setScript('component-test-open');
 }
 
 async function removeJest() {
@@ -113,8 +105,8 @@ if (args.includes('storycap') || args.includes('storybook')) {
 if (args.includes('storybook')) {
   await removeStorybook();
 }
-if (args.includes('cypress')) {
-  await removeCypress();
+if (args.includes('playwright')) {
+  await removePlaywright();
 }
 if (args.includes('jest')) {
   await removeJest();
