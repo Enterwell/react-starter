@@ -80,7 +80,7 @@
     "jest-environment-jsdom": "29.5.0",
     "kill-port": "2.0.1",
     "postcss": "8.4.21",
-    "puppeteer": "19.7.5",
+    "puppeteer": "19.11.1",
     "rimraf": "4.4.0",
     "sass-loader": "13.2.1",
     "storybook-addon-next": "1.7.3",
