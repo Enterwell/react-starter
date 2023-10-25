@@ -82,7 +82,7 @@
     "postcss": "8.4.21",
     "puppeteer": "19.11.1",
     "rimraf": "4.4.0",
-    "sass-loader": "13.2.1",
+    "sass-loader": "13.3.2",
     "storybook-addon-next": "1.7.3",
     "storycap": "4.0.0",
     "webpack-dev-server": "4.13.1"
