@@ -6,7 +6,7 @@ out/*
 # dependencies
 node_modules/*
 package.json
-yarn.lock
+pnpm-lock.yaml
 
 # storybook
 storybook-static/*

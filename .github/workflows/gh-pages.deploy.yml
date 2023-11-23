@@ -3,44 +3,47 @@
 
 name: Deploy to GitHub Pages
 
+# Triggering the workflow on any push to the 'main' branch
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  # Deploy job
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      # Installing pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          version: latest
 
-    - name: Install packages
-      uses: borales/actions-yarn@v4.2.0
-      with:
-        cmd: install
+      # Defining what Node.js version to use
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
 
-    - name: Generating .env.local file
-      run: cp .env.local.example .env.local
+      # Installing node dependencies using pnpm
+      - name: Pnpm install
+        run: pnpm install --frozen-lockfile
+      
+      # Exporting NextJS static files
+      - name: Export static files
+        run: pnpm export
 
-    - name: Export static files
-      uses: borales/actions-yarn@v4.2.0
-      with:
-        cmd: export
-
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.4.1
-      with:
-        branch: gh-pages
-        folder: out
-
+      # Deploying the static page to GitHub Pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          branch: gh-pages
+          folder: out
