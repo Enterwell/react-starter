@@ -36,7 +36,7 @@ module.exports = defineConfig({
     }
   ],
   webServer: {
-    command: `yarn dev --port ${PORT}`,
+    command: `pnpm dev --port ${PORT}`,
     url: baseURL,
     timeout: 120 * 1000
   }

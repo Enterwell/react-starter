@@ -90,18 +90,18 @@ If any doubts remain after reading this document, feel free to contact us via [G
 
 ## Quick start
 
-This project uses [Yarn](https://classic.yarnpkg.com/en/) as its package manager so in order to get quickly up and running you will need to have it installed on your machine.
+This project uses [pnpm](https://pnpm.io/) as its package manager so in order to get quickly up and running you will need to have it installed on your machine.
 
 If you don't already have it, you can easily install it by using the following command (assuming you have [Node.js](https://nodejs.org/en/) installed)
 
 ```bash
-npm install --global yarn
+npm install --global pnpm
 ```
 
 Now you can setup the application without any hassle using the following command
 
 ```bash
-yarn create next-app -e https://github.com/Enterwell/react-starter
+pnpm create next-app -e https://github.com/Enterwell/react-starter
 ```
 
 And success, you are ready to rumble!
@@ -109,14 +109,14 @@ And success, you are ready to rumble!
 Once in the project directory, you can start the `development` version of the application using the command
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 For documentation on running the application in other modes, see ['Launching the application' section](#launching-the-application).
 
 ### Customizing features
 
-You can remove features you don't plan to use by calling `yarn feature:remove <FEATURE>`. Feature that can be removed are as following:
+You can remove features you don't plan to use by calling `pnpm feature:remove <FEATURE>`. Feature that can be removed are as following:
 
 * `storycap`
 * `storybook` (also removed `storycap`)
@@ -142,7 +142,7 @@ The React starter's root contains all the configuration files of the tools used 
 * `playwright.config.js` - used for configuring [Playwright](https://playwright.dev/)
 * `playwright-ct.config.js` - used for configuring [Playwright's](https://playwright.dev/) component tests
 * `jest.config.js` - used for configuring [Jest](https://jestjs.io/)
-* `yarn.lock` - used by [Yarn](https://classic.yarnpkg.com/en/) to know exactly which versions of the packages need to be installed
+* `pnpm-lock.yaml` - used by [pnpm](https://pnpm.io/) to know exactly which versions of the packages need to be installed
 * `next.config.js` - used for defining non-default [Next.js](https://nextjs.org/) configuration
 * `README.md` - used for project description - how to get it started, some basic things about the packages used or some other tips for people who will work on the project in the future
 * `CHANGELOG.md` - used for keeping [application change logs](https://keepachangelog.com/en/1.0.0/) (adding new features, fixing bugs, etc.)
@@ -344,12 +344,12 @@ In order to add new component to `Storybook` it is necessary to define a [story]
 Starting the `Storybook` UI interface is done with the command
 
 ```bash
-yarn storybook
+pnpm storybook
 ```
 
 This command will start `Storybook` locally and output the address at which the process is running. Depending on your system configuration, the address will automatically be opened in a new browser tab.
 
-If you don't plan to use Storybook you can remove it using `yarn feature:remove storybook`. Note that storybook is required for storycap functionality and will be removed if storybook is removed.
+If you don't plan to use Storybook you can remove it using `pnpm feature:remove storybook`. Note that storybook is required for storycap functionality and will be removed if storybook is removed.
 
 ## Styles
 
@@ -380,7 +380,7 @@ By writing tests we achieve automated checks that everything in the application 
 
 We have selected both [Jest](https://jestjs.io/) and [Playwright](https://playwright.dev/) as the most suitable libraries for testing the application. When we talk about application testing, we can divide all tests into three different logical levels.
 
-If you don't plan to use testing that is configured as a part of this starter - use `yarn feature:remove playwright jest` to remove everything related to these tests.
+If you don't plan to use testing that is configured as a part of this starter - use `pnpm feature:remove playwright jest` to remove everything related to these tests.
 
 ### Unit testing
 
@@ -391,7 +391,7 @@ Unit tests are written inside the `tests/unit` folder. There is only 1 unit test
 Unit tests can be run directly from the command line using the command
 
 ```bash
-yarn unit-test
+pnpm test:unit
 ```
 
 ### Component testing
@@ -403,13 +403,13 @@ Component tests are written inside the `tests/component` folder. There are alrea
 Component tests can be run directly from the command line using the command
 
 ```bash
-yarn component-test
+pnpm test:component
 ```
 
 or a UI can be opened through which they can be manually run. The UI is opened by using the command
 
 ```bash
-yarn component-test-open
+pnpm test:component-open
 ```
 
 ### E2E (end-to-end) testing
@@ -421,19 +421,19 @@ End-to-end tests are written inside the `tests/integration` folder. There are al
 End-to-end tests can be run directly from the command line using the command
 
 ```bash
-yarn e2e-test
+pnpm test:e2e
 ```
 
 or a UI can be opened through which they can be manually run. The UI is opened by using the command
 
 ```bash
-yarn e2e-test-open
+pnpm test:e2e-open
 ```
 
 Various different commands were shown that can run each testing method separately from each other. This can be useful if we want to focus on one type of tests without running others. But we can also run all of the tests at once by using the command
 
 ```bash
-yarn test
+pnpm test
 ```
 
 In end-to-end tests, we can use `Playwright`'s handy [screenshot](https://playwright.dev/docs/screenshots) command. Using this command we can generate a screenshot of the application under test at any desired moment. This can make it easier for us to review PRs and all future changes.
@@ -463,7 +463,7 @@ test('shows the Pokemons data', async ({ page, browserName }) => {
 We have also defined the following script within `project.json`
 
 ```bash
-yarn e2e-check
+pnpm e2e-check
 ```
 
 which runs our custom logic contained in the `ScreenshotsCompare` helper.
@@ -514,12 +514,12 @@ For a more organized development of components and pages, we use `Storybook` as 
 
 `Storycap` crawls `Storybook` and generates images of all defined stories. With the help of these generated images, we can make it easier for us to review PRs and all new future changes.
 
-If you don't plan to use storycap you can remove it using `yarn feature:remove storycap`.
+If you don't plan to use storycap you can remove it using `pnpm feature:remove storycap`.
 
 Script has been defined within `project.json` that is used for this purpose.
 
 ```bash
-yarn stories-check
+pnpm stories-check
 ```
 
 which runs `Storycap` and places generated images in the `.stories-pending` folder in the project root. The script will then run our custom logic contained in the `StoriesCompare.js` helper.
@@ -537,23 +537,23 @@ There are several commands with which you can launch the application and it all 
 Starting the application in `development` mode using the remote API is done with the command
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 Starting the application in `development` mode using the local API is done with the command
 
 ```bash
-yarn dev-local
+pnpm dev-local
 ```
 
 When application development is complete, the application needs to be `built`. `Building` the application is done using the commands
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ```bash
-yarn build-local
+pnpm build-local
 ```
 
 depending on whether the application uses a local or remote API.
@@ -561,7 +561,7 @@ depending on whether the application uses a local or remote API.
 When you have successfully `built` your application, you can start the `production` version using the command
 
 ```bash
-yarn start
+pnpm start
 ```
 
 Whether running in `development` or `production` mode, application is available at `http://localhost:3000`.
@@ -571,7 +571,7 @@ Whether running in `development` or `production` mode, application is available 
 Exporting your application to static HTML, which can then be run standalone without the need of a `Node.js` server is done using the command
 
 ```bash
-yarn export
+pnpm export
 ```
 
 This command generates an `out` directory in the project root. Only use this command if you don't need any of the [features](https://nextjs.org/docs/advanced-features/static-html-export#unsupported-features) requiring a `Node.js` server.
