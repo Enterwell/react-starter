@@ -19,18 +19,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+
     - name: Install packages
       uses: borales/actions-yarn@v4.2.0
       with:
         cmd: install
+
+    - name: Generating .env.local file
+      run: cp .env.local.example .env.local
+
     - name: Export static files
       uses: borales/actions-yarn@v4.2.0
       with:
         cmd: export
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:

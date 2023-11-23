@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-open": "start http://localhost:3000 && yarn dev",
-    "dev-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next dev",
     "build": "next build",
-    "build-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next build",
     "build-analyze": "cross-env ANALYZE=true yarn build",
     "export": "rimraf ./out && rimraf ./.next && cross-env NODE_ENV=production next build && next export",
     "start": "next start",
