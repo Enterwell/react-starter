@@ -1,7 +1,7 @@
 // General import
-const fs = require('fs-extra');
-const path = require('path');
-const chalk = require('chalk');
+const { readdirSync, lstatSync } = require('fs-extra');
+const { join } = require('path');
+const { red, green } = require('colorette');
 const { stdout } = require('process');
 
 /**
@@ -13,12 +13,12 @@ const { stdout } = require('process');
 module.exports.getFilesRecursively = (directory) => {
   const files = [];
 
-  const filesInDirectory = fs.readdirSync(directory);
+  const filesInDirectory = readdirSync(directory);
 
   filesInDirectory.forEach((file) => {
-    const absolute = path.join(directory, file);
+    const absolute = join(directory, file);
 
-    if (fs.lstatSync(absolute).isDirectory()) {
+    if (lstatSync(absolute).isDirectory()) {
       files.push(...this.getFilesRecursively(absolute));
     } else {
       files.push(absolute);
@@ -40,11 +40,11 @@ module.exports.logProcess = (message, taskToRun) => {
     stdout.write(message);
 
     const valueToReturn = taskToRun();
-    stdout.write(`${chalk.green(' DONE ✔')}\n`);
+    stdout.write(green(' DONE ✔\n'));
 
     return valueToReturn;
   } catch (error) {
-    stdout.write(`${chalk.red(' ERROR X')}\n`);
+    stdout.write(red(' ERROR ✘\n'));
 
     throw error;
   }
