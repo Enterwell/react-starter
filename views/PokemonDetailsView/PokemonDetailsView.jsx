@@ -1,7 +1,9 @@
+'use client';
+
 // General imports
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 
 // Components import
 import Link from 'next/link';
@@ -36,15 +38,15 @@ function PokemonDetailsView(props) {
     user
   } = userAppModel;
 
-  const router = useRouter();
+  const params = useParams();
 
   useEffect(() => {
-    if (router.query && router.query.id) {
-      loadPokemon(router.query.id);
+    if (params.pokemonId) {
+      loadPokemon(params.pokemonId);
     }
 
     return onUnmount;
-  }, [loadPokemon, onUnmount, router.query]);
+  }, [loadPokemon, onUnmount, params]);
 
   return (
     <LoadingContainer isLoading={isLoading}>

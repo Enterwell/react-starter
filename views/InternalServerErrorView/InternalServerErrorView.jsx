@@ -6,7 +6,7 @@ import styles from './InternalServerErrorView.module.scss';
  *
  * @returns view's elements
  */
-function InternalServerError() {
+export default function InternalServerError() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title} data-testid="heading">
@@ -18,5 +18,3 @@ function InternalServerError() {
     </div>
   );
 }
-
-export default InternalServerError;

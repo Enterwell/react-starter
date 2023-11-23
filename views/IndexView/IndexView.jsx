@@ -9,7 +9,7 @@ import styles from './IndexView.module.scss';
  *
  * @returns view's elements
  */
-function IndexView() {
+export default function IndexView() {
   return (
     <div className={styles.container}>
       <span>
@@ -25,5 +25,3 @@ function IndexView() {
     </div>
   );
 }
-
-export default IndexView;

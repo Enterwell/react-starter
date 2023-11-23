@@ -6,7 +6,7 @@ import styles from './NotFoundView.module.scss';
  *
  * @returns views's elements
  */
-function NotFoundView() {
+export default function NotFoundView() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title} data-testid="heading">
@@ -18,5 +18,3 @@ function NotFoundView() {
     </div>
   );
 }
-
-export default NotFoundView;
