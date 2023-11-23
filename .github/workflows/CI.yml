@@ -12,6 +12,7 @@ on:
       - feature/**
 
 jobs:
+  # Build and test job
   build-and-test:
     name: Build and test
     runs-on: ubuntu-latest
@@ -21,22 +22,29 @@ jobs:
     steps:
       # Checkout
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      # Installing pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          version: latest
 
       # Defining what Node.js version to use
       - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
-          cache: yarn
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
 
-      # Installing node dependencies using Yarn
-      - name: Yarn install
-        run: yarn install
+      # Installing node dependencies using pnpm
+      - name: Pnpm install
+        run: pnpm install --frozen-lockfile
         
       # Linting the application
-      - name: Yarn lint
-        run: yarn lint
+      - name: Pnpm lint
+        run: pnpm lint
 
       # Persisting Next.js' cache across builds
       - name: Use Next.js cache
@@ -44,26 +52,26 @@ jobs:
         with:
           path: ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
       # Building the application
-      - name: Yarn build
-        run: yarn build
+      - name: Pnpm build
+        run: pnpm build
 
       # Installing Playwright's browsers
       - name: Install Playwright's browsers
-        run: npx playwright install --with-deps
+        run: pnpm playwright install --with-deps
 
       # Running application tests
-      - name: Yarn test
-        run: yarn test
+      - name: Pnpm test
+        run: pnpm test
 
       # Running E2E screenshots check
       - name: E2E check
-        run: yarn e2e-check
+        run: pnpm e2e-check
 
       # Committing E2E screenshot changes
       - name: Commit E2E changes
@@ -74,7 +82,7 @@ jobs:
       
       # Running Storybook story screenshots check
       - name: Run stories-check
-        run: yarn stories-check
+        run: pnpm stories-check
 
       # Committing Storybook story screenshot changes
       - name: Commit Storybook changes

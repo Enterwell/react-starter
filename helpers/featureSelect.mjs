@@ -87,16 +87,18 @@ async function removePlaywright() {
     '@playwright/experimental-ct-react'
   ]);
   await setScript('test');
-  await setScript('e2e-test');
+  await setScript('test:e2e');
+  await setScript('test:e2e-open');
   await setScript('e2e-check');
-  await setScript('component-test');
+  await setScript('test:component');
+  await setScript('test:component-open');
 }
 
 async function removeJest() {
   fs.removeSync('tests/unit');
   fs.removeSync('./jest.config.js');
   await removePackages(['jest', 'jest-environment-jsdom']);
-  await setScript('unit-test');
+  await setScript('test:unit');
 }
 
 if (args.includes('storycap') || args.includes('storybook')) {
