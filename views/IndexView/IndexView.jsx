@@ -17,7 +17,6 @@ function IndexView() {
       </span>
       <Link
         href="/pokemons"
-        as="/pokemons"
         className={styles.link}
         data-testid="pokemons-link"
       >

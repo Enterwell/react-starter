@@ -94,7 +94,11 @@ function PokemonDetailsView(props) {
             </span>
             ?
           </div>
-          <Link href="/pokemons" className={styles.link} data-testid="pokemon-link">
+          <Link
+            href="/pokemons"
+            className={styles.link}
+            data-testid="pokemon-link"
+          >
             Go back
           </Link>
         </div>

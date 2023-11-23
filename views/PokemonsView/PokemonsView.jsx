@@ -48,8 +48,7 @@ function PokemonsView(props) {
         {pokemons.map((p) => (
           <Link
             key={p.id}
-            href="/pokemons/[id]"
-            as={`/pokemons/${p.id}`}
+            href={`/pokemons/${p.id}`}
             className={styles.item}
             data-testid="pokemon-item"
           >
