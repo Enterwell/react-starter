@@ -104,6 +104,12 @@ Now you can setup the application without any hassle using the following command
 pnpm create next-app -e https://github.com/Enterwell/react-starter
 ```
 
+Create a new local configuration `.env.local` by using the provided example file using the command
+
+```bash
+cp .env.local.example .env.local
+```
+
 And success, you are ready to rumble!
 
 Once in the project directory, you can start the `development` version of the application using the command
@@ -532,31 +538,19 @@ This gives us an easy way to get a visual comparison of the stories that have ch
 
 ## Launching the application
 
-There are several commands with which you can launch the application and it all depends on whether you want it to run in `development` or `production` mode and whether you want to use the local API or not.
+There are several commands with which you can launch the application and it all depends on whether you want it to run in `development` or `production` mode.
 
-Starting the application in `development` mode using the remote API is done with the command
+Starting the application in `development` mode is done with the command
 
 ```bash
 pnpm dev
 ```
 
-Starting the application in `development` mode using the local API is done with the command
-
-```bash
-pnpm dev-local
-```
-
-When application development is complete, the application needs to be `built`. `Building` the application is done using the commands
+When application development is complete, the application needs to be `built`. `Building` the application is done using the command
 
 ```bash
 pnpm build
 ```
-
-```bash
-pnpm build-local
-```
-
-depending on whether the application uses a local or remote API.
 
 When you have successfully `built` your application, you can start the `production` version using the command
 
@@ -564,7 +558,7 @@ When you have successfully `built` your application, you can start the `producti
 pnpm start
 ```
 
-Whether running in `development` or `production` mode, application is available at `http://localhost:3000`.
+Whether running in `development` or `production` mode, application is available at [http://localhost:3000](http://localhost:3000).
 
 </br>
 
@@ -588,3 +582,4 @@ Before deploying the application, make sure that all the tasks from the list bel
 * Remove all unused and starter's specific files (e.g. `PokemonsMapper.js`, `PokemonsRepository.js`...)
 * Remove all `TODO_delete_this_later` files and empty folders
 * Customize error pages
+* Make sure that the correct API URL is available to the application through the `NEXT_PUBLIC_API_URL` environmental variable (`https://localhost:5001/v1/` is the default)

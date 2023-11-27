@@ -1,8 +1,6 @@
 // General imports
 import axios from 'axios';
-
-// Should local server be used
-const isLocalServer = process.env.NEXT_PUBLIC_LOCAL_SERVER;
+import { API_ENDPOINT } from '../config/constants';
 
 // Response interceptors
 axios.interceptors.response.use(
@@ -16,11 +14,7 @@ axios.interceptors.response.use(
    * @returns API's URL
    */
 function _getBaseUrl() {
-  if (isLocalServer) {
-    return 'https://localhost:5001/v1/';
-  }
-
-  return 'https://pokeapi.co/api/v2/';
+  return API_ENDPOINT;
 }
 
 /**
@@ -93,7 +87,6 @@ export async function get(url, data, headers) {
  * @returns {Promise<any>} Promise
  */
 export async function post(url, data, headers, config) {
-  //  Remove comment when API is finished
   return _request('post', url, data, headers, config);
 }
 
@@ -107,8 +100,7 @@ export async function post(url, data, headers, config) {
  * @returns {Promise<any>} Promise
  */
 export async function put(url, data, headers) {
-  //  Remove comment when API is finished
-  return HttpService._request('put', url, data, headers);
+  return _request('put', url, data, headers);
 }
 
 /**
@@ -121,5 +113,5 @@ export async function put(url, data, headers) {
  * @returns {Promise<any>} Promise
  */
 export async function requestDelete(url, data, headers) {
-  return HttpService._request('delete', url, data, headers);
+  return _request('delete', url, data, headers);
 }

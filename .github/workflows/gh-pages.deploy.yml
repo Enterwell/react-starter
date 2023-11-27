@@ -36,6 +36,10 @@ jobs:
       # Installing node dependencies using pnpm
       - name: Pnpm install
         run: pnpm install --frozen-lockfile
+
+      # Generating .env.local file
+      - name: Generating .env.local file
+        run: cp .env.local.example .env.local
       
       # Exporting NextJS static files
       - name: Export static files
