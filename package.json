@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-open": "start http://localhost:3000 && pnpm dev",
-    "dev-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next dev",
     "build": "next build",
-    "build-local": "cross-env NEXT_PUBLIC_LOCAL_SERVER=true next build",
     "build-analyze": "cross-env ANALYZE=true pnpm build",
     "export": "rimraf ./out && rimraf ./.next && cross-env NODE_ENV=production next build && next export",
     "start": "next start",
@@ -30,7 +28,6 @@
     "@emotion/styled": "11.11.0",
     "@mui/icons-material": "5.14.18",
     "@mui/material": "5.14.18",
-    "@mui/styles": "5.14.7",
     "axios": "1.3.6",
     "clsx": "1.2.1",
     "colorette": "2.0.19",
