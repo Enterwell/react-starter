@@ -1,5 +1,5 @@
 // Import service
-import { getLocalStorageItem, setLocalStorageItem, removeLocalStorageItem } from '../../services/LocalStorageService';
+import { getLocalStorageItem, setLocalStorageItem, removeLocalStorageItem } from '@/services/LocalStorageService';
 
 /**
  * Class representing the Local Storage mock.

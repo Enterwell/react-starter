@@ -1,8 +1,9 @@
 // General import
-const { readdirSync, lstatSync } = require('fs-extra');
-const { join } = require('path');
-const { red, green } = require('colorette');
 const { stdout } = require('process');
+const { join } = require('path');
+
+const { readdirSync, lstatSync } = require('fs-extra');
+const { red, green } = require('colorette');
 
 /**
  * Gets all the file paths from the selected directory recursively.

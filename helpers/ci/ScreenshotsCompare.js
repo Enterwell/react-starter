@@ -1,5 +1,6 @@
 // General imports
 const { basename } = require('path');
+
 const { PNG } = require('pngjs');
 const pixelmatch = require('pixelmatch');
 const { ensureDirSync, readFileSync, removeSync, moveSync } = require('fs-extra');

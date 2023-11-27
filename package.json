@@ -14,13 +14,13 @@
     "test:unit": "jest",
     "test:e2e": "playwright test",
     "test:e2e-open": "pnpm test:e2e --ui",
-    "e2e-check": "node -e \"require('./helpers/ci/ScreenshotsCompare.js').comparePlaywright()\"",
-    "test:component": "playwright test -c playwright-ct.config.js",
+    "e2e-check": "node -e \"require('./helpers/ci/ScreenshotsCompare').comparePlaywright()\"",
+    "test:component": "playwright test -c playwright-ct.config.ts",
     "test:component-open": "pnpm test:component --ui",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "stories-check": "storycap --serverCmd \"storybook dev --ci -p 6007\" --serverTimeout 180000 -o .stories-pending http://localhost:6007 && kill-port 6007 && node -e \"require('./helpers/ci/ScreenshotsCompare').compareStorybook()\"",
-    "feature:remove": "node ./helpers/featureSelect.mjs"
+    "feature:remove": "node ./helpers/featureSelect.ts"
   },
   "dependencies": {
     "@emotion/cache": "11.11.0",
