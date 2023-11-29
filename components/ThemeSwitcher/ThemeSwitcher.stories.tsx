@@ -1,45 +1,36 @@
-// Component import
+import type { Meta, StoryObj } from '@storybook/react';
+import { Box } from '@mui/material';
+
 import ThemeSwitcher from './ThemeSwitcher';
 
-// CSF default export containing metadata about our component
-// Read more at https://storybook.js.org/docs/react/api/csf
-const story = {
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+const meta = {
   title: 'Components/ThemeSwitcher',
   component: ThemeSwitcher,
   argTypes: {
     isDarkMode: {
-      description: 'Is the dark mode currently active flag.',
-      control: { type: 'boolean' },
-      table: {
-        type: { summary: 'bool' },
-        defaultType: { summary: false }
-      }
+      description: 'Is the dark mode currently active flag.'
     },
     onModeChange: {
-      description: 'Callback fired when the mode is changed.',
-      table: {
-        type: { summary: 'func' }
-      }
+      description: 'Callback fired when the mode is changed.'
     }
+  },
+  render: (args) => (
+    <Box sx={{ height: 50 }}>
+      <ThemeSwitcher {...args} />
+    </Box>
+  )
+} satisfies Meta<typeof ThemeSwitcher>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {};
+
+export const DarkMode: Story = {
+  args: {
+    isDarkMode: true
   }
 };
-export default story;
-
-// 'Template' defining how the 'args' map to the component rendering
-function Template(args) {
-  return <ThemeSwitcher {...args} />;
-}
-
-// Default story
-export const Default = Template.bind({});
-Default.args = {
-  isDarkMode: false
-};
-
-// Dark mode story
-export const DarkMode = Template.bind({});
-DarkMode.args = {
-  isDarkMode: true
-};
-// Only show 'isDarkMode' control in the Dark mode story
-DarkMode.parameters = { controls: { include: 'isDarkMode' } };

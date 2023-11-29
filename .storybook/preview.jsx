@@ -1,8 +1,6 @@
-/* eslint react/jsx-filename-extension: 0 */
-
 // Components import
-import { CssBaseline } from '@mui/material';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import NextAppDirEmotionCacheProvider from '../components/providers/ThemeRegistry/EmotionCache';
 
 // Storycap managed mode decorator import
 import { withScreenshot } from 'storycap';
@@ -13,18 +11,23 @@ import theme from '../config/theme';
 // Global styles import
 import '../styles/global.scss';
 
+// Font import
+import { roboto } from '../config/fonts';
+
 const darkTheme = theme(true);
 
 // Integrating with the MUI by defining a global decorator
 export const decorators = [
   withScreenshot,
   (Story) => (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Story />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <div className={roboto.className}>
+      <NextAppDirEmotionCacheProvider options={{ key: 'storybook-mui', prepend: true }}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Story />
+        </ThemeProvider>
+      </NextAppDirEmotionCacheProvider>
+    </div>
   )
 ];
 

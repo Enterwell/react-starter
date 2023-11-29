@@ -5,8 +5,8 @@ import { CircularProgress } from '@mui/material';
 import styles from './LoadingContainer.module.scss';
 
 type LoadingContainerProps = {
-  isLoading: boolean;
-  children: React.ReactNode;
+  isLoading?: boolean;
+  children?: React.ReactNode;
 }
 
 /**
@@ -16,7 +16,7 @@ type LoadingContainerProps = {
  */
 export default function LoadingContainer(props: LoadingContainerProps) {
   const {
-    isLoading,
+    isLoading = false,
     children
   } = props;
 

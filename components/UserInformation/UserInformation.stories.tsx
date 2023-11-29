@@ -1,9 +1,14 @@
-// Component import
+import type { Meta, StoryObj } from '@storybook/react';
+import { Box } from '@mui/material';
+
 import { SimpleUserInformation } from './UserInformation';
 
-// CSF default export containing metadata about our component
-// Read more at https://storybook.js.org/docs/react/api/csf
-const story = {
+type PropsWithCustomArgs = React.ComponentProps<typeof SimpleUserInformation> & {
+  userName: string;
+};
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+const meta = {
   title: 'Components/UserInformation',
   component: SimpleUserInformation,
   argTypes: {
@@ -25,31 +30,31 @@ const story = {
         type: { summary: 'UserAppModel' },
         defaultValue: { summary: 'UserAppModel' }
       }
-    },
-    loadUser: { action: 'loadUser' },
-    editUser: { action: 'editUser' }
+    }
   }
-};
-export default story;
+} satisfies Meta<PropsWithCustomArgs>;
 
-// 'Template' defining how the 'args' map to the component rendering
-function Template(args) {
-  const {
-    userName,
-    loadUser,
-    editUser
-  } = args;
-  const mockAppModel = {
-    user: { name: userName },
-    loadUser,
-    editUser
-  };
+export default meta;
 
-  return <SimpleUserInformation appModel={mockAppModel} />;
-}
+type Story = StoryObj<PropsWithCustomArgs>;
 
-// Default story
-export const Default = Template.bind({});
-Default.args = {
-  userName: 'John Doe'
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {
+  render: (args) => {
+    const {
+      userName = 'John Doe'
+    } = args;
+
+    const mockAppModel = {
+      user: { name: userName },
+      loadUser: () => {},
+      editUser: () => {}
+    };
+
+    return (
+      <Box sx={{ height: 200 }}>
+        <SimpleUserInformation appModel={mockAppModel} />
+      </Box>
+    );
+  }
 };
