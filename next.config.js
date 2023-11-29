@@ -22,11 +22,11 @@ const nextConfig = {
   eslint: {
     dirs: [
       '.storybook',
+      'app',
       'app-models',
       'component-models', 'components', 'config',
       'helpers', 'hooks',
       'mappers', 'models',
-      'pages',
       'playwright',
       'repositories',
       'services',

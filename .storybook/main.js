@@ -6,13 +6,15 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storycap',
-    'storybook-addon-next'
+    'storycap'
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/nextjs',
+    options: {}
   },
   staticDirs: ['../public'],
-  features: { emotionAlias: false }
+  features: { emotionAlias: false },
+  docs: {
+    autodocs: true
+  }
 };

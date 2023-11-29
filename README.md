@@ -158,16 +158,16 @@ The React starter's root contains all the configuration files of the tools used 
 * `.storybook` - a folder used for [Storybook](https://storybook.js.org/) configuration which contains various configuration files
 * `.stories-approved` - a place where images of all of the defined `Storybook` stories are stored
 * `.playwright-approved` - a place where all Playwright screenshots are stored
+* `app` - a folder which Next.js uses for its [file-system based app router](https://nextjs.org/docs/app/building-your-application/routing#roles-of-folders-and-files)
 * `app-models` - a place where all the app-models that exist within the application are stored
 * `component-models` - a place where all the component-models that exist within the application are stored
 * `components` - a place where all components that are not related to only one `view` are stored (so-called *shared components*)
-* `config` - a place where the various configuration files, used by the application itself, are stored (e.g. internationalization configuration, MUI themes, or something else)
+* `config` - a place where the various configuration files, used by the application itself, are stored (e.g. internationalization configuration, MUI themes, Next.js fonts or something else)
 * `playwright` - a place where Playwright related files are stored
 * `helpers` - a place where all the helpers that exist within the application are stored
 * `hooks` - a place where all custom hooks that exist within the application are stored
 * `mappers` - a place where all the mappers that exist within the application are stored
 * `models` - a place where all the models that exist within the application are stored
-* `pages` - a folder which subfolders and files form a hierarchy of available application routes
 * `public` - a place where all the static resources of the application are stored (e.g. images, SVGs and files that can be downloaded through the application)
 * `repositories` - a place where all the repositories that exist within the application are stored
 * `services` - a place where all the services that exist within the application are stored
@@ -213,15 +213,17 @@ flowchart LR
 
 ### Components
 
-At the heart of any React application are its components. Components are the building blocks of an application and define the user interface that the user will ultimately see. In Enterwell's React architecture, components can correspond to one of the following 3 groups: `pages`, `views`, and `components`.
+At the heart of any React application are its components. Components are the building blocks of an application and define the user interface that the user will ultimately see. In Enterwell's React architecture, components can correspond to one of the following 3 groups: `app`, `views`, and `components`.
 
-#### `Pages`
+#### `App`
 
-React applications developed at Enterwell in previous years used `react-router` and similar packages for routing. By switching to Next.js, the need for using these packages has disappeared and the routes of applications are defined by a hierarchy of files and folders within [`pages`](https://nextjs.org/docs/basic-features/pages) folder (e.g. `pages/index.jsx` file matches the route `/`, `pages/pokemons/index.jsx` file matches the route `/pokemons` etc.).
+React applications developed at Enterwell in previous years used `react-router` and similar packages for routing. By switching to Next.js, the need for using these packages has disappeared and the routes of applications are defined by a hierarchy of files and folders within [`app`](https://nextjs.org/docs/app/building-your-application/routing) folder (e.g. `app/(routes)/page.jsx` file matches the route `/`, `app/(routes)/pokemons/(routes)/page.jsx` file matches the route `/pokemons` etc.).
 
-Since this way of routing is typical of Next.js, and due to the desire to make applications a little less coupled with it, `pages` components service only as an encapsulation around the `views` components.
+Since this way of routing is typical of Next.js, and due to the desire to make applications a little less coupled with it, `app` components serve only as an encapsulation around the `views` components.
 
-It is important to note that within the `pages` folder there are also files that do not correspond directly to the application routes. This refers to [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app), [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document) and [`_error.jsx`](https://nextjs.org/docs/advanced-features/custom-error-page) files that have a special role defined by Next.js.
+It is important to note that within the `app` folder there are also files that do not correspond directly to the application routes. This refers to [`layout.jsx`](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts), [`error.jsx`](https://nextjs.org/docs/app/building-your-application/routing/error-handling) and [`not-found.jsx`](https://nextjs.org/docs/app/api-reference/file-conventions/not-found) files that have a special role defined by Next.js app router.
+
+These are only a few of many [special file conventions](https://nextjs.org/docs/app/building-your-application/routing#file-conventions) that create the UI in a Next.js app router application.
 
 #### `Views`
 
@@ -331,19 +333,19 @@ flowchart TB
     end
 ```
 
-For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses PokéAPI and, as you can already guess, it is used to view Pokemon.
+For all this not to be just a dead letter on the screen, a smaller application that implements the previously described architecture was created as part of the React starter. The application uses [PokéAPI](https://pokeapi.co/) and, as you can already guess, it is used to view Pokemon.
 
-The application consists of 3 "smart" and 2 "stupid" pages. Stupid pages are those to which the user will not otherwise voluntarily come to watch the content, but will be redirected there in certain situations. Those 2 "stupid" pages are `_error.jsx` and `404.jsx`. `_error.jsx` is displayed to the user when an application error occurs, and `404.jsx` when the user enters a route that is not defined. The "smart" pages are `index.jsx` (corresponding to route `/`), `pokemons/index.jsx` (corresponding to route `/pokemons`) and `pokemons/[id].jsx` (corresponding to route `/pokemons/{pokemon-id}`). The `index.jsx` page in this application only displays the message that nothing can be seen there and directs the user to the Pokemon page. `pokemons/index.jsx` displays a list of Pokemon with pagination. Clicking on an individual Pokemon from the list opens the `pokemons/[id].jsx` page showing its details. The `pokemons/index.jsx` and `pokemons/[id].jsx` pages in the upper right corner display a component where the user can enter their name.
+The application consists of 3 "smart" and 2 "stupid" pages. Stupid pages are those to which the user will not otherwise voluntarily come to watch the content, but will be redirected there in certain situations. Those 2 "stupid" pages are `app/error.jsx` and `app/not-found.jsx`. `app/error.jsx` is displayed to the user when an application error occurs, and `app/not-found.jsx` when the user enters a route that is not defined. The "smart" pages are `app/(routes)/page.jsx` (corresponding to route `/`), `app/(routes)/pokemons/(routes)/page.jsx` (corresponding to route `/pokemons`) and `app/(routes)/pokemons/(routes)/[pokemonId]/page.jsx` (corresponding to route `/pokemons/{pokemon-id}`). The `/` route page in this application only displays the message that nothing can be seen there and directs the user to the Pokemon page. `/pokemons` route displays a list of Pokemon with pagination. Clicking on an individual Pokemon from the list opens the `/pokemons/{pokemon-id}` route page showing its details. The `/pokemons` and `pokemons/{pokemon-id}` routes in the upper right corner display a component where the user can enter their name.
 
-Since the `index.jsx` page does not store any data, no logic is tied to it, so it will not be mentioned below.
+Since the `/` route does not store any data, no logic is tied to it, so it will not be mentioned below.
 
-The `pokemons/index.jsx` page displays a list of Pokemon retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonsViewModel` inside of itself. Although this view model is retrieved each time the user arrives on that route, there is only one instance of that view model while using the application (unless the page refreshes or the page is closed and reopened). Using the `PokemonsViewModel` methods, the component calls to retrieve the data and then displays it. The `PokemonsViewModel` uses the `PokemonsRepository` which communicates with an API, to retrieve Pokemon. After retrieving the data from an API, `PokemonsRepository` forwards the data to the `PokemonsMapper` which maps it to a collection of `PokemonSimplified` models and returns it to the repository. The repository then gives the mapped data to the `PokemonsViewModel`.
+The `/pokemons` route displays a list of Pokemon retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonsViewModel` inside of itself. Although this view model is retrieved each time the user arrives on that route, there is only one instance of that view model while using the application (unless the page refreshes or the page is closed and reopened). Using the `PokemonsViewModel` methods, the component calls to retrieve the data and then displays it. The `PokemonsViewModel` uses the `PokemonsRepository` which communicates with an API, to retrieve Pokemon. After retrieving the data from an API, `PokemonsRepository` forwards the data to the `PokemonsMapper` which maps it to a collection of `PokemonSimplified` models and returns it to the repository. The repository then gives the mapped data to the `PokemonsViewModel`.
 
-The `pokemons/[id].jsx` page shows Pokemon details retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonDetailsViewModel`. Unlike `PokemonsViewModel`, there is not just one instance of `PokemonDetailsViewModel`, but a new one is created each time (each time a user comes to that page). Retrieving Pokemon details works the same as retrieving a list of them - the same repository and mapper are used, and only the data is mapped to another model. Another difference of this page in relation to `pokemons/index.jsx` is that this page needs information about the name of the current user which is stored at the application level in `UserAppModel`. `UserAppModel` instance is therefore accessible to the page through its view-model. `UserAppModel` retrieves user data using `UserAppRepository` which communicates with `local storage`.
+The `/pokemons/{pokemon-id}` route shows Pokemon details retrieved from PokéAPI. The component corresponding to that page keeps a copy of the `PokemonDetailsViewModel`. Unlike `PokemonsViewModel`, there is not just one instance of `PokemonDetailsViewModel`, but a new one is created each time (each time a user comes to that page). Retrieving Pokemon details works the same as retrieving a list of them - the same repository and mapper are used, and only the data is mapped to another model. Another difference of this page in relation to `pokemons/index.jsx` is that this page needs information about the name of the current user which is stored at the application level in `UserAppModel`. `UserAppModel` instance is therefore accessible to the page through its view-model. `UserAppModel` retrieves user data using `UserAppRepository` which communicates with `local storage`.
 
 The components used within this demo application are not necessarily compatible with the components that should be used on "real" applications. This primarily refers to the `LoadingContainer` component around which the spears are broken and which according to some should behave differently.
 
-To make it easier to develop components (whether `component` or `views`) and isolate them from the rest of the application and its business logic during their development, we use [Storybook](https://storybook.js.org/docs/react/get-started/introduction). Storybook is an open-source tool that allows us to build UI components and pages in isolation. It does not need to run the entire, possibly complex, dev stack, force test data, and navigate the entire application to develop a single component. We use Storybook for shared components located in the `components` folder and for pages that are harder to trigger eg. error pages. In our case that would be `NotFoundView`, `ErrorView` and `InternalServerErrorView`.
+To make it easier to develop components (whether `component` or `views`) and isolate them from the rest of the application and its business logic during their development, we use [Storybook](https://storybook.js.org/docs/react/get-started/introduction). Storybook is an open-source tool that allows us to build UI components and pages in isolation. It does not need to run the entire, possibly complex, dev stack, force test data, and navigate the entire application to develop a single component. We use Storybook for shared components located in the `components` folder and for pages that are harder to trigger eg. error pages. In our case that would be `NotFoundView` and `InternalServerErrorView`.
 
 In order to add new component to `Storybook` it is necessary to define a [story](https://storybook.js.org/docs/react/get-started/whats-a-story) file within the same folder as the component file, which can be identified by the `.stories.jsx` extension. You can read up on how to write a story [here](https://storybook.js.org/docs/react/writing-stories/introduction#how-to-write-stories).
 
@@ -369,12 +371,12 @@ Naming is something that always provokes controversy because most of us have som
 
 * When naming folders in the root folder, `kebab-case` is used (all words are written in lower case and are separated by a hyphen)
 * When naming folders in subfolders, `PascalCase` is used (all words are capitalized and are not separated from each other)
-* Exceptions to the previous rules are subfolders of `pages` and `public` folders which are also written with `kebab-case`
+* Exceptions to the previous rules are subfolders of `app` and `public` folders which are also written with `kebab-case`
 
 ### Naming files
 
 * Configuration files in the root folder are not subject to any rules but are written in the form required by the tools that use them
-* All files in `pages` and `styles` folders are written with `kebab-case`
+* All files in `app` and `styles` folders are written with `kebab-case`
 * All files that represent React components and files from which a class or more functions are `exported` are written with `PascalCase`
 * Files from which a class instance or an object is `exported` are written in `camelCase` (the first word is written in lower case, the rest in uppercase and they are not separated from each other)
 * Files of "local" styles are written with `PascalCase` with extension `.module.scss`
@@ -576,9 +578,7 @@ Before deploying the application, make sure that all the tasks from the list bel
 
 * Check image optimization in `next.config.js`
 * Change application's name in the `package.json`
-* Change application's default title in the `_app.jsx`
-* Change application's description in `_document.jsx`
-* Change favicon
+* Change application's metadata in the `app/layout.jsx` and several pages where the specific page titles are given
 * Remove all unused and starter's specific files (e.g. `PokemonsMapper.js`, `PokemonsRepository.js`...)
 * Remove all `TODO_delete_this_later` files and empty folders
 * Customize error pages
