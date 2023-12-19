@@ -1,6 +1,8 @@
-import fs from 'fs-extra';
-import path from 'path';
 import { fileURLToPath } from 'url';
+import path from 'path';
+
+import fs from 'fs-extra';
+
 // eslint-disable-next-line import/extensions
 import { getFilesRecursively } from './ci/NodeHelpers.js';
 
@@ -59,19 +61,17 @@ async function removeStorybook() {
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     '@storybook/addons',
-    '@storybook/builder-webpack5',
-    '@storybook/manager-webpack5',
-    '@storybook/react',
+    '@storybook/nextjs',
     'eslint-plugin-storybook',
-    'storybook-addon-next'
+    'storybook'
   ]);
   await setScript('storybook');
   await setScript('build-storybook');
 
-  // Edit .eslintrc remove storybook plugin
-  const eslintObj = fs.readJsonSync('.eslintrc');
+  // Edit .eslintrc.json remove storybook plugin
+  const eslintObj = fs.readJsonSync('.eslintrc.json');
   eslintObj.extends = eslintObj.extends.filter((i) => i !== 'plugin:storybook/recommended');
-  fs.writeJsonSync('.eslintrc', eslintObj, { spaces: 4 });
+  fs.writeJsonSync('.eslintrc.json', eslintObj, { spaces: 4 });
 }
 
 async function removePlaywright() {
@@ -80,8 +80,8 @@ async function removePlaywright() {
   fs.removeSync('playwright');
   fs.removeSync('tests/component');
   fs.removeSync('tests/integration');
-  fs.removeSync('./playwright.config.js');
-  fs.removeSync('./playwright-ct.config.js');
+  fs.removeSync('./playwright.config.ts');
+  fs.removeSync('./playwright-ct.config.ts');
   await removePackages([
     '@playwright/test',
     '@playwright/experimental-ct-react'

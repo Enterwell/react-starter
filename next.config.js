@@ -1,6 +1,7 @@
 const path = require('path');
+
 const withReactSvg = require('next-react-svg')({
-  include: path.resolve(__dirname, './public/assets')
+  include: path.resolve(__dirname, './public/icons')
 });
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
@@ -21,7 +22,6 @@ const nextConfig = {
   },
   eslint: {
     dirs: [
-      '.storybook',
       'app',
       'app-models',
       'component-models', 'components', 'config',
