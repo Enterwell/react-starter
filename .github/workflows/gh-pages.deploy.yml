@@ -47,7 +47,7 @@ jobs:
 
       # Deploying the static page to GitHub Pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
           folder: out
