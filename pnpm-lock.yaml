@@ -149,8 +149,8 @@ devDependencies:
     specifier: 19.11.1
     version: 19.11.1(typescript@5.0.2)
   rimraf:
-    specifier: 4.4.0
-    version: 4.4.0
+    specifier: 4.4.1
+    version: 4.4.1
   sass-loader:
     specifier: 13.3.2
     version: 13.3.2(sass@1.59.3)(webpack@5.76.2)
@@ -8957,7 +8957,7 @@ packages:
       fs.realpath: 1.0.0
       minimatch: 7.4.2
       minipass: 4.2.4
-      path-scurry: 1.6.1
+      path-scurry: 1.10.1
     dev: true
 
   /globals@11.12.0:
@@ -10706,11 +10706,6 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lru-cache@7.18.1:
-    resolution: {integrity: sha512-8/HcIENyQnfUTCDizRu9rrDyG6XG/21M4X7/YEGZeD76ZJilFPAUVb/2zysFf7VVO1LEjCDFyHp8pMMvozIrvg==}
-    engines: {node: '>=12'}
-    dev: true
-
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
@@ -11578,14 +11573,6 @@ packages:
     dependencies:
       lru-cache: 10.1.0
       minipass: 7.0.4
-    dev: true
-
-  /path-scurry@1.6.1:
-    resolution: {integrity: sha512-OW+5s+7cw6253Q4E+8qQ/u1fVvcJQCJo/VFD8pje+dbJCF1n5ZRMV2AEHbGp+5Q7jxQIYJxkHopnj6nzdGeZLA==}
-    engines: {node: '>=14'}
-    dependencies:
-      lru-cache: 7.18.1
-      minipass: 4.2.4
     dev: true
 
   /path-to-regexp@0.1.7:
@@ -12545,8 +12532,8 @@ packages:
       glob: 7.2.0
     dev: true
 
-  /rimraf@4.4.0:
-    resolution: {integrity: sha512-X36S+qpCUR0HjXlkDe4NAOhS//aHH0Z+h8Ckf2auGJk3PTnx5rLmrHkwNdbVQuCSUhOyFrlRvFEllZOYE+yZGQ==}
+  /rimraf@4.4.1:
+    resolution: {integrity: sha512-Gk8NlF062+T9CqNGn6h4tls3k6T1+/nXdOcSZVikNVtlRdYpA7wRJJMoXmuvOnLW844rPjdQ7JgXCYM6PPC/og==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
