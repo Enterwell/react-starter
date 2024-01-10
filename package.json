@@ -42,7 +42,7 @@
     "react-dom": "18.2.0",
     "sass": "1.69.7",
     "typescript": "5.0.2",
-    "webpack": "5.76.2"
+    "webpack": "5.89.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.3",
