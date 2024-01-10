@@ -30,11 +30,11 @@ dependencies:
     specifier: 2.0.19
     version: 2.0.19
   mobx:
-    specifier: 6.8.0
-    version: 6.8.0
+    specifier: 6.12.0
+    version: 6.12.0
   mobx-react-lite:
     specifier: 3.4.3
-    version: 3.4.3(mobx@6.8.0)(react-dom@18.2.0)(react@18.2.0)
+    version: 3.4.3(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 14.0.3
     version: 14.0.3(@babel/core@7.23.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.59.3)
@@ -10978,7 +10978,7 @@ packages:
     hasBin: true
     dev: true
 
-  /mobx-react-lite@3.4.3(mobx@6.8.0)(react-dom@18.2.0)(react@18.2.0):
+  /mobx-react-lite@3.4.3(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-NkJREyFTSUXR772Qaai51BnE1voWx56LOL80xG7qkZr6vo8vEaLF3sz1JNUVh+rxmUzxYaqOhfuxTfqUh0FXUg==}
     peerDependencies:
       mobx: ^6.1.0
@@ -10991,13 +10991,13 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.8.0
+      mobx: 6.12.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /mobx@6.8.0:
-    resolution: {integrity: sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==}
+  /mobx@6.12.0:
+    resolution: {integrity: sha512-Mn6CN6meXEnMa0a5u6a5+RKrqRedHBhZGd15AWLk9O6uFY4KYHzImdt8JI8WODo1bjTSRnwXhJox+FCUZhCKCQ==}
     dev: false
 
   /mri@1.2.0:

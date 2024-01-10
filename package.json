@@ -31,7 +31,7 @@
     "axios": "1.6.0",
     "clsx": "1.2.1",
     "colorette": "2.0.19",
-    "mobx": "6.8.0",
+    "mobx": "6.12.0",
     "mobx-react-lite": "3.4.3",
     "next": "14.0.3",
     "next-react-svg": "1.2.0",
