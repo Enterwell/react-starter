@@ -46,8 +46,8 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.3",
-    "@playwright/experimental-ct-react": "1.32.2",
-    "@playwright/test": "1.32.2",
+    "@playwright/experimental-ct-react": "1.40.1",
+    "@playwright/test": "1.40.1",
     "@storybook/addon-actions": "7.5.3",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
