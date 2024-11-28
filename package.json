@@ -76,6 +76,6 @@
     "sass-loader": "13.3.3",
     "storybook": "7.5.3",
     "storycap": "4.0.0",
-    "webpack-dev-server": "4.13.1"
+    "webpack-dev-server": "4.15.1"
   }
 }
